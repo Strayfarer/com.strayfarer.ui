@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 namespace Strayfarer.UI {
     [UxmlElement]
-    [MovedFrom("Retropair.UXML")]
+    [MovedFrom(true, "Retropair.UXML", "Retropair")]
     sealed partial class PageButton : Button {
         [Header(nameof(PageButton))]
         [UxmlAttribute]

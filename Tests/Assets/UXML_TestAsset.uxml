@@ -1,6 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Content/Application/USS_Application.uss?fileID=7433441132597879392&amp;guid=8fb5305fb619fcf459ff59dd9b1b9dc3&amp;type=3#USS_Application" />
-    <Retropair.UXML.PageView active-index="0" data-source="project://database/Assets/Scripts/Tests/EditMode/Assets/MainMenu_TestAsset.asset?fileID=11400000&amp;guid=33de5180558967149b13f8ed93eaa2a0&amp;type=2#MainMenu_TestAsset">
+    <Retropair.UXML.PageView active-index="0" data-source="project://database/Packages/com.strayfarer.ui/Tests/Assets/MainMenu_TestAsset.asset?fileID=11400000&amp;guid=33de5180558967149b13f8ed93eaa2a0&amp;type=2#MainMenu_TestAsset">
         <ui:VisualElement name="MainMenu">
             <Retropair.UXML.PageButton page-name="ModeSelect" name="Start">
                 <Bindings>

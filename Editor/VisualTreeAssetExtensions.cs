@@ -140,7 +140,14 @@ namespace Strayfarer.UI.Editor {
         }
 
         internal static string GetUxmlDisplayName(this SerializedProperty property) {
-            return "not implemtend";
+            if (!property.TryGetUxmlAttribute("name", out string name)) {
+                string[] substrings = property.GetUxmlTag().Split('.');
+                name = substrings[^1];
+            } else {
+                name = "#" + name;
+            }
+
+            return name;
         }
     }
 }
