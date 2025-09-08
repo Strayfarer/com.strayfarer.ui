@@ -1,24 +1,24 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Content/Application/USS_Application.uss?fileID=7433441132597879392&amp;guid=8fb5305fb619fcf459ff59dd9b1b9dc3&amp;type=3#USS_Application" />
-    <Retropair.UXML.PageView active-index="0" data-source="project://database/Packages/com.strayfarer.ui/Tests/Assets/MainMenu_TestAsset.asset?fileID=11400000&amp;guid=33de5180558967149b13f8ed93eaa2a0&amp;type=2#MainMenu_TestAsset">
+    <Strayfarer.UI.PageView active-index="0" data-source="project://database/Packages/com.strayfarer.ui/Tests/Assets/MainMenu_TestAsset.asset?fileID=11400000&amp;guid=33de5180558967149b13f8ed93eaa2a0&amp;type=2#MainMenu_TestAsset" enabled="true">
         <ui:VisualElement name="MainMenu">
-            <Retropair.UXML.PageButton page-name="ModeSelect" name="Start">
+            <Strayfarer.UI.PageButton page-name="ModeSelect" name="Start">
                 <Bindings>
                     <UnityEngine.Localization.LocalizedString property="text" table="GUID:a3a3f09de9c22cd46b66f971b37eb38d" entry="Id(307161821184)" />
                 </Bindings>
-            </Retropair.UXML.PageButton>
-            <Retropair.UXML.PageButton page-name="Credits" name="Credits">
+            </Strayfarer.UI.PageButton>
+            <Strayfarer.UI.PageButton page-name="Credits" name="Credits">
                 <Bindings>
                     <UnityEngine.Localization.LocalizedString property="text" table="GUID:a3a3f09de9c22cd46b66f971b37eb38d" entry="Id(212601237504)" />
                 </Bindings>
-            </Retropair.UXML.PageButton>
-            <Retropair.UXML.BindableButton text="Button" name="Quit" clicked="false" clicked-now="false" on-click="QuitGame" data-source-type="UnityEngine.InputSystem.HID.HID+Button, Unity.InputSystem">
+            </Strayfarer.UI.PageButton>
+            <Strayfarer.UI.BindableButton text="Button" name="Quit" clicked="false" clicked-now="false" on-click="QuitGame" data-source-type="UnityEngine.InputSystem.HID.HID+Button, Unity.InputSystem">
                 <Bindings>
                     <ui:DataBinding property="clicked" update-trigger="EveryUpdate" data-source-path="quitGame" binding-mode="TwoWay" />
                     <ui:DataBinding property="text" data-source-path="quitGameText" binding-mode="ToTarget" />
                     <ui:DataBinding property="clickedNow" data-source-path="clicked" binding-mode="ToSource" update-trigger="EveryUpdate" />
                 </Bindings>
-            </Retropair.UXML.BindableButton>
+            </Strayfarer.UI.BindableButton>
         </ui:VisualElement>
         <ui:VisualElement name="ModeSelect">
             <ui:Label text="Label" name="Title">
@@ -36,11 +36,11 @@
                     <UnityEngine.Localization.LocalizedString property="text" table="GUID:a3a3f09de9c22cd46b66f971b37eb38d" entry="Id(12977956188418048)" />
                 </Bindings>
             </ui:Button>
-            <Retropair.UXML.PageButton name="Back" page-name="MainMenu">
+            <Strayfarer.UI.PageButton name="Back" page-name="MainMenu">
                 <Bindings>
                     <UnityEngine.Localization.LocalizedString property="text" table="GUID:a3a3f09de9c22cd46b66f971b37eb38d" entry="Id(13050964294856704)" />
                 </Bindings>
-            </Retropair.UXML.PageButton>
+            </Strayfarer.UI.PageButton>
         </ui:VisualElement>
         <ui:VisualElement name="Credits">
             <ui:Label text="Label" name="Title">
@@ -52,11 +52,11 @@
                 <ui:Label text="Katharina Broswik - 3D/2D Art&#10;Daniel Schulz - Code, Tech Art, Game Design&#10;Gregor Sönnichsen - Code, Writing, Environment Art, Game Design" name="Team" />
                 <ui:Label text="- Key Icons by Xelu (CC0) (https://thoseawesomeguys.com/prompts/)&#10;- Fonts: Honey Salt by MJType - GSM Font by Grant Morrison (CC0)&#10;- Audio: Soothing Acoustic Guitar for Relaxation by LolaMoore; License: Attribution 4.0" name="Sources" />
             </ui:VisualElement>
-            <Retropair.UXML.PageButton name="Back" page-name="MainMenu">
+            <Strayfarer.UI.PageButton name="Back" page-name="MainMenu">
                 <Bindings>
                     <UnityEngine.Localization.LocalizedString property="text" table="GUID:a3a3f09de9c22cd46b66f971b37eb38d" entry="Id(13050964294856704)" />
                 </Bindings>
-            </Retropair.UXML.PageButton>
+            </Strayfarer.UI.PageButton>
         </ui:VisualElement>
-    </Retropair.UXML.PageView>
+    </Strayfarer.UI.PageView>
 </ui:UXML>
