@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Web;
 using Slothsoft.UnityExtensions.Editor;
 using UnityEditor;
 using UnityEngine;
@@ -196,7 +195,7 @@ namespace Strayfarer.UI.Editor {
                 parsed.query = uri.Query;
                 parsed.fragment = uri.Fragment;
 
-                var query = HttpUtility.ParseQueryString(uri.Query);
+                var query = new ParsedQuery(uri.Query);
 
                 parsed.guid = query["guid"];
                 parsed.fileId = long.Parse(query["fileID"]);

@@ -8,7 +8,7 @@ namespace Strayfarer.UI.Editor {
     [TestFixture]
     [TestOf(typeof(VisualTreeAssetExtensions))]
     sealed class VisualTreeAssetExtensionsTests {
-        const string TEST_ASSET = "Assets/Scripts/Tests/EditMode/Assets/UXML_TestAsset.uxml";
+        const string TEST_ASSET = "Packages/com.strayfarer.ui/Tests/Assets/UXML_TestAsset.uxml";
 
         VisualTreeAsset sut;
         SerializedObject serialized;
@@ -20,9 +20,9 @@ namespace Strayfarer.UI.Editor {
             serialized = new(sut);
         }
 
-        [TestCase("m_VisualElementAssets.Array.data[1]", "Retropair.UXML.PageView")]
+        [TestCase("m_VisualElementAssets.Array.data[1]", "Strayfarer.UI.PageView")]
         [TestCase("m_VisualElementAssets.Array.data[2].m_Id", "UnityEngine.UIElements.VisualElement")]
-        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "Retropair.UXML.BindableButton")]
+        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "Strayfarer.UI.BindableButton")]
         public void GivenSerializedProperty_GetUxmlTag_ShouldReturnFullTypeName(string propertyPath, string expected) {
             var property = serialized.FindProperty(propertyPath);
             Assert.IsNotNull(property);
@@ -58,7 +58,7 @@ namespace Strayfarer.UI.Editor {
         }
 
         [TestCase("m_VisualElementAssets.Array.data[1]", "active-index", "0")]
-        [TestCase("m_VisualElementAssets.Array.data[1]", "data-source", "project://database/Assets/Scripts/Tests/EditMode/Assets/MainMenu_TestAsset.asset?fileID=11400000&guid=33de5180558967149b13f8ed93eaa2a0&type=2#MainMenu_TestAsset")]
+        [TestCase("m_VisualElementAssets.Array.data[1]", "data-source", "project://database/Packages/com.strayfarer.ui/Tests/Assets/MainMenu_TestAsset.asset?fileID=11400000&guid=33de5180558967149b13f8ed93eaa2a0&type=2#MainMenu_TestAsset")]
         [TestCase("m_VisualElementAssets.Array.data[2].m_Id", "name", "MainMenu")]
         [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "text", "Button")]
         public void GivenExistingProperty_TryGetUxmlAttribute_ShouldSetValue(string propertyPath, string attribute, string expected) {
@@ -97,7 +97,7 @@ namespace Strayfarer.UI.Editor {
         }
 
         [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "active-index", "0")]
-        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "data-source", "project://database/Assets/Scripts/Tests/EditMode/Assets/MainMenu_TestAsset.asset?fileID=11400000&guid=33de5180558967149b13f8ed93eaa2a0&type=2#MainMenu_TestAsset")]
+        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "data-source", "project://database/Packages/com.strayfarer.ui/Tests/Assets/MainMenu_TestAsset.asset?fileID=11400000&guid=33de5180558967149b13f8ed93eaa2a0&type=2#MainMenu_TestAsset")]
         [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "name", "Quit")]
         [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "text", "Button")]
         public void GivenExistingProperty_TryGetUxmlAttributeInParent_ShouldSetValue(string propertyPath, string attribute, string expected) {

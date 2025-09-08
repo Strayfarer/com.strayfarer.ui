@@ -9,8 +9,8 @@
   "changelogUrl": "https://faulo.github.io/com.strayfarer.ui/",
   "documentationUrl": "https://faulo.github.io/com.strayfarer.ui/",
   "dependencies": {
-    "net.slothsoft.unity-extensions": "4.1.0",
-    "net.slothsoft.test-runner": "1.0.0-pre.1",
+    "net.slothsoft.unity-extensions": "4.2.0",
+    "net.slothsoft.test-runner": "1.0.0-pre.4",
     "com.unity.ui": "1.0.0",
     "com.unity.modules.uielements": "1.0.0",
     "com.unity.inputsystem": "1.14.2"
