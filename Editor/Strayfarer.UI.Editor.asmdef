@@ -4,6 +4,7 @@
     "references": [
         "MyBox",
         "Slothsoft.UnityExtensions",
+        "Slothsoft.UnityExtensions.Editor",
         "UnityEditor.UI",
         "UnityEngine.UI",
         "Strayfarer.UI"

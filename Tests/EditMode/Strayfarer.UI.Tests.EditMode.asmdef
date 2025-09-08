@@ -7,7 +7,9 @@
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "TNRD.NSubstitute",
-        "Strayfarer.UI.Editor"
+        "Strayfarer.UI.Editor",
+        "Unity.InputSystem",
+        "Strayfarer.UI.Tests.PlayMode"
     ],
     "includePlatforms": [
         "Editor"
