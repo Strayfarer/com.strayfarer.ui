@@ -11,7 +11,9 @@
   "dependencies": {
     "net.slothsoft.unity-extensions": "4.1.0",
     "net.slothsoft.test-runner": "1.0.0-pre.1",
-    "com.unity.ui": "1.0.0"
+    "com.unity.ui": "1.0.0",
+    "com.unity.modules.uielements": "1.0.0",
+    "com.unity.inputsystem": "1.14.2"
   },
   "repository": {
     "url": "git+https://github.com/Strayfarer/com.strayfarer.ui",
