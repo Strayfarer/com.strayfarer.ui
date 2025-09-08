@@ -1,0 +1,22 @@
+{
+    "name": "Strayfarer.UI.Editor",
+    "rootNamespace": "",
+    "references": [
+        "MyBox",
+        "Slothsoft.UnityExtensions",
+        "UnityEditor.UI",
+        "UnityEngine.UI",
+        "Strayfarer.UI"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+  },
+  "scopedRegistries": [
+    {
+      "name": "Slothsoft",
+      "url": "http://packages.slothsoft.net",
+      "scopes": [
+	    "net.slothsoft"
+      ]
+    },
+    {
+      "name": "OpenUPM",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "net.tnrd.nsubstitute",
+		"com.domybest.mybox"
+      ]
+    }
+  ]
+}
