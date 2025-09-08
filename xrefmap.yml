@@ -1,0 +1,109 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: Strayfarer.UI.Editor
+  name: Strayfarer.UI.Editor
+  href: api/Strayfarer.UI.Editor.html
+  commentId: N:Strayfarer.UI.Editor
+  fullName: Strayfarer.UI.Editor
+  nameWithType: Strayfarer.UI.Editor
+- uid: Strayfarer.UI.Editor.BorderedBox
+  name: BorderedBox
+  href: api/Strayfarer.UI.Editor.BorderedBox.html
+  commentId: T:Strayfarer.UI.Editor.BorderedBox
+  fullName: Strayfarer.UI.Editor.BorderedBox
+  nameWithType: BorderedBox
+- uid: Strayfarer.UI.Editor.BorderedBox.#ctor(VisualElement[])
+  name: BorderedBox(VisualElement[])
+  href: api/Strayfarer.UI.Editor.BorderedBox.html#Strayfarer_UI_Editor_BorderedBox__ctor_VisualElement___
+  commentId: M:Strayfarer.UI.Editor.BorderedBox.#ctor(VisualElement[])
+  name.vb: BorderedBox(VisualElement())
+  fullName: Strayfarer.UI.Editor.BorderedBox.BorderedBox(VisualElement[])
+  fullName.vb: Strayfarer.UI.Editor.BorderedBox.BorderedBox(VisualElement())
+  nameWithType: BorderedBox.BorderedBox(VisualElement[])
+  nameWithType.vb: BorderedBox.BorderedBox(VisualElement())
+- uid: Strayfarer.UI.Editor.BorderedBox.#ctor*
+  name: BorderedBox
+  href: api/Strayfarer.UI.Editor.BorderedBox.html#Strayfarer_UI_Editor_BorderedBox__ctor_
+  commentId: Overload:Strayfarer.UI.Editor.BorderedBox.#ctor
+  isSpec: "True"
+  fullName: Strayfarer.UI.Editor.BorderedBox.BorderedBox
+  nameWithType: BorderedBox.BorderedBox
+- uid: Strayfarer.UI.Editor.Heading
+  name: Heading
+  href: api/Strayfarer.UI.Editor.Heading.html
+  commentId: T:Strayfarer.UI.Editor.Heading
+  fullName: Strayfarer.UI.Editor.Heading
+  nameWithType: Heading
+- uid: Strayfarer.UI.Editor.Heading.#ctor(System.String)
+  name: Heading(String)
+  href: api/Strayfarer.UI.Editor.Heading.html#Strayfarer_UI_Editor_Heading__ctor_System_String_
+  commentId: M:Strayfarer.UI.Editor.Heading.#ctor(System.String)
+  fullName: Strayfarer.UI.Editor.Heading.Heading(System.String)
+  nameWithType: Heading.Heading(String)
+- uid: Strayfarer.UI.Editor.Heading.#ctor*
+  name: Heading
+  href: api/Strayfarer.UI.Editor.Heading.html#Strayfarer_UI_Editor_Heading__ctor_
+  commentId: Overload:Strayfarer.UI.Editor.Heading.#ctor
+  isSpec: "True"
+  fullName: Strayfarer.UI.Editor.Heading.Heading
+  nameWithType: Heading.Heading
+- uid: Strayfarer.UI.Editor.PageIndexField
+  name: PageIndexField
+  href: api/Strayfarer.UI.Editor.PageIndexField.html
+  commentId: T:Strayfarer.UI.Editor.PageIndexField
+  fullName: Strayfarer.UI.Editor.PageIndexField
+  nameWithType: PageIndexField
+- uid: Strayfarer.UI.Editor.PageIndexField.#ctor(SerializedProperty)
+  name: PageIndexField(SerializedProperty)
+  href: api/Strayfarer.UI.Editor.PageIndexField.html#Strayfarer_UI_Editor_PageIndexField__ctor_SerializedProperty_
+  commentId: M:Strayfarer.UI.Editor.PageIndexField.#ctor(SerializedProperty)
+  fullName: Strayfarer.UI.Editor.PageIndexField.PageIndexField(SerializedProperty)
+  nameWithType: PageIndexField.PageIndexField(SerializedProperty)
+- uid: Strayfarer.UI.Editor.PageIndexField.#ctor*
+  name: PageIndexField
+  href: api/Strayfarer.UI.Editor.PageIndexField.html#Strayfarer_UI_Editor_PageIndexField__ctor_
+  commentId: Overload:Strayfarer.UI.Editor.PageIndexField.#ctor
+  isSpec: "True"
+  fullName: Strayfarer.UI.Editor.PageIndexField.PageIndexField
+  nameWithType: PageIndexField.PageIndexField
+- uid: Strayfarer.UI.Editor.PageIndexField.HandleEventBubbleUp(EventBase)
+  name: HandleEventBubbleUp(EventBase)
+  href: api/Strayfarer.UI.Editor.PageIndexField.html#Strayfarer_UI_Editor_PageIndexField_HandleEventBubbleUp_EventBase_
+  commentId: M:Strayfarer.UI.Editor.PageIndexField.HandleEventBubbleUp(EventBase)
+  fullName: Strayfarer.UI.Editor.PageIndexField.HandleEventBubbleUp(EventBase)
+  nameWithType: PageIndexField.HandleEventBubbleUp(EventBase)
+- uid: Strayfarer.UI.Editor.PageIndexField.HandleEventBubbleUp*
+  name: HandleEventBubbleUp
+  href: api/Strayfarer.UI.Editor.PageIndexField.html#Strayfarer_UI_Editor_PageIndexField_HandleEventBubbleUp_
+  commentId: Overload:Strayfarer.UI.Editor.PageIndexField.HandleEventBubbleUp
+  isSpec: "True"
+  fullName: Strayfarer.UI.Editor.PageIndexField.HandleEventBubbleUp
+  nameWithType: PageIndexField.HandleEventBubbleUp
+- uid: Strayfarer.UI.Editor.TransientObjectField`1
+  name: TransientObjectField<T>
+  href: api/Strayfarer.UI.Editor.TransientObjectField-1.html
+  commentId: T:Strayfarer.UI.Editor.TransientObjectField`1
+  name.vb: TransientObjectField(Of T)
+  fullName: Strayfarer.UI.Editor.TransientObjectField<T>
+  fullName.vb: Strayfarer.UI.Editor.TransientObjectField(Of T)
+  nameWithType: TransientObjectField<T>
+  nameWithType.vb: TransientObjectField(Of T)
+- uid: Strayfarer.UI.Editor.TransientObjectField`1.#ctor(System.String,Func{`0},Action{`0})
+  name: TransientObjectField(String, Func<T>, Action<T>)
+  href: api/Strayfarer.UI.Editor.TransientObjectField-1.html#Strayfarer_UI_Editor_TransientObjectField_1__ctor_System_String_Func__0__Action__0__
+  commentId: M:Strayfarer.UI.Editor.TransientObjectField`1.#ctor(System.String,Func{`0},Action{`0})
+  name.vb: TransientObjectField(String, Func(Of T), Action(Of T))
+  fullName: Strayfarer.UI.Editor.TransientObjectField<T>.TransientObjectField(System.String, Func<T>, Action<T>)
+  fullName.vb: Strayfarer.UI.Editor.TransientObjectField(Of T).TransientObjectField(System.String, Func(Of T), Action(Of T))
+  nameWithType: TransientObjectField<T>.TransientObjectField(String, Func<T>, Action<T>)
+  nameWithType.vb: TransientObjectField(Of T).TransientObjectField(String, Func(Of T), Action(Of T))
+- uid: Strayfarer.UI.Editor.TransientObjectField`1.#ctor*
+  name: TransientObjectField
+  href: api/Strayfarer.UI.Editor.TransientObjectField-1.html#Strayfarer_UI_Editor_TransientObjectField_1__ctor_
+  commentId: Overload:Strayfarer.UI.Editor.TransientObjectField`1.#ctor
+  isSpec: "True"
+  fullName: Strayfarer.UI.Editor.TransientObjectField<T>.TransientObjectField
+  fullName.vb: Strayfarer.UI.Editor.TransientObjectField(Of T).TransientObjectField
+  nameWithType: TransientObjectField<T>.TransientObjectField
+  nameWithType.vb: TransientObjectField(Of T).TransientObjectField
