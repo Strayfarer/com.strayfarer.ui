@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using UnityEditor;
+using UnityEngine.UIElements;
 using UObject = UnityEngine.Object;
 
 namespace Strayfarer.UI.Editor {
@@ -26,6 +27,19 @@ namespace Strayfarer.UI.Editor {
             var actual = ToolkitUtils.LoadAsset<UObject>(url);
 
             Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [TestCase("PascalCase", "pascal-case")]
+        [TestCase(nameof(MethodReferenceField), "method-reference-field")]
+        [TestCase("MyReally-CoolMFAString", "my-really-cool-mfa-string")]
+        [TestCase("DOMDocument", "dom-document")]
+        [TestCase("unity-kebab-case", "unity-kebab-case")]
+        [TestCase("UnityKebabCase__underscored", "unity-kebab-case__underscored")]
+        public void GivenElement_AddKebabToClassList_AddsClassKebabStyle(string value, string expected) {
+            var element = new VisualElement();
+            element.AddKebabToClassList(value);
+
+            Assert.That(element.GetClasses(), Does.Contain(expected));
         }
     }
 }

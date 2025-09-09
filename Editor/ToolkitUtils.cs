@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using Slothsoft.UnityExtensions.Editor;
 using UnityEditor;
+using UnityEngine.UIElements;
 using UObject = UnityEngine.Object;
 
 namespace Strayfarer.UI.Editor {
@@ -23,6 +25,15 @@ namespace Strayfarer.UI.Editor {
             }
 
             return default;
+        }
+
+        public static void AddKebabToClassList(this VisualElement element, string className) {
+            className = Regex.Replace(className, @"(?<!^)(?<!-)((?<=\p{Ll})\p{Lu}|\p{Lu}(?=\p{Ll}))", "-$1").ToLower();
+            element.AddToClassList(className);
+        }
+
+        public static void AddFieldAlignmentToClassList<T>(this BaseField<T> field) {
+            field.AddToClassList("unity-base-field__aligned");
         }
     }
 }
