@@ -1,57 +1,44 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
-using UnityEngine;
+using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
 namespace Strayfarer.UI.Editor {
-    public class PageIndexField : VisualElement {
+    public class PageIndexField : PopupField<int> {
         readonly SerializedProperty property;
-
-        readonly PopupField<string> popup = new() {
-            choices = new()
-        };
 
         public PageIndexField(SerializedProperty property) : base() {
             this.property = property;
 
-            popup.label = property.displayName;
-            popup.RegisterValueChangedCallback(OnPopupChanged);
-            popup.AddToClassList("unity-base-field__aligned");
-            popup.AddToClassList("page-index-field");
+            label = property.displayName;
+            choices = new(Enumerable.Range(0, GetPagesCount()));
 
-            popup.labelElement.AddToClassList("unity-property-field__label");
-            popup.ElementAt(1).AddToClassList("unity-property-field__input");
+            formatSelectedValueCallback = GetPageName;
+            formatListItemCallback = GetPageName;
 
-            popup.formatSelectedValueCallback = s => s;
-            popup.formatListItemCallback = s => s;
-            Add(popup);
+            this.BindProperty(property);
+            this.AddFieldAlignmentToClassList();
+            this.AddKebabToClassList(nameof(PageIndexField));
         }
 
-        void OnPopupChanged(ChangeEvent<string> evt) {
-            property.intValue = popup.index;
-            property.serializedObject.ApplyModifiedProperties();
-        }
-        protected override void HandleEventBubbleUp(EventBase evt) {
-            base.HandleEventBubbleUp(evt);
+        IEnumerable<SerializedProperty> pageProperties => property.TryGetUxmlAncestorOrSelf<PageView>(out var currentPageView)
+            ? currentPageView.GetUxmlChildElements()
+            : Enumerable.Empty<SerializedProperty>();
 
-            UpdatePopup();
-        }
+        string GetPageName(int index) {
+            var pageProperty = pageProperties
+                .ElementAtOrDefault(index);
 
-        void UpdatePopup() {
-            popup.choices.Clear();
-            int index = 0;
-            if (!property.TryGetUxmlAncestorOrSelf<PageView>(out var currentPageView)) {
-                Debug.LogError("No PageView found! Page Index Attribute cannot be used!");
+            if (pageProperty is null) {
+                return $"ERROR: Page {index} not found";
             }
 
-            foreach (var child in currentPageView.GetUxmlChildElements()) {
-                popup.choices.Add(index + ": " + child.GetUxmlDisplayName().Replace("#", "\u200B#"));
-                index++;
-            }
-
-            popup.index = property.intValue;
+            return $"{index}: {pageProperty.GetUxmlDisplayName().Replace("#", "\u200B#")}";
         }
-        string FormatItem((int index, string name) popup) {
-            return popup.index + ": " + popup.name;
+
+        int GetPagesCount() {
+            return pageProperties.Count();
         }
     }
 }

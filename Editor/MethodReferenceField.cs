@@ -14,8 +14,9 @@ namespace Strayfarer.UI.Editor {
         public MethodReferenceField(SerializedProperty property) : base() {
             this.property = property;
 
-            choices = new();
             label = property.displayName;
+            choices = new();
+
             uxmlType = property.GetUxmlType();
 
             this.BindProperty(property);
