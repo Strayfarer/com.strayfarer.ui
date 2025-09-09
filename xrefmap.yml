@@ -67,19 +67,6 @@ references:
   isSpec: "True"
   fullName: Strayfarer.UI.Editor.PageIndexField.PageIndexField
   nameWithType: PageIndexField.PageIndexField
-- uid: Strayfarer.UI.Editor.PageIndexField.HandleEventBubbleUp(EventBase)
-  name: HandleEventBubbleUp(EventBase)
-  href: api/Strayfarer.UI.Editor.PageIndexField.html#Strayfarer_UI_Editor_PageIndexField_HandleEventBubbleUp_EventBase_
-  commentId: M:Strayfarer.UI.Editor.PageIndexField.HandleEventBubbleUp(EventBase)
-  fullName: Strayfarer.UI.Editor.PageIndexField.HandleEventBubbleUp(EventBase)
-  nameWithType: PageIndexField.HandleEventBubbleUp(EventBase)
-- uid: Strayfarer.UI.Editor.PageIndexField.HandleEventBubbleUp*
-  name: HandleEventBubbleUp
-  href: api/Strayfarer.UI.Editor.PageIndexField.html#Strayfarer_UI_Editor_PageIndexField_HandleEventBubbleUp_
-  commentId: Overload:Strayfarer.UI.Editor.PageIndexField.HandleEventBubbleUp
-  isSpec: "True"
-  fullName: Strayfarer.UI.Editor.PageIndexField.HandleEventBubbleUp
-  nameWithType: PageIndexField.HandleEventBubbleUp
 - uid: Strayfarer.UI.Editor.TransientObjectField`1
   name: TransientObjectField<T>
   href: api/Strayfarer.UI.Editor.TransientObjectField-1.html
