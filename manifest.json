@@ -5,6 +5,18 @@
   "files": [
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Strayfarer.UI.BindableButton.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Strayfarer.UI.BindableButton.html",
+          "hash": "5g61DI1fdC9lnwgN1p500A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Strayfarer.UI.Editor.BorderedBox.yml",
       "output": {
         ".html": {
@@ -64,6 +76,54 @@
       "version": ""
     },
     {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Strayfarer.UI.PageButton.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Strayfarer.UI.PageButton.html",
+          "hash": "3wJbb8DN7aZcAoWdPROgkw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Strayfarer.UI.PageView.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Strayfarer.UI.PageView.html",
+          "hash": "bwcA5Rh6jLULLfGr8KFO7w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Strayfarer.UI.SimpleListView.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Strayfarer.UI.SimpleListView.html",
+          "hash": "46jfiay9pydybYG+/Jz1iw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Strayfarer.UI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Strayfarer.UI.html",
+          "hash": "odiPIj8z40eaN8QHfOuKKg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
       "type": "Conceptual",
       "source_relative_path": "api/index.md",
       "output": {
@@ -81,7 +141,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "HYzR2z6eqfVBw1etG/5HYw=="
+          "hash": "ryRHM4bb/67s27joItFfMA=="
         }
       },
       "is_incremental": false,
@@ -132,7 +192,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 5,
+          "total_file_count": 10,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
