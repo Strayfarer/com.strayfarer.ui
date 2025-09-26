@@ -2,9 +2,7 @@
     "name": "Strayfarer.UI",
     "rootNamespace": "",
     "references": [
-        "MyBox",
-        "Slothsoft.UnityExtensions",
-        "Unity.Timeline"
+        "Slothsoft.UnityExtensions"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

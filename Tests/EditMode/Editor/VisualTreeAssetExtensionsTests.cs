@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using NUnit.Framework;
 using UnityEditor;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Strayfarer.UI.Editor {
@@ -60,7 +61,7 @@ namespace Strayfarer.UI.Editor {
         [TestCase("m_VisualElementAssets.Array.data[1]", "active-index", "0")]
         [TestCase("m_VisualElementAssets.Array.data[1]", "data-source", "project://database/Packages/com.strayfarer.ui/Tests/Assets/MainMenu_TestAsset.asset?fileID=11400000&guid=33de5180558967149b13f8ed93eaa2a0&type=2#MainMenu_TestAsset")]
         [TestCase("m_VisualElementAssets.Array.data[2].m_Id", "name", "MainMenu")]
-        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "text", "Button")]
+        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "text", "Quit")]
         public void GivenExistingProperty_TryGetUxmlAttribute_ShouldSetValue(string propertyPath, string attribute, string expected) {
             var property = serialized.FindProperty(propertyPath);
             Assert.IsNotNull(property);
@@ -99,7 +100,7 @@ namespace Strayfarer.UI.Editor {
         [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "active-index", "0")]
         [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "data-source", "project://database/Packages/com.strayfarer.ui/Tests/Assets/MainMenu_TestAsset.asset?fileID=11400000&guid=33de5180558967149b13f8ed93eaa2a0&type=2#MainMenu_TestAsset")]
         [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "name", "Quit")]
-        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "text", "Button")]
+        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "text", "Quit")]
         public void GivenExistingProperty_TryGetUxmlAttributeInParent_ShouldSetValue(string propertyPath, string attribute, string expected) {
             var property = serialized.FindProperty(propertyPath);
             Assert.IsNotNull(property);
@@ -134,7 +135,7 @@ namespace Strayfarer.UI.Editor {
         }
 
         [TestCase("m_VisualElementAssets.Array.data[1]", typeof(TestAsset))]
-        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", typeof(UnityEngine.InputSystem.HID.HID.Button))]
+        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", typeof(Vector3))]
         public void GivenDataSource_TryGetUxmlDataSourceType_ShouldSetType(string propertyPath, Type expected) {
             var property = serialized.FindProperty(propertyPath);
             Assert.IsNotNull(property);

@@ -2,7 +2,6 @@
     "name": "Strayfarer.UI.Editor",
     "rootNamespace": "",
     "references": [
-        "MyBox",
         "Slothsoft.UnityExtensions",
         "Slothsoft.UnityExtensions.Editor",
         "UnityEditor.UI",

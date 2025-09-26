@@ -8,6 +8,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 
+## [1.0.1] - 2025-09-26
+
+### Fixed
+- Removed superfluous dependency on InputSystem.
+- Removed superfluous dependency on Localization.
+- Removed superfluous dependency on MyBox.
+- Removed superfluous dependency on Timeline.
+
+
 ## [1.0.0] - 2025-09-08
 
 ### Added
