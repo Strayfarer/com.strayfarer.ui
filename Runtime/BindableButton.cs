@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 namespace Strayfarer.UI {
     [UxmlElement]
     [MovedFrom(true, "Retropair.UXML", "Retropair")]
-    sealed partial class BindableButton : Button {
+    public sealed partial class BindableButton : Button {
         [Header(nameof(BindableButton))]
         [UxmlAttribute]
         [MethodReference]

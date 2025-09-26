@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 namespace Strayfarer.UI {
     [UxmlElement]
     [MovedFrom(true, "Retropair.UXML", "Retropair")]
-    sealed partial class PageView : VisualElement {
+    public sealed partial class PageView : VisualElement {
         // Index of the active page
         int _activeIndex = 0;
 

@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 namespace Strayfarer.UI {
     [UxmlElement]
     [MovedFrom(true, "Retropair.UXML", "Retropair")]
-    sealed partial class SimpleListView : BindableElement {
+    public sealed partial class SimpleListView : BindableElement {
         VisualTreeAsset _itemTemplate;
         [UxmlAttribute]
         public VisualTreeAsset itemTemplate {
