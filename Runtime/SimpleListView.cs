@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Properties;
+using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 using UnityEngine.UIElements;
 
@@ -8,6 +10,9 @@ namespace Strayfarer.UI {
     [UxmlElement]
     [MovedFrom(true, "Retropair.UXML", "Retropair")]
     public sealed partial class SimpleListView : BindableElement {
+
+        public event Action<VisualElement> onInstantiateItem;
+
         VisualTreeAsset _itemTemplate;
         [UxmlAttribute]
         public VisualTreeAsset itemTemplate {
@@ -58,7 +63,6 @@ namespace Strayfarer.UI {
         }
 
         int builtSize = -1;
-
         readonly List<VisualElement> sections = new();
         VisualElement GetSectionForElement(int elementIndex) {
             if (elementsPerSection == 0) {
@@ -77,12 +81,20 @@ namespace Strayfarer.UI {
             return sections[sectionIndex];
         }
 
+        VisualElement InstantiateItem() {
+            var item = _itemTemplate is null
+                ? new VisualElement()
+                : _itemTemplate.Instantiate();
+            item.AddToClassList($"simpleList-item");
+            return item;
+        }
+
         void Rebuild() {
             sections.Clear();
 
             Clear();
 
-            if (_itemsSource is null || _itemTemplate is null) {
+            if (_itemsSource is null) {
                 builtSize = -1;
                 return;
             }
@@ -90,11 +102,17 @@ namespace Strayfarer.UI {
             builtSize = 0;
 
             for (int i = 0; i < _itemsSource.Count; i++) {
-                var element = _itemTemplate.Instantiate();
-                element.AddToClassList($"simpleList-item");
+                var element = InstantiateItem();
                 element.dataSource = _itemsSource[i];
                 GetSectionForElement(i).Add(element);
+
                 builtSize++;
+
+                try {
+                    onInstantiateItem?.Invoke(element);
+                } catch (Exception e) {
+                    Debug.LogException(e);
+                }
             }
         }
 
