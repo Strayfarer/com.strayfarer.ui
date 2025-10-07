@@ -323,3 +323,9 @@ references:
   isSpec: "True"
   fullName: Strayfarer.UI.SimpleListView.itemTemplate
   nameWithType: SimpleListView.itemTemplate
+- uid: Strayfarer.UI.SimpleListView.onInstantiateItem
+  name: onInstantiateItem
+  href: api/Strayfarer.UI.SimpleListView.html#Strayfarer_UI_SimpleListView_onInstantiateItem
+  commentId: E:Strayfarer.UI.SimpleListView.onInstantiateItem
+  fullName: Strayfarer.UI.SimpleListView.onInstantiateItem
+  nameWithType: SimpleListView.onInstantiateItem
