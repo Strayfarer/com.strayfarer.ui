@@ -103,6 +103,15 @@ namespace Strayfarer.UI {
 
             for (int i = 0; i < _itemsSource.Count; i++) {
                 var element = InstantiateItem();
+
+                if (i == 0) {
+                    element.AddToClassList("first-child");
+                }
+
+                if (i == _itemsSource.Count - 1) {
+                    element.AddToClassList("last-child");
+                }
+
                 element.dataSource = _itemsSource[i];
                 GetSectionForElement(i).Add(element);
 
