@@ -208,6 +208,77 @@ references:
   isSpec: "True"
   fullName: Strayfarer.UI.FlexSprite.tintColor
   nameWithType: FlexSprite.tintColor
+- uid: Strayfarer.UI.FlexVectorImage
+  name: FlexVectorImage
+  href: api/Strayfarer.UI.FlexVectorImage.html
+  commentId: T:Strayfarer.UI.FlexVectorImage
+  fullName: Strayfarer.UI.FlexVectorImage
+  nameWithType: FlexVectorImage
+- uid: Strayfarer.UI.FlexVectorImage.#ctor
+  name: FlexVectorImage()
+  href: api/Strayfarer.UI.FlexVectorImage.html#Strayfarer_UI_FlexVectorImage__ctor
+  commentId: M:Strayfarer.UI.FlexVectorImage.#ctor
+  fullName: Strayfarer.UI.FlexVectorImage.FlexVectorImage()
+  nameWithType: FlexVectorImage.FlexVectorImage()
+- uid: Strayfarer.UI.FlexVectorImage.#ctor*
+  name: FlexVectorImage
+  href: api/Strayfarer.UI.FlexVectorImage.html#Strayfarer_UI_FlexVectorImage__ctor_
+  commentId: Overload:Strayfarer.UI.FlexVectorImage.#ctor
+  isSpec: "True"
+  fullName: Strayfarer.UI.FlexVectorImage.FlexVectorImage
+  nameWithType: FlexVectorImage.FlexVectorImage
+- uid: Strayfarer.UI.FlexVectorImage.DoMeasure(System.Single,MeasureMode,System.Single,MeasureMode)
+  name: DoMeasure(Single, MeasureMode, Single, MeasureMode)
+  href: api/Strayfarer.UI.FlexVectorImage.html#Strayfarer_UI_FlexVectorImage_DoMeasure_System_Single_MeasureMode_System_Single_MeasureMode_
+  commentId: M:Strayfarer.UI.FlexVectorImage.DoMeasure(System.Single,MeasureMode,System.Single,MeasureMode)
+  fullName: Strayfarer.UI.FlexVectorImage.DoMeasure(System.Single, MeasureMode, System.Single, MeasureMode)
+  nameWithType: FlexVectorImage.DoMeasure(Single, MeasureMode, Single, MeasureMode)
+- uid: Strayfarer.UI.FlexVectorImage.DoMeasure*
+  name: DoMeasure
+  href: api/Strayfarer.UI.FlexVectorImage.html#Strayfarer_UI_FlexVectorImage_DoMeasure_
+  commentId: Overload:Strayfarer.UI.FlexVectorImage.DoMeasure
+  isSpec: "True"
+  fullName: Strayfarer.UI.FlexVectorImage.DoMeasure
+  nameWithType: FlexVectorImage.DoMeasure
+- uid: Strayfarer.UI.FlexVectorImage.scaleMode
+  name: scaleMode
+  href: api/Strayfarer.UI.FlexVectorImage.html#Strayfarer_UI_FlexVectorImage_scaleMode
+  commentId: P:Strayfarer.UI.FlexVectorImage.scaleMode
+  fullName: Strayfarer.UI.FlexVectorImage.scaleMode
+  nameWithType: FlexVectorImage.scaleMode
+- uid: Strayfarer.UI.FlexVectorImage.scaleMode*
+  name: scaleMode
+  href: api/Strayfarer.UI.FlexVectorImage.html#Strayfarer_UI_FlexVectorImage_scaleMode_
+  commentId: Overload:Strayfarer.UI.FlexVectorImage.scaleMode
+  isSpec: "True"
+  fullName: Strayfarer.UI.FlexVectorImage.scaleMode
+  nameWithType: FlexVectorImage.scaleMode
+- uid: Strayfarer.UI.FlexVectorImage.tintColor
+  name: tintColor
+  href: api/Strayfarer.UI.FlexVectorImage.html#Strayfarer_UI_FlexVectorImage_tintColor
+  commentId: P:Strayfarer.UI.FlexVectorImage.tintColor
+  fullName: Strayfarer.UI.FlexVectorImage.tintColor
+  nameWithType: FlexVectorImage.tintColor
+- uid: Strayfarer.UI.FlexVectorImage.tintColor*
+  name: tintColor
+  href: api/Strayfarer.UI.FlexVectorImage.html#Strayfarer_UI_FlexVectorImage_tintColor_
+  commentId: Overload:Strayfarer.UI.FlexVectorImage.tintColor
+  isSpec: "True"
+  fullName: Strayfarer.UI.FlexVectorImage.tintColor
+  nameWithType: FlexVectorImage.tintColor
+- uid: Strayfarer.UI.FlexVectorImage.vectorImage
+  name: vectorImage
+  href: api/Strayfarer.UI.FlexVectorImage.html#Strayfarer_UI_FlexVectorImage_vectorImage
+  commentId: P:Strayfarer.UI.FlexVectorImage.vectorImage
+  fullName: Strayfarer.UI.FlexVectorImage.vectorImage
+  nameWithType: FlexVectorImage.vectorImage
+- uid: Strayfarer.UI.FlexVectorImage.vectorImage*
+  name: vectorImage
+  href: api/Strayfarer.UI.FlexVectorImage.html#Strayfarer_UI_FlexVectorImage_vectorImage_
+  commentId: Overload:Strayfarer.UI.FlexVectorImage.vectorImage
+  isSpec: "True"
+  fullName: Strayfarer.UI.FlexVectorImage.vectorImage
+  nameWithType: FlexVectorImage.vectorImage
 - uid: Strayfarer.UI.PageButton
   name: PageButton
   href: api/Strayfarer.UI.PageButton.html
