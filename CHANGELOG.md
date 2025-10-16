@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 
-## [1.4.0] - 2025-10-16
+## [1.5.0] - 2025-10-16
 
 ### Added
 - Added SimpleListView::instantiateItem.
