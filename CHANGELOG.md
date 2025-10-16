@@ -8,6 +8,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 
+## [1.4.0] - 2025-10-16
+
+### Added
+- Added SimpleListView::instantiateItem.
+- Added SimpleListView::onBindItem.
+- Added SimpleListView::Rebuild().
+- Added SimpleListView::items.
+
+### Changed
+- Changed SimpleListView to use an object pool for instantiated items, causing onInstantiateItem to be called less often.
+
+
 ## [1.4.0] - 2025-10-14
 
 ### Added
