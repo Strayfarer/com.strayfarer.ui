@@ -368,6 +368,32 @@ references:
   isSpec: "True"
   fullName: Strayfarer.UI.SimpleListView.elementsPerSection
   nameWithType: SimpleListView.elementsPerSection
+- uid: Strayfarer.UI.SimpleListView.instantiateItem
+  name: instantiateItem
+  href: api/Strayfarer.UI.SimpleListView.html#Strayfarer_UI_SimpleListView_instantiateItem
+  commentId: P:Strayfarer.UI.SimpleListView.instantiateItem
+  fullName: Strayfarer.UI.SimpleListView.instantiateItem
+  nameWithType: SimpleListView.instantiateItem
+- uid: Strayfarer.UI.SimpleListView.instantiateItem*
+  name: instantiateItem
+  href: api/Strayfarer.UI.SimpleListView.html#Strayfarer_UI_SimpleListView_instantiateItem_
+  commentId: Overload:Strayfarer.UI.SimpleListView.instantiateItem
+  isSpec: "True"
+  fullName: Strayfarer.UI.SimpleListView.instantiateItem
+  nameWithType: SimpleListView.instantiateItem
+- uid: Strayfarer.UI.SimpleListView.items
+  name: items
+  href: api/Strayfarer.UI.SimpleListView.html#Strayfarer_UI_SimpleListView_items
+  commentId: P:Strayfarer.UI.SimpleListView.items
+  fullName: Strayfarer.UI.SimpleListView.items
+  nameWithType: SimpleListView.items
+- uid: Strayfarer.UI.SimpleListView.items*
+  name: items
+  href: api/Strayfarer.UI.SimpleListView.html#Strayfarer_UI_SimpleListView_items_
+  commentId: Overload:Strayfarer.UI.SimpleListView.items
+  isSpec: "True"
+  fullName: Strayfarer.UI.SimpleListView.items
+  nameWithType: SimpleListView.items
 - uid: Strayfarer.UI.SimpleListView.itemsSource
   name: itemsSource
   href: api/Strayfarer.UI.SimpleListView.html#Strayfarer_UI_SimpleListView_itemsSource
@@ -394,9 +420,28 @@ references:
   isSpec: "True"
   fullName: Strayfarer.UI.SimpleListView.itemTemplate
   nameWithType: SimpleListView.itemTemplate
+- uid: Strayfarer.UI.SimpleListView.onBindItem
+  name: onBindItem
+  href: api/Strayfarer.UI.SimpleListView.html#Strayfarer_UI_SimpleListView_onBindItem
+  commentId: E:Strayfarer.UI.SimpleListView.onBindItem
+  fullName: Strayfarer.UI.SimpleListView.onBindItem
+  nameWithType: SimpleListView.onBindItem
 - uid: Strayfarer.UI.SimpleListView.onInstantiateItem
   name: onInstantiateItem
   href: api/Strayfarer.UI.SimpleListView.html#Strayfarer_UI_SimpleListView_onInstantiateItem
   commentId: E:Strayfarer.UI.SimpleListView.onInstantiateItem
   fullName: Strayfarer.UI.SimpleListView.onInstantiateItem
   nameWithType: SimpleListView.onInstantiateItem
+- uid: Strayfarer.UI.SimpleListView.Rebuild(System.Boolean)
+  name: Rebuild(Boolean)
+  href: api/Strayfarer.UI.SimpleListView.html#Strayfarer_UI_SimpleListView_Rebuild_System_Boolean_
+  commentId: M:Strayfarer.UI.SimpleListView.Rebuild(System.Boolean)
+  fullName: Strayfarer.UI.SimpleListView.Rebuild(System.Boolean)
+  nameWithType: SimpleListView.Rebuild(Boolean)
+- uid: Strayfarer.UI.SimpleListView.Rebuild*
+  name: Rebuild
+  href: api/Strayfarer.UI.SimpleListView.html#Strayfarer_UI_SimpleListView_Rebuild_
+  commentId: Overload:Strayfarer.UI.SimpleListView.Rebuild
+  isSpec: "True"
+  fullName: Strayfarer.UI.SimpleListView.Rebuild
+  nameWithType: SimpleListView.Rebuild
