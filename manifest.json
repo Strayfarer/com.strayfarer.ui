@@ -113,6 +113,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Strayfarer.UI.GlowingBorder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Strayfarer.UI.GlowingBorder.html",
+          "hash": "zTF2FOGRFFpu+JXQAr9/FQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Strayfarer.UI.PageButton.yml",
       "output": {
         ".html": {
@@ -153,7 +165,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Strayfarer.UI.html",
-          "hash": "o9aa2v7yRlxzbbrpNdLA8g=="
+          "hash": "fjovXFk8FFMIZz/6xsyNnQ=="
         }
       },
       "is_incremental": false,
@@ -177,7 +189,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "TsjxRfDHVzDlmqrrJ6Akmw=="
+          "hash": "Hkd+lbMPH2mJBhqL6LyfJA=="
         }
       },
       "is_incremental": false,
@@ -228,7 +240,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 13,
+          "total_file_count": 14,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {

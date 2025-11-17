@@ -279,6 +279,25 @@ references:
   isSpec: "True"
   fullName: Strayfarer.UI.FlexVectorImage.vectorImage
   nameWithType: FlexVectorImage.vectorImage
+- uid: Strayfarer.UI.GlowingBorder
+  name: GlowingBorder
+  href: api/Strayfarer.UI.GlowingBorder.html
+  commentId: T:Strayfarer.UI.GlowingBorder
+  fullName: Strayfarer.UI.GlowingBorder
+  nameWithType: GlowingBorder
+- uid: Strayfarer.UI.GlowingBorder.#ctor
+  name: GlowingBorder()
+  href: api/Strayfarer.UI.GlowingBorder.html#Strayfarer_UI_GlowingBorder__ctor
+  commentId: M:Strayfarer.UI.GlowingBorder.#ctor
+  fullName: Strayfarer.UI.GlowingBorder.GlowingBorder()
+  nameWithType: GlowingBorder.GlowingBorder()
+- uid: Strayfarer.UI.GlowingBorder.#ctor*
+  name: GlowingBorder
+  href: api/Strayfarer.UI.GlowingBorder.html#Strayfarer_UI_GlowingBorder__ctor_
+  commentId: Overload:Strayfarer.UI.GlowingBorder.#ctor
+  isSpec: "True"
+  fullName: Strayfarer.UI.GlowingBorder.GlowingBorder
+  nameWithType: GlowingBorder.GlowingBorder
 - uid: Strayfarer.UI.PageButton
   name: PageButton
   href: api/Strayfarer.UI.PageButton.html
