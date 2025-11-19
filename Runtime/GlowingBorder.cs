@@ -20,14 +20,14 @@ namespace Strayfarer.UI {
         }
         Color? _innerColor = Color.gray;
 
-        [UxmlAttribute]
-        internal float borderWidth {
-            get => _borderWidth;
-            set {
-                _borderWidth = value;
-                MarkDirtyRepaint();
-            }
-        }
+        //[UxmlAttribute]
+        //internal float borderWidth {
+        //    get => _borderWidth;
+        //    set {
+        //        _borderWidth = value;
+        //        MarkDirtyRepaint();
+        //    }
+        //}
         float _borderWidth;
 
         [UxmlAttribute, Range(0, 50)]
@@ -43,7 +43,9 @@ namespace Strayfarer.UI {
         public GlowingBorder() {
             //RegisterCallback<AttachToPanelEvent>(OnAttach);
             //RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
-            generateVisualContent += OnGenerateVisualContent;
+            //generateVisualContent += OnGenerateVisualContent;
+            //RegisterCallback<CustomStyleResolvedEvent>(OnCustomStyleResolved);
+            generateVisualContent = (Action<MeshGenerationContext>)Delegate.Combine(generateVisualContent, new Action<MeshGenerationContext>(OnGenerateVisualContent));
         }
 
         //void OnGeometryChanged(GeometryChangedEvent evt) {
@@ -87,6 +89,8 @@ namespace Strayfarer.UI {
             //    Debug.Log("Border is 0, don't draw...");
             //    return;
             //}
+            _borderWidth = (float)(context.visualElement?.resolvedStyle.borderBottomWidth);
+            //DeactivateNativeBorder();
 
             CalculateGlowingFrame(out var verts, out var indices);
             var mwd = context.Allocate(verts.Count, indices.Count);
