@@ -8,13 +8,19 @@ namespace Strayfarer.UI {
         [Header(nameof(PageButton))]
 
         Color _innerColor = Color.gray;
+        Color _glowColor = Color.white;
+        Color clearColor = Color.clear;
         float _outerBorderWidthPercent;
         float _borderWidth;
+        float glowWidth;
 
         static readonly CustomStyleProperty<Color> k_innerColorProperty = new CustomStyleProperty<Color>("--inner-border-color");
+        static readonly CustomStyleProperty<Color> k_glowColorProperty = new CustomStyleProperty<Color>("--glow-color");
         static readonly CustomStyleProperty<float> k_outerBorderWidthPercentProperty = new CustomStyleProperty<float>("--outer-border-width-percent");
+        static readonly CustomStyleProperty<float> k_glowBorderWidthProperty = new CustomStyleProperty<float>("--glow-border-width");
 
         public GlowingBorder() {
+            AddToClassList("GlowingBorder");
             RegisterCallback<CustomStyleResolvedEvent>(OnCustomStyleResolved);
             generateVisualContent = (Action<MeshGenerationContext>)Delegate.Combine(generateVisualContent, new Action<MeshGenerationContext>(OnGenerateVisualContent));
         }
@@ -23,8 +29,14 @@ namespace Strayfarer.UI {
             if (evt.customStyle.TryGetValue(k_innerColorProperty, out var innerBorderColor)) {
                 _innerColor = innerBorderColor;
             }
+            if (evt.customStyle.TryGetValue(k_glowColorProperty, out var glowBorderColor)) {
+                _glowColor = glowBorderColor;
+            }
             if (evt.customStyle.TryGetValue(k_outerBorderWidthPercentProperty, out float outerBorderWidthPercent)) {
                 _outerBorderWidthPercent = outerBorderWidthPercent;
+            }
+            if (evt.customStyle.TryGetValue(k_glowBorderWidthProperty, out float glowBorderWidth)) {
+                glowWidth = glowBorderWidth;
             }
         }
 
@@ -44,79 +56,225 @@ namespace Strayfarer.UI {
             indices = new List<ushort>(28);
             var r = localBound;
 
+            CreateInnerBorder(verts, indices, r);
+            CreateGlow(verts, indices, r);
+        }
+
+        void CreateInnerBorder(List<Vertex> verts, List<ushort> indices, Rect r) {
             // ----- Inner Border ----
             float outerWidth = _outerBorderWidthPercent / 100 * _borderWidth;
             float widthDelta = _borderWidth - outerWidth;
-            // Top left
+            // Top left (0)
             verts.Add(new Vertex {
                 position = new Vector3(outerWidth, outerWidth, Vertex.nearZ),
                 tint = _innerColor,
             });
-            // Top right
+            // Top right (1)
             verts.Add(new Vertex {
                 position = new Vector3(r.width - outerWidth, outerWidth, Vertex.nearZ),
                 tint = _innerColor,
             });
-            // Bottom right
+            // Bottom right (2)
             verts.Add(new Vertex {
                 position = new Vector3(r.width - outerWidth, r.height - outerWidth, Vertex.nearZ),
                 tint = _innerColor,
             });
-            //Bottom left
+            //Bottom left (3)
             verts.Add(new Vertex {
                 position = new Vector3(outerWidth, r.height - outerWidth, Vertex.nearZ),
                 tint = _innerColor,
             });
-            // Top left (inner)
+            // Top left (inner) (4)
             verts.Add(new Vertex {
                 position = new Vector3(widthDelta, widthDelta, Vertex.nearZ),
                 tint = _innerColor,
             });
-            // Top right (inner)
+            // Top right (inner) (5)
             verts.Add(new Vertex {
                 position = new Vector3(r.width - widthDelta, widthDelta, Vertex.nearZ),
                 tint = _innerColor,
             });
-            // Bottom right (inner)
+            // Bottom right (inner) (6)
             verts.Add(new Vertex {
                 position = new Vector3(r.width - widthDelta, r.height - widthDelta, Vertex.nearZ),
                 tint = _innerColor,
             });
-            //Bottom left (inner)
+            //Bottom left (inner) (7)
             verts.Add(new Vertex {
                 position = new Vector3(widthDelta, r.height - widthDelta, Vertex.nearZ),
                 tint = _innerColor,
             });
 
-            // Inner border indices
+            // Number of corners: 4
+            for (int i = 0; i < 4; i++) {
+                int v0 = i;
+                int v1 = v0 + 4;
+
+                indices.Add((ushort)v0);
+
+                if (i < 3) {
+                    indices.Add((ushort)(v0 + 1));
+                    indices.Add((ushort)((v1 + 1) % 8));
+                    indices.Add((ushort)((v1 + 1) % 8));
+                } else {
+                    indices.Add((ushort)((v1 + 1) % 8));
+                    indices.Add((ushort)(v0 + 1));
+                    indices.Add((ushort)(v0 + 1));
+                }
+                indices.Add((ushort)v1);
+                indices.Add((ushort)v0);
+            }
+        }
+
+        void CreateGlow(List<Vertex> verts, List<ushort> indices, Rect r) {
+            // ----- Glowing Border -----
+            // Base Box Vertices
+            // Top left (8)
+            verts.Add(new Vertex {
+                position = new Vector3(0, 0, Vertex.nearZ),
+                tint = _glowColor,
+            });
+            // Top right (9)
+            verts.Add(new Vertex {
+                position = new Vector3(r.width, 0, Vertex.nearZ),
+                tint = _glowColor,
+            });
+            // Bottom right (10)
+            verts.Add(new Vertex {
+                position = new Vector3(r.width, r.height, Vertex.nearZ),
+                tint = _glowColor,
+            });
+            //Bottom left (11)
+            verts.Add(new Vertex {
+                position = new Vector3(0, r.height, Vertex.nearZ),
+                tint = _glowColor,
+            });
+
+            // Outer Glow Vertices
+            // Top left (12)
+            verts.Add(new Vertex {
+                position = new Vector3(-glowWidth, -glowWidth, Vertex.nearZ),
+                tint = clearColor,
+            });
+            // Top right (13)
+            verts.Add(new Vertex {
+                position = new Vector3(r.width + glowWidth, -glowWidth, Vertex.nearZ),
+                tint = clearColor,
+            });
+            // Bottom right (14)
+            verts.Add(new Vertex {
+                position = new Vector3(r.width + glowWidth, r.height + glowWidth, Vertex.nearZ),
+                tint = clearColor,
+            });
+            //Bottom left (15)
+            verts.Add(new Vertex {
+                position = new Vector3(-glowWidth, r.height + glowWidth, Vertex.nearZ),
+                tint = clearColor,
+            });
+
+            // Outer Glow Indices
             // Top
-            indices.Add(0);
-            indices.Add(1);
-            indices.Add(5);
-            indices.Add(5);
-            indices.Add(4);
-            indices.Add(0);
+            indices.Add(8);
+            indices.Add(12);
+            indices.Add(13);
+            indices.Add(13);
+            indices.Add(9);
+            indices.Add(8);
             // Right
-            indices.Add(5);
-            indices.Add(1);
-            indices.Add(2);
-            indices.Add(2);
-            indices.Add(6);
-            indices.Add(5);
+            indices.Add(9);
+            indices.Add(13);
+            indices.Add(14);
+            indices.Add(14);
+            indices.Add(10);
+            indices.Add(9);
             // Bottom
-            indices.Add(6);
-            indices.Add(2);
-            indices.Add(3);
-            indices.Add(3);
-            indices.Add(7);
-            indices.Add(6);
+            indices.Add(10);
+            indices.Add(14);
+            indices.Add(15);
+            indices.Add(15);
+            indices.Add(11);
+            indices.Add(10);
             //Left
-            indices.Add(7);
-            indices.Add(3);
-            indices.Add(0);
-            indices.Add(0);
-            indices.Add(4);
-            indices.Add(7);
+            indices.Add(11);
+            indices.Add(15);
+            indices.Add(12);
+            indices.Add(12);
+            indices.Add(8);
+            indices.Add(11);
+
+            // Inner Border Box
+            // Top left (16)
+            verts.Add(new Vertex {
+                position = new Vector3(_borderWidth, _borderWidth, Vertex.nearZ),
+                tint = _glowColor,
+            });
+            // Top right (17)
+            verts.Add(new Vertex {
+                position = new Vector3(r.width - _borderWidth, _borderWidth, Vertex.nearZ),
+                tint = _glowColor,
+            });
+            // Bottom right (18)
+            verts.Add(new Vertex {
+                position = new Vector3(r.width - _borderWidth, r.height - _borderWidth, Vertex.nearZ),
+                tint = _glowColor,
+            });
+            //Bottom left (19)
+            verts.Add(new Vertex {
+                position = new Vector3(_borderWidth, r.height - _borderWidth, Vertex.nearZ),
+                tint = _glowColor,
+            });
+
+            // Inner Glow Vertices
+            // Top left (20)
+            verts.Add(new Vertex {
+                position = new Vector3(_borderWidth + glowWidth, _borderWidth + glowWidth, Vertex.nearZ),
+                tint = clearColor,
+            });
+            // Top right (21)
+            verts.Add(new Vertex {
+                position = new Vector3(r.width - _borderWidth - glowWidth, _borderWidth + glowWidth, Vertex.nearZ),
+                tint = clearColor,
+            });
+            // Bottom right (22)
+            verts.Add(new Vertex {
+                position = new Vector3(r.width - _borderWidth - glowWidth, r.height - _borderWidth - glowWidth, Vertex.nearZ),
+                tint = clearColor,
+            });
+            //Bottom left (23)
+            verts.Add(new Vertex {
+                position = new Vector3(_borderWidth + glowWidth, r.height - _borderWidth - glowWidth, Vertex.nearZ),
+                tint = clearColor,
+            });
+
+            // Inner Glow Indices
+            // Top
+            indices.Add(16);
+            indices.Add(17);
+            indices.Add(21);
+            indices.Add(21);
+            indices.Add(20);
+            indices.Add(16);
+            // Right
+            indices.Add(17);
+            indices.Add(18);
+            indices.Add(22);
+            indices.Add(22);
+            indices.Add(21);
+            indices.Add(17);
+            // Bottom
+            indices.Add(18);
+            indices.Add(19);
+            indices.Add(23);
+            indices.Add(23);
+            indices.Add(22);
+            indices.Add(18);
+            //Left
+            indices.Add(19);
+            indices.Add(16);
+            indices.Add(20);
+            indices.Add(20);
+            indices.Add(23);
+            indices.Add(19);
         }
     }
 }
