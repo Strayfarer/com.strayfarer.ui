@@ -114,10 +114,10 @@ namespace Strayfarer.UI {
 
                 if (i < 3) {
                     indices.Add((ushort)(v0 + 1));
-                    indices.Add((ushort)((v1 + 1) % 8));
-                    indices.Add((ushort)((v1 + 1) % 8));
+                    indices.Add((ushort)(v1 + 1));
+                    indices.Add((ushort)(v1 + 1));
                 } else {
-                    indices.Add((ushort)((v1 + 1) % 8));
+                    indices.Add((ushort)(v1 + 1 - 8));
                     indices.Add((ushort)(v0 + 1));
                     indices.Add((ushort)(v0 + 1));
                 }
@@ -128,79 +128,72 @@ namespace Strayfarer.UI {
 
         void CreateGlow(List<Vertex> verts, List<ushort> indices, Rect r) {
             // ----- Glowing Border -----
-            // Base Box Vertices
-            // Top left (8)
-            verts.Add(new Vertex {
-                position = new Vector3(0, 0, Vertex.nearZ),
-                tint = _glowColor,
-            });
-            // Top right (9)
-            verts.Add(new Vertex {
-                position = new Vector3(r.width, 0, Vertex.nearZ),
-                tint = _glowColor,
-            });
-            // Bottom right (10)
-            verts.Add(new Vertex {
-                position = new Vector3(r.width, r.height, Vertex.nearZ),
-                tint = _glowColor,
-            });
-            //Bottom left (11)
-            verts.Add(new Vertex {
-                position = new Vector3(0, r.height, Vertex.nearZ),
-                tint = _glowColor,
-            });
 
             // Outer Glow Vertices
-            // Top left (12)
+            // Top left (8)
             verts.Add(new Vertex {
                 position = new Vector3(-glowWidth, -glowWidth, Vertex.nearZ),
                 tint = clearColor,
             });
-            // Top right (13)
+            // Top right (9)
             verts.Add(new Vertex {
                 position = new Vector3(r.width + glowWidth, -glowWidth, Vertex.nearZ),
                 tint = clearColor,
             });
-            // Bottom right (14)
+            // Bottom right (10)
             verts.Add(new Vertex {
                 position = new Vector3(r.width + glowWidth, r.height + glowWidth, Vertex.nearZ),
                 tint = clearColor,
             });
-            //Bottom left (15)
+            //Bottom left (11)
             verts.Add(new Vertex {
                 position = new Vector3(-glowWidth, r.height + glowWidth, Vertex.nearZ),
                 tint = clearColor,
             });
 
-            // Outer Glow Indices
-            // Top
-            indices.Add(8);
-            indices.Add(12);
-            indices.Add(13);
-            indices.Add(13);
-            indices.Add(9);
-            indices.Add(8);
-            // Right
-            indices.Add(9);
-            indices.Add(13);
-            indices.Add(14);
-            indices.Add(14);
-            indices.Add(10);
-            indices.Add(9);
-            // Bottom
-            indices.Add(10);
-            indices.Add(14);
-            indices.Add(15);
-            indices.Add(15);
-            indices.Add(11);
-            indices.Add(10);
-            //Left
-            indices.Add(11);
-            indices.Add(15);
-            indices.Add(12);
-            indices.Add(12);
-            indices.Add(8);
-            indices.Add(11);
+            // Base Box Vertices
+            // Top left (12)
+            verts.Add(new Vertex {
+                position = new Vector3(0, 0, Vertex.nearZ),
+                tint = _glowColor,
+            });
+            // Top right (13)
+            verts.Add(new Vertex {
+                position = new Vector3(r.width, 0, Vertex.nearZ),
+                tint = _glowColor,
+            });
+            // Bottom right (14)
+            verts.Add(new Vertex {
+                position = new Vector3(r.width, r.height, Vertex.nearZ),
+                tint = _glowColor,
+            });
+            //Bottom left (15)
+            verts.Add(new Vertex {
+                position = new Vector3(0, r.height, Vertex.nearZ),
+                tint = _glowColor,
+            });
+
+            // Outer Glow indices
+            int startIndex = 8;
+            // Number of corners: 4
+            for (int i = 0; i < 4; i++) {
+                int v0 = startIndex + i;
+                int v1 = v0 + 4;
+
+                indices.Add((ushort)v0);
+
+                if (i < 3) {
+                    indices.Add((ushort)(v0 + 1));
+                    indices.Add((ushort)(v1 + 1)); // modulo with highest vertex nr + 1
+                    indices.Add((ushort)(v1 + 1));
+                } else {
+                    indices.Add((ushort)(v1 + 1 - 8));
+                    indices.Add((ushort)(v0 + 1));
+                    indices.Add((ushort)(v0 + 1));
+                }
+                indices.Add((ushort)v1);
+                indices.Add((ushort)v0);
+            }
 
             // Inner Border Box
             // Top left (16)
