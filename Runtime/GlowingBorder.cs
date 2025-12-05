@@ -177,6 +177,9 @@ namespace Strayfarer.UI {
             // Left
             tris.Add(new Tri(lBottomLeft, lTopLeft, lTopLeftInner));
             tris.Add(new Tri(lTopLeftInner, lBottomLeftInner, lBottomLeft));
+
+            CreateInnerBorderCorners(outerWidth, maxOuter, widthDelta, out var cornerTris);
+            tris.AddRange(cornerTris);
         }
 
         void CreateGlow(out List<Tri> tris, Rect r) {
@@ -303,6 +306,41 @@ namespace Strayfarer.UI {
             // Left
             tris.Add(new Tri(innerGlowBottomLeft, innerGlowTopLeft, innerGlowTopLeftInner));
             tris.Add(new Tri(innerGlowTopLeftInner, innerGlowBottomLeftInner, innerGlowBottomLeft));
+        }
+
+        void CreateInnerBorderCorners(float outerWidth, float maxOuter, float widthDelta, out List<Tri> tris) {
+            tris = new List<Tri>();
+            float maxRadius = Mathf.Max(borderRadius, widthDelta);
+            // Left Top
+            var leftTop = new Vertex {
+                position = new Vector3(maxOuter, outerWidth, Vertex.nearZ),
+                tint = innerBorderColor,
+            };
+            // Left Bottom
+            var leftBottom = new Vertex {
+                position = new Vector3(outerWidth, maxOuter, Vertex.nearZ),
+                tint = innerBorderColor,
+            };
+            // Center
+            var center = new Vertex {
+                position = new Vector3(borderRadius, borderRadius, Vertex.nearZ),
+                tint = innerBorderColor,
+            };
+
+
+            //var startVector = new Vector3(leftTop.position.x - maxRadius, leftTop.position.y - maxRadius, Vertex.nearZ);
+            var startVector = Vector3.up * maxRadius;
+            //startVector *= borderRadius - outerWidth;
+            // Midpoint
+            var midPointQuat = Quaternion.Euler(0, 0, 0) * startVector;
+            
+            var midPoint = new Vertex {
+                position = new Vector3(startVector.x, startVector.y, Vertex.nearZ),
+                tint = Color.white,
+            };
+            tris.Add(new Tri(leftTop, center, midPoint));
+            tris.Add(new Tri(midPoint, center, leftBottom));
+
         }
 
     }
