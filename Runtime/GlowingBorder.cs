@@ -12,6 +12,7 @@ namespace Strayfarer.UI {
         Color clearColor = Color.clear;
         float outerBorderWidthPercent;
         float borderWidth;
+        float borderRadius;
         float glowWidth;
 
         static readonly CustomStyleProperty<Color> k_innerColorProperty = new CustomStyleProperty<Color>("--inner-border-color");
@@ -42,6 +43,7 @@ namespace Strayfarer.UI {
 
         void OnGenerateVisualContent(MeshGenerationContext context) {
             borderWidth = resolvedStyle.borderBottomWidth;
+            borderRadius = resolvedStyle.borderTopLeftRadius;
             CalculateGlowingFrame(out var verts, out ushort[] indices);
             var mwd = context.Allocate(verts.Length, indices.Length);
             mwd.SetAllVertices(verts);
@@ -66,73 +68,74 @@ namespace Strayfarer.UI {
             tris = new List<Tri>();
             // ----- Inner Border ----
             float outerWidth = outerBorderWidthPercent / 100 * borderWidth;
-            float borderRadius = 16;
             float widthDelta = borderWidth - outerWidth;
-            float borderRadiusDelta = borderRadius-outerWidth;
+            float borderRadiusDelta = borderRadius - outerWidth;
+            float maxOuter = Math.Max(borderRadius, outerWidth);
+            float maxInner = Math.Max(borderRadius, widthDelta);
 
             // --- Top ---
             // Top left
             var tTopLeft = new Vertex {
-                position = new Vector3(widthDelta, outerWidth, Vertex.nearZ),
+                position = new Vector3(maxOuter, outerWidth, Vertex.nearZ),
                 tint = innerBorderColor,
             };
             // Top right
             var tTopRight = new Vertex {
-                position = new Vector3(r.width - widthDelta, outerWidth, Vertex.nearZ),
+                position = new Vector3(r.width - maxOuter, outerWidth, Vertex.nearZ),
                 tint = innerBorderColor,
             };
             // Bottom right
             var tTopRightInner = new Vertex {
-                position = new Vector3(r.width - widthDelta, widthDelta, Vertex.nearZ),
+                position = new Vector3(r.width - maxInner, widthDelta, Vertex.nearZ),
                 tint = innerBorderColor,
             };
             // Bottom left
             var tTopLeftInner = new Vertex {
-                position = new Vector3(widthDelta, widthDelta, Vertex.nearZ),
+                position = new Vector3(maxInner, widthDelta, Vertex.nearZ),
                 tint = innerBorderColor,
             };
 
             // --- Bottom ---
             // Top left
             var bBottomLeftInner = new Vertex {
-                position = new Vector3(widthDelta, r.height - widthDelta, Vertex.nearZ),
+                position = new Vector3(maxInner, r.height - widthDelta, Vertex.nearZ),
                 tint = innerBorderColor,
             };
             // Top right
             var bBottomRightInner = new Vertex {
-                position = new Vector3(r.width - widthDelta, r.height - widthDelta, Vertex.nearZ),
+                position = new Vector3(r.width - maxInner, r.height - widthDelta, Vertex.nearZ),
                 tint = innerBorderColor,
             };
             // Bottom right
             var bBottomRight = new Vertex {
-                position = new Vector3(r.width - widthDelta, r.height - outerWidth, Vertex.nearZ),
+                position = new Vector3(r.width - maxOuter, r.height - outerWidth, Vertex.nearZ),
                 tint = innerBorderColor,
             };
             //Bottom left
             var bBottomLeft = new Vertex {
-                position = new Vector3(widthDelta, r.height - outerWidth, Vertex.nearZ),
+                position = new Vector3(maxOuter, r.height - outerWidth, Vertex.nearZ),
                 tint = innerBorderColor,
             };
 
             // --- Left ---
             // Top left
             var lTopLeft = new Vertex {
-                position = new Vector3(outerWidth, widthDelta, Vertex.nearZ),
+                position = new Vector3(outerWidth, maxOuter, Vertex.nearZ),
                 tint = innerBorderColor,
             };
             // Top right
             var lTopLeftInner = new Vertex {
-                position = new Vector3(widthDelta, widthDelta, Vertex.nearZ),
+                position = new Vector3(widthDelta, maxInner, Vertex.nearZ),
                 tint = innerBorderColor,
             };
             // Bottom right
             var lBottomLeftInner = new Vertex {
-                position = new Vector3(widthDelta, r.height - widthDelta, Vertex.nearZ),
+                position = new Vector3(widthDelta, r.height - maxInner, Vertex.nearZ),
                 tint = innerBorderColor,
             };
             // Bottom left
             var lBottomLeft = new Vertex {
-                position = new Vector3(outerWidth, r.height - widthDelta, Vertex.nearZ),
+                position = new Vector3(outerWidth, r.height - maxOuter, Vertex.nearZ),
                 tint = innerBorderColor,
             };
 
@@ -140,22 +143,22 @@ namespace Strayfarer.UI {
 
             // Top left
             var rTopRightInner = new Vertex {
-                position = new Vector3(r.width - widthDelta, widthDelta, Vertex.nearZ),
+                position = new Vector3(r.width - widthDelta, maxInner, Vertex.nearZ),
                 tint = innerBorderColor,
             };
             // Top right
             var rTopRight = new Vertex {
-                position = new Vector3(r.width - outerWidth, widthDelta, Vertex.nearZ),
+                position = new Vector3(r.width - outerWidth, maxOuter, Vertex.nearZ),
                 tint = innerBorderColor,
             };
             // Bottom right
             var rBottomRight = new Vertex {
-                position = new Vector3(r.width - outerWidth, r.height - widthDelta, Vertex.nearZ),
+                position = new Vector3(r.width - outerWidth, r.height - maxOuter, Vertex.nearZ),
                 tint = innerBorderColor,
             };
             // Bottom left
             var rBottomRightInner = new Vertex {
-                position = new Vector3(r.width - widthDelta, r.height - widthDelta, Vertex.nearZ),
+                position = new Vector3(r.width - widthDelta, r.height - maxInner, Vertex.nearZ),
                 tint = innerBorderColor,
             };
 
@@ -301,5 +304,6 @@ namespace Strayfarer.UI {
             tris.Add(new Tri(innerGlowBottomLeft, innerGlowTopLeft, innerGlowTopLeftInner));
             tris.Add(new Tri(innerGlowTopLeftInner, innerGlowBottomLeftInner, innerGlowBottomLeft));
         }
+
     }
 }
