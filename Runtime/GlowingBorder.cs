@@ -70,39 +70,39 @@ namespace Strayfarer.UI {
             float widthDelta = borderWidth - outerWidth;
             float borderRadiusDelta = borderRadius-outerWidth;
 
-            //   
-            //   |         |
-            // ----------------
-            //   |         |
-            //   |         |
-            //   |         |
-            // ----------------
-            //   |         |
-            //
-
             // --- Top ---
             // Top left
             var tTopLeft = new Vertex {
-                position = new Vector3(outerWidth + borderRadiusDelta, outerWidth, Vertex.nearZ),
+                position = new Vector3(widthDelta, outerWidth, Vertex.nearZ),
                 tint = innerBorderColor,
             };
             // Top right
             var tTopRight = new Vertex {
-                position = new Vector3(r.width - outerWidth - borderRadiusDelta, outerWidth, Vertex.nearZ),
+                position = new Vector3(r.width - widthDelta, outerWidth, Vertex.nearZ),
                 tint = innerBorderColor,
             };
-            // Top left (inner)
-            var tTopLeftInner = new Vertex {
-                position = new Vector3(outerWidth + borderRadiusDelta, widthDelta, Vertex.nearZ),
-                tint = innerBorderColor,
-            };
-            // Top right (inner)
+            // Bottom right
             var tTopRightInner = new Vertex {
-                position = new Vector3(r.width - outerWidth - borderRadiusDelta, widthDelta, Vertex.nearZ),
+                position = new Vector3(r.width - widthDelta, widthDelta, Vertex.nearZ),
+                tint = innerBorderColor,
+            };
+            // Bottom left
+            var tTopLeftInner = new Vertex {
+                position = new Vector3(widthDelta, widthDelta, Vertex.nearZ),
                 tint = innerBorderColor,
             };
 
             // --- Bottom ---
+            // Top left
+            var bBottomLeftInner = new Vertex {
+                position = new Vector3(widthDelta, r.height - widthDelta, Vertex.nearZ),
+                tint = innerBorderColor,
+            };
+            // Top right
+            var bBottomRightInner = new Vertex {
+                position = new Vector3(r.width - widthDelta, r.height - widthDelta, Vertex.nearZ),
+                tint = innerBorderColor,
+            };
             // Bottom right
             var bBottomRight = new Vertex {
                 position = new Vector3(r.width - widthDelta, r.height - outerWidth, Vertex.nearZ),
@@ -120,13 +120,29 @@ namespace Strayfarer.UI {
                 position = new Vector3(outerWidth, widthDelta, Vertex.nearZ),
                 tint = innerBorderColor,
             };
-            //Bottom left
+            // Top right
+            var lTopLeftInner = new Vertex {
+                position = new Vector3(widthDelta, widthDelta, Vertex.nearZ),
+                tint = innerBorderColor,
+            };
+            // Bottom right
+            var lBottomLeftInner = new Vertex {
+                position = new Vector3(widthDelta, r.height - widthDelta, Vertex.nearZ),
+                tint = innerBorderColor,
+            };
+            // Bottom left
             var lBottomLeft = new Vertex {
                 position = new Vector3(outerWidth, r.height - widthDelta, Vertex.nearZ),
                 tint = innerBorderColor,
             };
 
             // --- Right ---
+
+            // Top left
+            var rTopRightInner = new Vertex {
+                position = new Vector3(r.width - widthDelta, widthDelta, Vertex.nearZ),
+                tint = innerBorderColor,
+            };
             // Top right
             var rTopRight = new Vertex {
                 position = new Vector3(r.width - outerWidth, widthDelta, Vertex.nearZ),
@@ -137,43 +153,27 @@ namespace Strayfarer.UI {
                 position = new Vector3(r.width - outerWidth, r.height - widthDelta, Vertex.nearZ),
                 tint = innerBorderColor,
             };
-
-            // Inner vertices
-            // Top left (inner)
-            var itopLeft = new Vertex {
-                position = new Vector3(widthDelta, widthDelta, Vertex.nearZ),
-                tint = innerBorderColor,
-            };
-            // Top right (inner)
-            var itopRight = new Vertex {
-                position = new Vector3(r.width - widthDelta, widthDelta, Vertex.nearZ),
-                tint = innerBorderColor,
-            };
-            // Bottom right (inner)
-            var ibottomRight = new Vertex {
+            // Bottom left
+            var rBottomRightInner = new Vertex {
                 position = new Vector3(r.width - widthDelta, r.height - widthDelta, Vertex.nearZ),
                 tint = innerBorderColor,
             };
-            //Bottom left (inner)
-            var ibottomLeft = new Vertex {
-                position = new Vector3(widthDelta, r.height - widthDelta, Vertex.nearZ),
-                tint = innerBorderColor,
-            };
+
             // Top
             tris.Add(new Tri(tTopLeft, tTopRight, tTopRightInner));
             tris.Add(new Tri(tTopRightInner, tTopLeftInner, tTopLeft));
 
             // Right
-            tris.Add(new Tri(rTopRight, rBottomRight, ibottomRight));
-            tris.Add(new Tri(ibottomRight, itopRight, rTopRight));
+            tris.Add(new Tri(rTopRight, rBottomRight, rBottomRightInner));
+            tris.Add(new Tri(rBottomRightInner, rTopRightInner, rTopRight));
 
             // Bottom
-            tris.Add(new Tri(bBottomRight, bBottomLeft, ibottomLeft));
-            tris.Add(new Tri(ibottomLeft, ibottomRight, bBottomRight));
+            tris.Add(new Tri(bBottomRight, bBottomLeft, bBottomLeftInner));
+            tris.Add(new Tri(bBottomLeftInner, bBottomRightInner, bBottomRight));
 
             // Left
-            tris.Add(new Tri(lBottomLeft, lTopLeft, itopLeft));
-            tris.Add(new Tri(itopLeft, ibottomLeft, lBottomLeft));
+            tris.Add(new Tri(lBottomLeft, lTopLeft, lTopLeftInner));
+            tris.Add(new Tri(lTopLeftInner, lBottomLeftInner, lBottomLeft));
         }
 
         void CreateGlow(out List<Tri> tris, Rect r) {
