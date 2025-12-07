@@ -13,6 +13,8 @@ namespace Strayfarer.UI {
         float outerBorderWidthPercent;
         float borderWidth;
         float borderRadius;
+        float borderRadiusHor;
+        float borderRadiusVert;
         float glowWidth;
 
         static readonly CustomStyleProperty<Color> k_innerColorProperty = new CustomStyleProperty<Color>("--inner-border-color");
@@ -44,6 +46,9 @@ namespace Strayfarer.UI {
         void OnGenerateVisualContent(MeshGenerationContext context) {
             borderWidth = resolvedStyle.borderBottomWidth;
             borderRadius = resolvedStyle.borderTopLeftRadius;
+            borderRadiusHor = borderRadius > localBound.width / 2 ? localBound.width / 2 : borderRadius;
+            borderRadiusVert = borderRadius > localBound.height / 2 ? localBound.height / 2 : borderRadius;
+
             CalculateGlowingFrame(out var verts, out ushort[] indices);
             var mwd = context.Allocate(verts.Length, indices.Length);
             mwd.SetAllVertices(verts);
@@ -70,95 +75,101 @@ namespace Strayfarer.UI {
             float outerWidth = outerBorderWidthPercent / 100 * borderWidth;
             float widthDelta = borderWidth - outerWidth;
             float borderRadiusDelta = borderRadius - outerWidth;
-            float maxOuter = Math.Max(borderRadius, outerWidth);
-            float maxInner = Math.Max(borderRadius, widthDelta);
+            float outerRadiusHor = Math.Max(borderRadiusHor, outerWidth);
+            float innerRadiusHor = Math.Max(borderRadiusHor, widthDelta);
+            float outerRadiusVert = Math.Max(borderRadiusVert, outerWidth);
+            float innerRadiusVert = Math.Max(borderRadiusVert, widthDelta);
+
+            float halfWidth = r.width / 2;
+            float halfHeight = r.height / 2;
 
             // --- Top ---
             // Top left
             var tTopLeft = new Vertex {
-                position = new Vector3(maxOuter, outerWidth, Vertex.nearZ),
+                position = new Vector3(outerRadiusHor < halfWidth ? outerRadiusHor : halfWidth, outerWidth < halfHeight ? outerWidth : halfHeight, Vertex.nearZ),
                 tint = innerBorderColor,
             };
             // Top right
             var tTopRight = new Vertex {
-                position = new Vector3(r.width - maxOuter, outerWidth, Vertex.nearZ),
+                position = new Vector3((r.width - outerRadiusHor) > halfWidth ? (r.width - outerRadiusHor) : halfWidth, outerWidth < halfHeight ? outerWidth : halfHeight, Vertex.nearZ),
                 tint = innerBorderColor,
             };
             // Bottom right
             var tBottomRight = new Vertex {
-                position = new Vector3(r.width - maxInner, widthDelta, Vertex.nearZ),
+                position = new Vector3((r.width - innerRadiusHor) > halfWidth ? (r.width - innerRadiusHor) : halfWidth, widthDelta < halfHeight ? widthDelta : halfHeight, Vertex.nearZ),
                 tint = innerBorderColor,
             };
             // Bottom left
             var tBottomLeft = new Vertex {
-                position = new Vector3(maxInner, widthDelta, Vertex.nearZ),
+                position = new Vector3(innerRadiusHor < halfWidth ? innerRadiusHor : halfWidth, widthDelta < halfHeight ? widthDelta : halfHeight, Vertex.nearZ),
+                tint = innerBorderColor,
+            };
+
+
+            // --- Right ---
+
+            // Top left
+            var rTopLeft = new Vertex {
+                position = new Vector3((r.width - widthDelta) > halfWidth ? (r.width - widthDelta) : halfWidth, innerRadiusVert < halfHeight ? innerRadiusHor : halfHeight, Vertex.nearZ),
+                tint = innerBorderColor,
+            };
+            // Top right
+            var rTopRight = new Vertex {
+                position = new Vector3((r.width - outerWidth) > halfWidth ? (r.width - outerWidth) : halfWidth, outerRadiusVert < halfHeight ? outerRadiusHor : halfHeight, Vertex.nearZ),
+                tint = innerBorderColor,
+            };
+            // Bottom right
+            var rBottomRight = new Vertex {
+                position = new Vector3(r.width - outerWidth, r.height - outerRadiusVert, Vertex.nearZ),
+                tint = innerBorderColor,
+            };
+            // Bottom left
+            var rBottomLeft = new Vertex {
+                position = new Vector3(r.width - widthDelta, r.height - innerRadiusVert, Vertex.nearZ),
                 tint = innerBorderColor,
             };
 
             // --- Bottom ---
             // Top left
             var bTopLeft = new Vertex {
-                position = new Vector3(maxInner, r.height - widthDelta, Vertex.nearZ),
+                position = new Vector3(innerRadiusHor, r.height - widthDelta, Vertex.nearZ),
                 tint = innerBorderColor,
             };
             // Top right
             var bTopRight = new Vertex {
-                position = new Vector3(r.width - maxInner, r.height - widthDelta, Vertex.nearZ),
+                position = new Vector3(r.width - innerRadiusHor, r.height - widthDelta, Vertex.nearZ),
                 tint = innerBorderColor,
             };
             // Bottom right
             var bBottomRight = new Vertex {
-                position = new Vector3(r.width - maxOuter, r.height - outerWidth, Vertex.nearZ),
+                position = new Vector3(r.width - outerRadiusHor, r.height - outerWidth, Vertex.nearZ),
                 tint = innerBorderColor,
             };
             //Bottom left
             var bBottomLeft = new Vertex {
-                position = new Vector3(maxOuter, r.height - outerWidth, Vertex.nearZ),
+                position = new Vector3(outerRadiusHor, r.height - outerWidth, Vertex.nearZ),
                 tint = innerBorderColor,
             };
 
             // --- Left ---
             // Top left
             var lTopLeft = new Vertex {
-                position = new Vector3(outerWidth, maxOuter, Vertex.nearZ),
+                position = new Vector3(outerWidth, outerRadiusVert, Vertex.nearZ),
                 tint = innerBorderColor,
             };
             // Top right
             var lTopRight = new Vertex {
-                position = new Vector3(widthDelta, maxInner, Vertex.nearZ),
+                position = new Vector3(widthDelta, innerRadiusVert, Vertex.nearZ),
                 tint = innerBorderColor,
             };
             // Bottom right
             var lBottomRight = new Vertex {
-                position = new Vector3(widthDelta, r.height - maxInner, Vertex.nearZ),
+                position = new Vector3(widthDelta, r.height - innerRadiusVert, Vertex.nearZ),
                 tint = innerBorderColor,
             };
             // Bottom left
             var lBottomLeft = new Vertex {
-                position = new Vector3(outerWidth, r.height - maxOuter, Vertex.nearZ),
-                tint = innerBorderColor,
-            };
-
-            // --- Right ---
-
-            // Top left
-            var rTopLeft = new Vertex {
-                position = new Vector3(r.width - widthDelta, maxInner, Vertex.nearZ),
-                tint = innerBorderColor,
-            };
-            // Top right
-            var rTopRight = new Vertex {
-                position = new Vector3(r.width - outerWidth, maxOuter, Vertex.nearZ),
-                tint = innerBorderColor,
-            };
-            // Bottom right
-            var rBottomRight = new Vertex {
-                position = new Vector3(r.width - outerWidth, r.height - maxOuter, Vertex.nearZ),
-                tint = innerBorderColor,
-            };
-            // Bottom left
-            var rBottomLeft = new Vertex {
-                position = new Vector3(r.width - widthDelta, r.height - maxInner, Vertex.nearZ),
+                position = new Vector3(outerWidth, r.height - outerRadiusVert, Vertex.nearZ),
                 tint = innerBorderColor,
             };
 
@@ -178,10 +189,13 @@ namespace Strayfarer.UI {
             tris.Add(new Tri(lBottomLeft, lTopLeft, lTopRight));
             tris.Add(new Tri(lTopRight, lBottomRight, lBottomLeft));
 
-            int sections = 20;
+
+            // --------- CORNERS ---------------
+            int sections = Mathf.Min((int)((borderRadius / 10 * 5) + 5), 15);
 
             var center = new Vector3(borderRadius, borderRadius, Vertex.nearZ);
-            float sectionDegrees = Vector3.Angle(tTopLeft.position - center, lTopLeft.position - center) / sections;
+            float angle = Vector3.Angle(tTopLeft.position - center, lTopLeft.position - center) > 90 ? 90 : Vector3.Angle(tTopLeft.position - center, lTopLeft.position - center);
+            float sectionDegrees = angle / sections;
 
             // Top left
             CreateCorner(tTopLeft, lTopLeft, tBottomLeft, lTopRight, center, sections, sectionDegrees, widthDelta, out var topLeftTris);
