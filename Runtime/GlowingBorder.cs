@@ -85,24 +85,24 @@ namespace Strayfarer.UI {
                 tint = innerBorderColor,
             };
             // Bottom right
-            var tTopRightInner = new Vertex {
+            var tBottomRight = new Vertex {
                 position = new Vector3(r.width - maxInner, widthDelta, Vertex.nearZ),
                 tint = innerBorderColor,
             };
             // Bottom left
-            var tTopLeftInner = new Vertex {
+            var tBottomLeft = new Vertex {
                 position = new Vector3(maxInner, widthDelta, Vertex.nearZ),
                 tint = innerBorderColor,
             };
 
             // --- Bottom ---
             // Top left
-            var bBottomLeftInner = new Vertex {
+            var bTopLeft = new Vertex {
                 position = new Vector3(maxInner, r.height - widthDelta, Vertex.nearZ),
                 tint = innerBorderColor,
             };
             // Top right
-            var bBottomRightInner = new Vertex {
+            var bTopRight = new Vertex {
                 position = new Vector3(r.width - maxInner, r.height - widthDelta, Vertex.nearZ),
                 tint = innerBorderColor,
             };
@@ -124,12 +124,12 @@ namespace Strayfarer.UI {
                 tint = innerBorderColor,
             };
             // Top right
-            var lTopLeftInner = new Vertex {
+            var lTopRight = new Vertex {
                 position = new Vector3(widthDelta, maxInner, Vertex.nearZ),
                 tint = innerBorderColor,
             };
             // Bottom right
-            var lBottomLeftInner = new Vertex {
+            var lBottomRight = new Vertex {
                 position = new Vector3(widthDelta, r.height - maxInner, Vertex.nearZ),
                 tint = innerBorderColor,
             };
@@ -142,7 +142,7 @@ namespace Strayfarer.UI {
             // --- Right ---
 
             // Top left
-            var rTopRightInner = new Vertex {
+            var rTopLeft = new Vertex {
                 position = new Vector3(r.width - widthDelta, maxInner, Vertex.nearZ),
                 tint = innerBorderColor,
             };
@@ -157,29 +157,88 @@ namespace Strayfarer.UI {
                 tint = innerBorderColor,
             };
             // Bottom left
-            var rBottomRightInner = new Vertex {
+            var rBottomLeft = new Vertex {
                 position = new Vector3(r.width - widthDelta, r.height - maxInner, Vertex.nearZ),
                 tint = innerBorderColor,
             };
 
             // Top
-            tris.Add(new Tri(tTopLeft, tTopRight, tTopRightInner));
-            tris.Add(new Tri(tTopRightInner, tTopLeftInner, tTopLeft));
+            tris.Add(new Tri(tTopLeft, tTopRight, tBottomRight));
+            tris.Add(new Tri(tBottomRight, tBottomLeft, tTopLeft));
 
             // Right
-            tris.Add(new Tri(rTopRight, rBottomRight, rBottomRightInner));
-            tris.Add(new Tri(rBottomRightInner, rTopRightInner, rTopRight));
+            tris.Add(new Tri(rTopRight, rBottomRight, rBottomLeft));
+            tris.Add(new Tri(rBottomLeft, rTopLeft, rTopRight));
 
             // Bottom
-            tris.Add(new Tri(bBottomRight, bBottomLeft, bBottomLeftInner));
-            tris.Add(new Tri(bBottomLeftInner, bBottomRightInner, bBottomRight));
+            tris.Add(new Tri(bBottomRight, bBottomLeft, bTopLeft));
+            tris.Add(new Tri(bTopLeft, bTopRight, bBottomRight));
 
             // Left
-            tris.Add(new Tri(lBottomLeft, lTopLeft, lTopLeftInner));
-            tris.Add(new Tri(lTopLeftInner, lBottomLeftInner, lBottomLeft));
+            tris.Add(new Tri(lBottomLeft, lTopLeft, lTopRight));
+            tris.Add(new Tri(lTopRight, lBottomRight, lBottomLeft));
 
-            CreateInnerBorderCorners(outerWidth, maxOuter, widthDelta, out var cornerTris);
-            tris.AddRange(cornerTris);
+            int sections = 20;
+
+            var center = new Vector3(borderRadius, borderRadius, Vertex.nearZ);
+            float sectionDegrees = Vector3.Angle(tTopLeft.position - center, lTopLeft.position - center) / sections;
+
+            // Top left
+            CreateCorner(tTopLeft, lTopLeft, tBottomLeft, lTopRight, center, sections, sectionDegrees, widthDelta, out var topLeftTris);
+            tris.AddRange(topLeftTris);
+
+            // Top right
+            center = new Vector3(r.width - borderRadius, borderRadius, Vertex.nearZ);
+            CreateCorner(rTopRight, tTopRight, rTopLeft, tBottomRight, center, sections, sectionDegrees, widthDelta, out var topRightTris);
+            tris.AddRange(topRightTris);
+
+            // Bottom right
+            center = new Vector3(r.width - borderRadius, r.height - borderRadius, Vertex.nearZ);
+            CreateCorner(bBottomRight, rBottomRight, bTopRight, rBottomLeft, center, sections, sectionDegrees, widthDelta, out var bottomRightTris);
+            tris.AddRange(bottomRightTris);
+
+            // Bottom left
+            center = new Vector3(borderRadius, r.height - borderRadius, Vertex.nearZ);
+            CreateCorner(lBottomLeft, bBottomLeft, lBottomRight, bTopLeft, center, sections, sectionDegrees, widthDelta, out var bottomLeftTris);
+            tris.AddRange(bottomLeftTris);
+        }
+
+
+        void CreateCorner(Vertex outerStart, Vertex outerEnd, Vertex cornerStart, Vertex cornerEnd, Vector3 center, int sections, float sectionDegrees, float widthDelta, out List<Tri> tris) {
+            tris = new List<Tri>();
+            var currentStart = outerStart;
+            var currentInnerCorner = cornerStart;
+            for (int i = 0; i < sections; i++) {
+                if (i == sections - 1) {
+                    tris.Add(new Tri(currentStart, cornerEnd, outerEnd));
+                    if (borderRadius > widthDelta) {
+                        tris.Add(new Tri(currentStart, currentInnerCorner, cornerEnd));
+                    }
+
+                } else {
+                    CreateSectionPoint(center, sectionDegrees, currentStart, out var outerSectionPoint);
+                    var innerSectionPoint = currentInnerCorner;
+                    if (borderRadius > widthDelta) {
+                        CreateSectionPoint(center, sectionDegrees, currentInnerCorner, out innerSectionPoint);
+                        tris.Add(new Tri(currentStart, currentInnerCorner, innerSectionPoint));
+                        currentInnerCorner = innerSectionPoint;
+                    }
+                    tris.Add(new Tri(currentStart, innerSectionPoint, outerSectionPoint));
+                    currentStart = outerSectionPoint;
+                }
+            }
+        }
+
+        void CreateSectionPoint(Vector3 center, float sectionDegrees, Vertex currentStart, out Vertex sectionPoint) {
+            var startingPoint = currentStart.position;
+            var rotation = Quaternion.AngleAxis(sectionDegrees, Vector3.back);
+            var shiftedPoint = startingPoint - center;
+            startingPoint = (rotation * shiftedPoint) + center;
+
+            sectionPoint = new Vertex {
+                position = new Vector3(startingPoint.x, startingPoint.y, Vertex.nearZ),
+                tint = innerBorderColor,
+            };
         }
 
         void CreateGlow(out List<Tri> tris, Rect r) {
@@ -307,41 +366,5 @@ namespace Strayfarer.UI {
             tris.Add(new Tri(innerGlowBottomLeft, innerGlowTopLeft, innerGlowTopLeftInner));
             tris.Add(new Tri(innerGlowTopLeftInner, innerGlowBottomLeftInner, innerGlowBottomLeft));
         }
-
-        void CreateInnerBorderCorners(float outerWidth, float maxOuter, float widthDelta, out List<Tri> tris) {
-            tris = new List<Tri>();
-            float maxRadius = Mathf.Max(borderRadius, widthDelta);
-            // Left Top
-            var leftTop = new Vertex {
-                position = new Vector3(maxOuter, outerWidth, Vertex.nearZ),
-                tint = innerBorderColor,
-            };
-            // Left Bottom
-            var leftBottom = new Vertex {
-                position = new Vector3(outerWidth, maxOuter, Vertex.nearZ),
-                tint = innerBorderColor,
-            };
-            // Center
-            var center = new Vertex {
-                position = new Vector3(borderRadius, borderRadius, Vertex.nearZ),
-                tint = innerBorderColor,
-            };
-
-
-            //var startVector = new Vector3(leftTop.position.x - maxRadius, leftTop.position.y - maxRadius, Vertex.nearZ);
-            var startVector = Vector3.up * maxRadius;
-            //startVector *= borderRadius - outerWidth;
-            // Midpoint
-            var midPointQuat = Quaternion.Euler(0, 0, 0) * startVector;
-            
-            var midPoint = new Vertex {
-                position = new Vector3(startVector.x, startVector.y, Vertex.nearZ),
-                tint = Color.white,
-            };
-            tris.Add(new Tri(leftTop, center, midPoint));
-            tris.Add(new Tri(midPoint, center, leftBottom));
-
-        }
-
     }
 }
