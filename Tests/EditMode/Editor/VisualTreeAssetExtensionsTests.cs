@@ -21,10 +21,10 @@ namespace Strayfarer.UI.Editor {
             serialized = new(sut);
         }
 
-        [TestCase("m_VisualElementAssets.Array.data[1]", "Strayfarer.UI.PageView")]
-        [TestCase("m_VisualElementAssets.Array.data[2].m_Id", "UnityEngine.UIElements.VisualElement")]
-        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "Strayfarer.UI.BindableButton")]
-        public void GivenSerializedProperty_GetUxmlTag_ShouldReturnFullTypeName(string propertyPath, string expected) {
+        [TestCase("m_VisualTree.m_Children.Array.data[0]", "Strayfarer.UI.PageView")]
+        [TestCase("m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0].m_Id", "UnityEngine.UIElements.VisualElement")]
+        [TestCase("m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0].m_Children.Array.data[2].m_SerializedData.text", "Strayfarer.UI.BindableButton")]
+        public void T00_GivenSerializedProperty_GetUxmlTag_ShouldReturnFullTypeName(string propertyPath, string expected) {
             var property = serialized.FindProperty(propertyPath);
             Assert.IsNotNull(property);
 
@@ -33,10 +33,10 @@ namespace Strayfarer.UI.Editor {
             Assert.That(actual, Is.EqualTo(expected));
         }
 
-        [TestCase("m_VisualElementAssets.Array.data[1]", typeof(PageView))]
-        [TestCase("m_VisualElementAssets.Array.data[2].m_Id", typeof(VisualElement))]
-        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", typeof(BindableButton))]
-        public void GivenSerializedProperty_GetUxmlType_ShouldReturnFullType(string propertyPath, Type expected) {
+        [TestCase("m_VisualTree.m_Children.Array.data[0]", typeof(PageView))]
+        [TestCase("m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0].m_Id", typeof(VisualElement))]
+        [TestCase("m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0].m_Children.Array.data[2].m_SerializedData.text", typeof(BindableButton))]
+        public void T01_GivenSerializedProperty_GetUxmlType_ShouldReturnFullType(string propertyPath, Type expected) {
             var property = serialized.FindProperty(propertyPath);
             Assert.IsNotNull(property);
 
@@ -45,11 +45,11 @@ namespace Strayfarer.UI.Editor {
             Assert.That(actual, Is.EqualTo(expected));
         }
 
-        [TestCase("m_VisualElementAssets.Array.data[1]", "active-index")]
-        [TestCase("m_VisualElementAssets.Array.data[1]", "data-source")]
-        [TestCase("m_VisualElementAssets.Array.data[2].m_Id", "name")]
-        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "text")]
-        public void GivenExistingProperty_TryGetUxmlAttribute_ShouldReturnTrue(string propertyPath, string attribute) {
+        [TestCase("m_VisualTree.m_Children.Array.data[0]", "active-index")]
+        [TestCase("m_VisualTree.m_Children.Array.data[0]", "data-source")]
+        [TestCase("m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0].m_Id", "name")]
+        [TestCase("m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0].m_Children.Array.data[2].m_SerializedData.text", "text")]
+        public void T10_GivenExistingProperty_TryGetUxmlAttribute_ShouldReturnTrue(string propertyPath, string attribute) {
             var property = serialized.FindProperty(propertyPath);
             Assert.IsNotNull(property);
 
@@ -58,11 +58,11 @@ namespace Strayfarer.UI.Editor {
             Assert.That(actual, Is.True);
         }
 
-        [TestCase("m_VisualElementAssets.Array.data[1]", "active-index", "0")]
-        [TestCase("m_VisualElementAssets.Array.data[1]", "data-source", "project://database/Packages/com.strayfarer.ui/Tests/Assets/MainMenu_TestAsset.asset?fileID=11400000&guid=33de5180558967149b13f8ed93eaa2a0&type=2#MainMenu_TestAsset")]
-        [TestCase("m_VisualElementAssets.Array.data[2].m_Id", "name", "MainMenu")]
-        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "text", "Quit")]
-        public void GivenExistingProperty_TryGetUxmlAttribute_ShouldSetValue(string propertyPath, string attribute, string expected) {
+        [TestCase("m_VisualTree.m_Children.Array.data[0]", "active-index", "0")]
+        [TestCase("m_VisualTree.m_Children.Array.data[0]", "data-source", "project://database/Packages/com.strayfarer.ui/Tests/Assets/MainMenu_TestAsset.asset?fileID=11400000&guid=33de5180558967149b13f8ed93eaa2a0&type=2#MainMenu_TestAsset")]
+        [TestCase("m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0].m_Id", "name", "MainMenu")]
+        [TestCase("m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0].m_Children.Array.data[2].m_SerializedData.text", "text", "Quit")]
+        public void T11_GivenExistingProperty_TryGetUxmlAttribute_ShouldSetValue(string propertyPath, string attribute, string expected) {
             var property = serialized.FindProperty(propertyPath);
             Assert.IsNotNull(property);
 
@@ -71,11 +71,11 @@ namespace Strayfarer.UI.Editor {
             Assert.That(actual, Is.EqualTo(expected));
         }
 
-        [TestCase("m_VisualElementAssets.Array.data[1]", "active-index-no")]
-        [TestCase("m_VisualElementAssets.Array.data[1]", "data-source-no")]
-        [TestCase("m_VisualElementAssets.Array.data[2].m_Id", "name-no")]
-        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "text-no")]
-        public void GivenMissingProperty_TryGetUxmlAttribute_ShouldReturnFalse(string propertyPath, string attribute) {
+        [TestCase("m_VisualTree.m_Children.Array.data[0]", "active-index-no")]
+        [TestCase("m_VisualTree.m_Children.Array.data[0]", "data-source-no")]
+        [TestCase("m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0].m_Id", "name-no")]
+        [TestCase("m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0].m_Children.Array.data[2].m_SerializedData.text", "text-no")]
+        public void T12_GivenMissingProperty_TryGetUxmlAttribute_ShouldReturnFalse(string propertyPath, string attribute) {
             var property = serialized.FindProperty(propertyPath);
             Assert.IsNotNull(property);
 
@@ -84,11 +84,11 @@ namespace Strayfarer.UI.Editor {
             Assert.That(actual, Is.False);
         }
 
-        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "active-index")]
-        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "data-source")]
-        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "name")]
-        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "text")]
-        public void GivenExistingProperty_TryGetUxmlAttributeInParent_ShouldReturnTrue(string propertyPath, string attribute) {
+        [TestCase("m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0].m_Children.Array.data[2].m_SerializedData.text", "active-index")]
+        [TestCase("m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0].m_Children.Array.data[2].m_SerializedData.text", "data-source")]
+        [TestCase("m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0].m_Children.Array.data[2].m_SerializedData.text", "name")]
+        [TestCase("m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0].m_Children.Array.data[2].m_SerializedData.text", "text")]
+        public void T13_GivenExistingProperty_TryGetUxmlAttributeInParent_ShouldReturnTrue(string propertyPath, string attribute) {
             var property = serialized.FindProperty(propertyPath);
             Assert.IsNotNull(property);
 
@@ -97,11 +97,11 @@ namespace Strayfarer.UI.Editor {
             Assert.That(actual, Is.True);
         }
 
-        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "active-index", "0")]
-        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "data-source", "project://database/Packages/com.strayfarer.ui/Tests/Assets/MainMenu_TestAsset.asset?fileID=11400000&guid=33de5180558967149b13f8ed93eaa2a0&type=2#MainMenu_TestAsset")]
-        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "name", "Quit")]
-        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "text", "Quit")]
-        public void GivenExistingProperty_TryGetUxmlAttributeInParent_ShouldSetValue(string propertyPath, string attribute, string expected) {
+        [TestCase("m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0].m_Children.Array.data[2].m_SerializedData.text", "active-index", "0")]
+        [TestCase("m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0].m_Children.Array.data[2].m_SerializedData.text", "data-source", "project://database/Packages/com.strayfarer.ui/Tests/Assets/MainMenu_TestAsset.asset?fileID=11400000&guid=33de5180558967149b13f8ed93eaa2a0&type=2#MainMenu_TestAsset")]
+        [TestCase("m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0].m_Children.Array.data[2].m_SerializedData.text", "name", "Quit")]
+        [TestCase("m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0].m_Children.Array.data[2].m_SerializedData.text", "text", "Quit")]
+        public void T14_GivenExistingProperty_TryGetUxmlAttributeInParent_ShouldSetValue(string propertyPath, string attribute, string expected) {
             var property = serialized.FindProperty(propertyPath);
             Assert.IsNotNull(property);
 
@@ -110,11 +110,11 @@ namespace Strayfarer.UI.Editor {
             Assert.That(actual, Is.EqualTo(expected));
         }
 
-        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "active-index-no")]
-        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "data-source-no")]
-        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "name-no")]
-        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "text-no")]
-        public void GivenMissingProperty_TryGetUxmlAttributeInParent_ShouldReturnFalse(string propertyPath, string attribute) {
+        [TestCase("m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0].m_Children.Array.data[2].m_SerializedData.text", "active-index-no")]
+        [TestCase("m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0].m_Children.Array.data[2].m_SerializedData.text", "data-source-no")]
+        [TestCase("m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0].m_Children.Array.data[2].m_SerializedData.text", "name-no")]
+        [TestCase("m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0].m_Children.Array.data[2].m_SerializedData.text", "text-no")]
+        public void T15_GivenMissingProperty_TryGetUxmlAttributeInParent_ShouldReturnFalse(string propertyPath, string attribute) {
             var property = serialized.FindProperty(propertyPath);
             Assert.IsNotNull(property);
 
@@ -123,9 +123,9 @@ namespace Strayfarer.UI.Editor {
             Assert.That(actual, Is.False);
         }
 
-        [TestCase("m_VisualElementAssets.Array.data[1]")]
-        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text")]
-        public void GivenDataSource_TryGetUxmlDataSourceType_ShouldReturnTrue(string propertyPath) {
+        [TestCase("m_VisualTree.m_Children.Array.data[0]")]
+        [TestCase("m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0].m_Children.Array.data[2].m_SerializedData.text")]
+        public void T30_GivenDataSource_TryGetUxmlDataSourceType_ShouldReturnTrue(string propertyPath) {
             var property = serialized.FindProperty(propertyPath);
             Assert.IsNotNull(property);
 
@@ -134,9 +134,9 @@ namespace Strayfarer.UI.Editor {
             Assert.That(actual, Is.True);
         }
 
-        [TestCase("m_VisualElementAssets.Array.data[1]", typeof(TestAsset))]
-        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", typeof(Vector3))]
-        public void GivenDataSource_TryGetUxmlDataSourceType_ShouldSetType(string propertyPath, Type expected) {
+        [TestCase("m_VisualTree.m_Children.Array.data[0]", typeof(TestAsset))]
+        [TestCase("m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0].m_Children.Array.data[2].m_SerializedData.text", typeof(Vector3))]
+        public void T31_GivenDataSource_TryGetUxmlDataSourceType_ShouldSetType(string propertyPath, Type expected) {
             var property = serialized.FindProperty(propertyPath);
             Assert.IsNotNull(property);
 
@@ -145,8 +145,8 @@ namespace Strayfarer.UI.Editor {
             Assert.That(actual, Is.EqualTo(expected));
         }
 
-        [TestCase("m_VisualElementAssets.Array.data[0]")]
-        public void GivenNoDataSource_TryGetUxmlDataSourceType_ShouldReturnFalse(string propertyPath) {
+        [TestCase("m_VisualTree")]
+        public void T32_GivenNoDataSource_TryGetUxmlDataSourceType_ShouldReturnFalse(string propertyPath) {
             var property = serialized.FindProperty(propertyPath);
             Assert.IsNotNull(property);
 
@@ -155,22 +155,25 @@ namespace Strayfarer.UI.Editor {
             Assert.That(actual, Is.False);
         }
 
-        [TestCase("m_VisualElementAssets.Array.data[0]", "m_VisualElementAssets.Array.data[1]")]
-        [TestCase("m_VisualElementAssets.Array.data[1]", "m_VisualElementAssets.Array.data[2]", "m_VisualElementAssets.Array.data[6]", "m_VisualElementAssets.Array.data[11]")]
-        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text")]
-        public void GivenChildren_GetUxmlChildElements_ShouldReturnChildren(string propertyPath, params string[] expected) {
+        [TestCase("m_VisualTree", "m_VisualTree.m_Children.Array.data[0]")]
+        [TestCase("m_VisualTree.m_Children.Array.data[0]", "m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0]", "m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[1]", "m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[2]")]
+        [TestCase("m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0].m_Children.Array.data[0].m_SerializedData.text")]
+        public void T40_GivenChildren_GetUxmlChildElements_ShouldReturnChildren(string propertyPath, params string[] expected) {
             var property = serialized.FindProperty(propertyPath);
             Assert.IsNotNull(property);
 
-            var elements = property.GetUxmlChildElements();
+            string[] actual = property
+                .GetUxmlChildElements()
+                .Select(e => e.propertyPath)
+                .ToArray();
 
-            Assert.That(elements.Select(e => e.propertyPath), Is.EqualTo(expected));
+            Assert.That(actual, Is.EqualTo(expected));
         }
 
-        [TestCase("m_VisualElementAssets.Array.data[0]", "")]
-        [TestCase("m_VisualElementAssets.Array.data[1]", "m_VisualElementAssets.Array.data[1]")]
-        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "m_VisualElementAssets.Array.data[1]")]
-        public void GivenDescendantOfPageView_GetUxmlAncestorOrSelf_ShouldReturnPageView(string propertyPath, string expectedPath) {
+        [TestCase("m_VisualTree", "")]
+        [TestCase("m_VisualTree.m_Children.Array.data[0]", "m_VisualTree.m_Children.Array.data[0]")]
+        [TestCase("m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0].m_Children.Array.data[2].m_SerializedData.text", "m_VisualTree.m_Children.Array.data[0]")]
+        public void T41_GivenDescendantOfPageView_GetUxmlAncestorOrSelf_ShouldReturnPageView(string propertyPath, string expectedPath) {
             var property = serialized.FindProperty(propertyPath);
             Assert.IsNotNull(property);
 
@@ -185,10 +188,10 @@ namespace Strayfarer.UI.Editor {
             }
         }
 
-        [TestCase("m_VisualElementAssets.Array.data[1]", "PageView")]
-        [TestCase("m_VisualElementAssets.Array.data[2]", "#MainMenu")]
-        [TestCase("m_VisualElementAssets.Array.data[5].m_SerializedData.text", "#Quit")]
-        public void GivenElement_GetUxmlDisplayName_ShouldUseName(string propertyPath, string expected) {
+        [TestCase("m_VisualTree.m_Children.Array.data[0]", "PageView")]
+        [TestCase("m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0]", "#MainMenu")]
+        [TestCase("m_VisualTree.m_Children.Array.data[0].m_Children.Array.data[0].m_Children.Array.data[2].m_SerializedData.text", "#Quit")]
+        public void T42_GivenElement_GetUxmlDisplayName_ShouldUseName(string propertyPath, string expected) {
             var property = serialized.FindProperty(propertyPath);
             Assert.IsNotNull(property);
 

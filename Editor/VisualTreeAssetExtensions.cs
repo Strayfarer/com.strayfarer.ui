@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 
 namespace Strayfarer.UI.Editor {
     static class VisualTreeAssetExtensions {
-        static readonly Regex basePathExpression = new(@"m_VisualElementAssets\.Array\.data\[\d+\]", RegexOptions.Compiled);
+        static readonly Regex basePathExpression = new(@"m_VisualTree(\.m_Children\.Array\.data\[\d+\])*", RegexOptions.Compiled);
 
         static SerializedProperty GetUxmlElementProperty(this SerializedProperty property) {
             var match = basePathExpression.Match(property.propertyPath);
@@ -32,37 +32,27 @@ namespace Strayfarer.UI.Editor {
         }
 
         static bool TryGetUxmlParentProperty(this SerializedProperty property, out SerializedProperty parentProperty) {
-            int id = property.GetUxmlElementProperty().FindPropertyRelativeOrThrow("m_ParentId").intValue;
-
-            if (id == 0) {
+            string[] paths = property.GetUxmlElementProperty().propertyPath.Split(".m_Children.Array");
+            if (paths.Length == 1) {
                 parentProperty = default;
                 return false;
             }
 
-            var elementsProperty = property.serializedObject.FindProperty("m_VisualElementAssets");
+            string path = string.Join(".m_Children.Array", paths[..^1]);
 
-            for (int i = 0; i < elementsProperty.arraySize; i++) {
-                var elementProperty = elementsProperty.GetArrayElementAtIndex(i);
-                if (elementProperty.FindPropertyRelativeOrThrow("m_Id").intValue == id) {
-                    parentProperty = elementProperty;
-                    return true;
-                }
-            }
+            parentProperty = property.serializedObject.FindProperty(path);
 
-            parentProperty = default;
-            return false;
+            return parentProperty is not null;
         }
 
         internal static IEnumerable<SerializedProperty> GetUxmlChildElements(this SerializedProperty property) {
-            int id = property.GetUxmlElementProperty().FindPropertyRelativeOrThrow("m_Id").intValue;
+            property = property.GetUxmlElementProperty();
 
-            var elementsProperty = property.serializedObject.FindProperty("m_VisualElementAssets");
+            var elementsProperty = property.FindPropertyRelative("m_Children");
 
             for (int i = 0; i < elementsProperty.arraySize; i++) {
                 var elementProperty = elementsProperty.GetArrayElementAtIndex(i);
-                if (elementProperty.FindPropertyRelativeOrThrow("m_ParentId").intValue == id) {
-                    yield return elementProperty;
-                }
+                yield return elementProperty;
             }
         }
 
@@ -98,9 +88,10 @@ namespace Strayfarer.UI.Editor {
         internal static bool TryGetUxmlAttribute(this SerializedProperty property, string attribute, out string value) {
             var propertiesProperty = property.GetUxmlElementProperty().FindPropertyRelativeOrThrow("m_Properties");
 
-            for (int i = 0; i < propertiesProperty.arraySize; i += 2) {
-                if (propertiesProperty.GetArrayElementAtIndex(i).stringValue == attribute) {
-                    value = propertiesProperty.GetArrayElementAtIndex(i + 1).stringValue;
+            for (int i = 0; i < propertiesProperty.arraySize; i++) {
+                var propertyProperty = propertiesProperty.GetArrayElementAtIndex(i);
+                if (propertyProperty.FindPropertyRelativeOrThrow("name").stringValue == attribute) {
+                    value = propertyProperty.FindPropertyRelativeOrThrow("value").stringValue;
                     if (!string.IsNullOrEmpty(value)) {
                         return true;
                     }
