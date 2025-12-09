@@ -169,19 +169,6 @@ references:
   isSpec: "True"
   fullName: Strayfarer.UI.FlexSprite.DoMeasure
   nameWithType: FlexSprite.DoMeasure
-- uid: Strayfarer.UI.FlexSprite.scaleMode
-  name: scaleMode
-  href: api/Strayfarer.UI.FlexSprite.html#Strayfarer_UI_FlexSprite_scaleMode
-  commentId: P:Strayfarer.UI.FlexSprite.scaleMode
-  fullName: Strayfarer.UI.FlexSprite.scaleMode
-  nameWithType: FlexSprite.scaleMode
-- uid: Strayfarer.UI.FlexSprite.scaleMode*
-  name: scaleMode
-  href: api/Strayfarer.UI.FlexSprite.html#Strayfarer_UI_FlexSprite_scaleMode_
-  commentId: Overload:Strayfarer.UI.FlexSprite.scaleMode
-  isSpec: "True"
-  fullName: Strayfarer.UI.FlexSprite.scaleMode
-  nameWithType: FlexSprite.scaleMode
 - uid: Strayfarer.UI.FlexSprite.sprite
   name: sprite
   href: api/Strayfarer.UI.FlexSprite.html#Strayfarer_UI_FlexSprite_sprite
@@ -195,19 +182,6 @@ references:
   isSpec: "True"
   fullName: Strayfarer.UI.FlexSprite.sprite
   nameWithType: FlexSprite.sprite
-- uid: Strayfarer.UI.FlexSprite.tintColor
-  name: tintColor
-  href: api/Strayfarer.UI.FlexSprite.html#Strayfarer_UI_FlexSprite_tintColor
-  commentId: P:Strayfarer.UI.FlexSprite.tintColor
-  fullName: Strayfarer.UI.FlexSprite.tintColor
-  nameWithType: FlexSprite.tintColor
-- uid: Strayfarer.UI.FlexSprite.tintColor*
-  name: tintColor
-  href: api/Strayfarer.UI.FlexSprite.html#Strayfarer_UI_FlexSprite_tintColor_
-  commentId: Overload:Strayfarer.UI.FlexSprite.tintColor
-  isSpec: "True"
-  fullName: Strayfarer.UI.FlexSprite.tintColor
-  nameWithType: FlexSprite.tintColor
 - uid: Strayfarer.UI.FlexVectorImage
   name: FlexVectorImage
   href: api/Strayfarer.UI.FlexVectorImage.html
@@ -240,32 +214,6 @@ references:
   isSpec: "True"
   fullName: Strayfarer.UI.FlexVectorImage.DoMeasure
   nameWithType: FlexVectorImage.DoMeasure
-- uid: Strayfarer.UI.FlexVectorImage.scaleMode
-  name: scaleMode
-  href: api/Strayfarer.UI.FlexVectorImage.html#Strayfarer_UI_FlexVectorImage_scaleMode
-  commentId: P:Strayfarer.UI.FlexVectorImage.scaleMode
-  fullName: Strayfarer.UI.FlexVectorImage.scaleMode
-  nameWithType: FlexVectorImage.scaleMode
-- uid: Strayfarer.UI.FlexVectorImage.scaleMode*
-  name: scaleMode
-  href: api/Strayfarer.UI.FlexVectorImage.html#Strayfarer_UI_FlexVectorImage_scaleMode_
-  commentId: Overload:Strayfarer.UI.FlexVectorImage.scaleMode
-  isSpec: "True"
-  fullName: Strayfarer.UI.FlexVectorImage.scaleMode
-  nameWithType: FlexVectorImage.scaleMode
-- uid: Strayfarer.UI.FlexVectorImage.tintColor
-  name: tintColor
-  href: api/Strayfarer.UI.FlexVectorImage.html#Strayfarer_UI_FlexVectorImage_tintColor
-  commentId: P:Strayfarer.UI.FlexVectorImage.tintColor
-  fullName: Strayfarer.UI.FlexVectorImage.tintColor
-  nameWithType: FlexVectorImage.tintColor
-- uid: Strayfarer.UI.FlexVectorImage.tintColor*
-  name: tintColor
-  href: api/Strayfarer.UI.FlexVectorImage.html#Strayfarer_UI_FlexVectorImage_tintColor_
-  commentId: Overload:Strayfarer.UI.FlexVectorImage.tintColor
-  isSpec: "True"
-  fullName: Strayfarer.UI.FlexVectorImage.tintColor
-  nameWithType: FlexVectorImage.tintColor
 - uid: Strayfarer.UI.FlexVectorImage.vectorImage
   name: vectorImage
   href: api/Strayfarer.UI.FlexVectorImage.html#Strayfarer_UI_FlexVectorImage_vectorImage
