@@ -8,6 +8,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 
+## [2.0.0] - 2025-12-09
+
+### Changed
+- Changed minimum Unity version to 6000.3.
+
+### Removed
+- Removed aspectRatio and tintColor from FlexVectorImage and FlexSprite (use the Image properties instead).
+
+
 ## [1.5.0] - 2025-10-16
 
 ### Added

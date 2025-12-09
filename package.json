@@ -1,7 +1,7 @@
 {
   "name": "com.strayfarer.ui",
   "displayName": "Strayfarer UI",
-  "version": "1.5.0",
+  "version": "2.0.0-pre.0",
   "unity": "6000.3",
   "keywords": [],
   "license": "MIT",
@@ -24,7 +24,7 @@
   },
   "contributors": [
     "Daniel Schulz <daniel.schulz@ulisses-spiele.de>",
-    "Gregor Sönnichsen",
+    "Gregor S\u00f6nnichsen",
     "Katharina Broswik"
   ],
   "type": "library",
