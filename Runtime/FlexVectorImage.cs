@@ -8,23 +8,9 @@ namespace Strayfarer.UI {
         [Header(nameof(FlexVectorImage))]
         [UxmlAttribute]
         [CreateProperty]
-        public new ScaleMode scaleMode {
-            get => base.scaleMode;
-            set => base.scaleMode = value;
-        }
-
-        [UxmlAttribute]
-        [CreateProperty]
         public new VectorImage vectorImage {
             get => base.vectorImage;
             set => base.vectorImage = value;
-        }
-
-        [UxmlAttribute]
-        [CreateProperty]
-        public new Color tintColor {
-            get => base.tintColor;
-            set => base.tintColor = value;
         }
 
         public FlexVectorImage() {

@@ -8,23 +8,9 @@ namespace Strayfarer.UI {
         [Header(nameof(FlexSprite))]
         [UxmlAttribute]
         [CreateProperty]
-        public new ScaleMode scaleMode {
-            get => base.scaleMode;
-            set => base.scaleMode = value;
-        }
-
-        [UxmlAttribute]
-        [CreateProperty]
         public new Sprite sprite {
             get => base.sprite;
             set => base.sprite = value;
-        }
-
-        [UxmlAttribute]
-        [CreateProperty]
-        public new Color tintColor {
-            get => base.tintColor;
-            set => base.tintColor = value;
         }
 
         public FlexSprite() {
