@@ -105,9 +105,7 @@ namespace Strayfarer.UI {
                 tint = innerBorderColor,
             };
 
-
             // --- Right ---
-
             // Top left
             var rTopLeft = new Vertex {
                 position = new Vector3((r.width - widthDelta) > halfWidth ? (r.width - widthDelta) : halfWidth, innerRadiusVert < halfHeight ? innerRadiusHor : halfHeight, Vertex.nearZ),
@@ -189,7 +187,7 @@ namespace Strayfarer.UI {
             tris.Add(new Tri(lBottomLeft, lTopLeft, lTopRight));
             tris.Add(new Tri(lTopRight, lBottomRight, lBottomLeft));
 
-
+            #region Region: corners
             // --------- CORNERS ---------------
             int sections = Mathf.Min((int)((borderRadius / 10 * 5) + 5), 15);
 
@@ -198,42 +196,43 @@ namespace Strayfarer.UI {
             float sectionDegrees = angle / sections;
 
             // Top left
-            CreateCorner(tTopLeft, lTopLeft, tBottomLeft, lTopRight, center, sections, sectionDegrees, widthDelta, out var topLeftTris);
+            CreateCorner(tTopLeft, lTopLeft, tBottomLeft, lTopRight, center, sections, sectionDegrees, widthDelta, innerBorderColor, innerBorderColor, out var topLeftTris);
             tris.AddRange(topLeftTris);
 
             // Top right
             center = new Vector3(r.width - borderRadius, borderRadius, Vertex.nearZ);
-            CreateCorner(rTopRight, tTopRight, rTopLeft, tBottomRight, center, sections, sectionDegrees, widthDelta, out var topRightTris);
+            CreateCorner(rTopRight, tTopRight, rTopLeft, tBottomRight, center, sections, sectionDegrees, widthDelta, innerBorderColor, innerBorderColor, out var topRightTris);
             tris.AddRange(topRightTris);
 
             // Bottom right
             center = new Vector3(r.width - borderRadius, r.height - borderRadius, Vertex.nearZ);
-            CreateCorner(bBottomRight, rBottomRight, bTopRight, rBottomLeft, center, sections, sectionDegrees, widthDelta, out var bottomRightTris);
+            CreateCorner(bBottomRight, rBottomRight, bTopRight, rBottomLeft, center, sections, sectionDegrees, widthDelta, innerBorderColor, innerBorderColor, out var bottomRightTris);
             tris.AddRange(bottomRightTris);
 
             // Bottom left
             center = new Vector3(borderRadius, r.height - borderRadius, Vertex.nearZ);
-            CreateCorner(lBottomLeft, bBottomLeft, lBottomRight, bTopLeft, center, sections, sectionDegrees, widthDelta, out var bottomLeftTris);
+            CreateCorner(lBottomLeft, bBottomLeft, lBottomRight, bTopLeft, center, sections, sectionDegrees, widthDelta, innerBorderColor, innerBorderColor, out var bottomLeftTris);
             tris.AddRange(bottomLeftTris);
+            #endregion
         }
 
 
-        void CreateCorner(Vertex outerStart, Vertex outerEnd, Vertex cornerStart, Vertex cornerEnd, Vector3 center, int sections, float sectionDegrees, float widthDelta, out List<Tri> tris) {
+        void CreateCorner(Vertex outerStart, Vertex outerEnd, Vertex cornerStart, Vertex cornerEnd, Vector3 center, int sections, float sectionDegrees, float width, Color outerSectionColor, Color innerSectionColor, out List<Tri> tris) {
             tris = new List<Tri>();
             var currentStart = outerStart;
             var currentInnerCorner = cornerStart;
             for (int i = 0; i < sections; i++) {
                 if (i == sections - 1) {
                     tris.Add(new Tri(currentStart, cornerEnd, outerEnd));
-                    if (borderRadius > widthDelta) {
+                    if (borderRadius > width) {
                         tris.Add(new Tri(currentStart, currentInnerCorner, cornerEnd));
                     }
 
                 } else {
-                    CreateSectionPoint(center, sectionDegrees, currentStart, out var outerSectionPoint);
+                    CreateSectionPoint(center, sectionDegrees, currentStart, outerSectionColor, out var outerSectionPoint);
                     var innerSectionPoint = currentInnerCorner;
-                    if (borderRadius > widthDelta) {
-                        CreateSectionPoint(center, sectionDegrees, currentInnerCorner, out innerSectionPoint);
+                    if (borderRadius > width) {
+                        CreateSectionPoint(center, sectionDegrees, currentInnerCorner, innerSectionColor, out innerSectionPoint);
                         tris.Add(new Tri(currentStart, currentInnerCorner, innerSectionPoint));
                         currentInnerCorner = innerSectionPoint;
                     }
@@ -243,7 +242,7 @@ namespace Strayfarer.UI {
             }
         }
 
-        void CreateSectionPoint(Vector3 center, float sectionDegrees, Vertex currentStart, out Vertex sectionPoint) {
+        void CreateSectionPoint(Vector3 center, float sectionDegrees, Vertex currentStart, Color sectionColor, out Vertex sectionPoint) {
             var startingPoint = currentStart.position;
             var rotation = Quaternion.AngleAxis(sectionDegrees, Vector3.back);
             var shiftedPoint = startingPoint - center;
@@ -251,7 +250,7 @@ namespace Strayfarer.UI {
 
             sectionPoint = new Vertex {
                 position = new Vector3(startingPoint.x, startingPoint.y, Vertex.nearZ),
-                tint = innerBorderColor,
+                tint = sectionColor,
             };
         }
 
@@ -260,125 +259,278 @@ namespace Strayfarer.UI {
 
             tris = new List<Tri>();
 
+            float halfWidth = r.width / 2;
+            float halfHeight = r.height / 2;
+
+            #region Region: outer glow
             // Outer Glow Vertices
+            // --- Top ---
             // Top left
-            var topLeft = new Vertex {
-                position = new Vector3(-glowWidth, -glowWidth, Vertex.nearZ),
+            var tTopLeft = new Vertex {
+                position = new Vector3(borderRadiusHor, -glowWidth, Vertex.nearZ),
                 tint = clearColor,
             };
             // Top right
-            var topRight = new Vertex {
-                position = new Vector3(r.width + glowWidth, -glowWidth, Vertex.nearZ),
+            var tTopRight = new Vertex {
+                position = new Vector3(r.width - borderRadiusHor, -glowWidth, Vertex.nearZ),
                 tint = clearColor,
             };
             // Bottom right
-            var bottomRight = new Vertex {
-                position = new Vector3(r.width + glowWidth, r.height + glowWidth, Vertex.nearZ),
-                tint = clearColor,
+            var tBottomRight = new Vertex {
+                position = new Vector3(r.width - borderRadiusHor, 0, Vertex.nearZ),
+                tint = glowColor,
             };
-            //Bottom left
-            var bottomLeft = new Vertex {
-                position = new Vector3(-glowWidth, r.height + glowWidth, Vertex.nearZ),
-                tint = clearColor,
+            // Bottom left
+            var tBottomLeft = new Vertex {
+                position = new Vector3(borderRadiusHor, 0, Vertex.nearZ),
+                tint = glowColor,
             };
 
-            // Base Box Vertices
+            // --- Right ---
             // Top left
-            var topLeftInner = new Vertex {
-                position = new Vector3(0, 0, Vertex.nearZ),
+            var rTopLeft = new Vertex {
+                position = new Vector3(r.width, borderRadiusHor, Vertex.nearZ),
                 tint = glowColor,
             };
             // Top right
-            var topRightInner = new Vertex {
-                position = new Vector3(r.width, 0, Vertex.nearZ),
-                tint = glowColor,
+            var rTopRight = new Vertex {
+                position = new Vector3(r.width + glowWidth, borderRadiusHor, Vertex.nearZ),
+                tint = clearColor,
             };
             // Bottom right
-            var bottomRightInner = new Vertex {
-                position = new Vector3(r.width, r.height, Vertex.nearZ),
+            var rBottomRight = new Vertex {
+                position = new Vector3(r.width + glowWidth, r.height - borderRadiusHor, Vertex.nearZ),
+                tint = clearColor,
+            };
+            // Bottom left
+            var rBottomLeft = new Vertex {
+                position = new Vector3(r.width, r.height - borderRadiusHor, Vertex.nearZ),
                 tint = glowColor,
             };
-            //Bottom left
-            var bottomLeftInner = new Vertex {
-                position = new Vector3(0, r.height, Vertex.nearZ),
-                tint = glowColor,
-            };
 
-            // Top
-            tris.Add(new Tri(topLeft, topRight, topRightInner));
-            tris.Add(new Tri(topRightInner, topLeftInner, topLeft));
-
-            // Right
-            tris.Add(new Tri(topRight, bottomRight, bottomRightInner));
-            tris.Add(new Tri(bottomRightInner, topRightInner, topRight));
-
-            // Bottom
-            tris.Add(new Tri(bottomRight, bottomLeft, bottomLeftInner));
-            tris.Add(new Tri(bottomLeftInner, bottomRightInner, bottomRight));
-
-            // Left
-            tris.Add(new Tri(bottomLeft, topLeft, topLeftInner));
-            tris.Add(new Tri(topLeftInner, bottomLeftInner, bottomLeft));
-
-            // Inner Border Box
+            // --- Bottom ---
             // Top left
-            var innerGlowTopLeft = new Vertex {
-                position = new Vector3(borderWidth, borderWidth, Vertex.nearZ),
+            var bTopLeft = new Vertex {
+                position = new Vector3(borderRadiusHor, r.height, Vertex.nearZ),
                 tint = glowColor,
             };
             // Top right
-            var innerGlowTopRight = new Vertex {
-                position = new Vector3(r.width - borderWidth, borderWidth, Vertex.nearZ),
+            var bTopRight = new Vertex {
+                position = new Vector3(r.width - borderRadiusHor, r.height, Vertex.nearZ),
                 tint = glowColor,
             };
             // Bottom right
-            var innerGlowBottomRight = new Vertex {
-                position = new Vector3(r.width - borderWidth, r.height - borderWidth, Vertex.nearZ),
-                tint = glowColor,
+            var bBottomRight = new Vertex {
+                position = new Vector3(r.width - borderRadiusHor, r.height + glowWidth, Vertex.nearZ),
+                tint = clearColor,
             };
             //Bottom left
-            var innerGlowBottomLeft = new Vertex {
-                position = new Vector3(borderWidth, r.height - borderWidth, Vertex.nearZ),
-                tint = glowColor,
+            var bBottomLeft = new Vertex {
+                position = new Vector3(borderRadiusHor, r.height + glowWidth, Vertex.nearZ),
+                tint = clearColor,
             };
 
-            // Inner Glow Vertices
+            // --- Left ---
             // Top left
-            var innerGlowTopLeftInner = new Vertex {
-                position = new Vector3(borderWidth + glowWidth, borderWidth + glowWidth, Vertex.nearZ),
+            var lTopLeft = new Vertex {
+                position = new Vector3(-glowWidth, borderRadiusHor, Vertex.nearZ),
                 tint = clearColor,
             };
             // Top right
-            var innerGlowTopRightInner = new Vertex {
-                position = new Vector3(r.width - borderWidth - glowWidth, borderWidth + glowWidth, Vertex.nearZ),
-                tint = clearColor,
+            var lTopRight = new Vertex {
+                position = new Vector3(0, borderRadiusHor, Vertex.nearZ),
+                tint = glowColor,
             };
             // Bottom right
-            var innerGlowBottomRightInner = new Vertex {
-                position = new Vector3(r.width - borderWidth - glowWidth, r.height - borderWidth - glowWidth, Vertex.nearZ),
-                tint = clearColor,
+            var lBottomRight = new Vertex {
+                position = new Vector3(0, r.height - borderRadius, Vertex.nearZ),
+                tint = glowColor,
             };
-            //Bottom left
-            var innerGlowBottomLeftInner = new Vertex {
-                position = new Vector3(borderWidth + glowWidth, r.height - borderWidth - glowWidth, Vertex.nearZ),
+            // Bottom left
+            var lBottomLeft = new Vertex {
+                position = new Vector3(-glowWidth, r.height - borderRadius, Vertex.nearZ),
                 tint = clearColor,
             };
 
             // Top
-            tris.Add(new Tri(innerGlowTopLeft, innerGlowTopRight, innerGlowTopRightInner));
-            tris.Add(new Tri(innerGlowTopRightInner, innerGlowTopLeftInner, innerGlowTopLeft));
+            tris.Add(new Tri(tTopLeft, tTopRight, tBottomRight));
+            tris.Add(new Tri(tBottomRight, tBottomLeft, tTopLeft));
 
             // Right
-            tris.Add(new Tri(innerGlowTopRight, innerGlowBottomRight, innerGlowBottomRightInner));
-            tris.Add(new Tri(innerGlowBottomRightInner, innerGlowTopRightInner, innerGlowTopRight));
+            tris.Add(new Tri(rTopLeft, rTopRight, rBottomRight));
+            tris.Add(new Tri(rBottomRight, rBottomLeft, rTopLeft));
 
             // Bottom
-            tris.Add(new Tri(innerGlowBottomRight, innerGlowBottomLeft, innerGlowBottomLeftInner));
-            tris.Add(new Tri(innerGlowBottomLeftInner, innerGlowBottomRightInner, innerGlowBottomRight));
+            tris.Add(new Tri(bTopLeft, bTopRight, bBottomRight));
+            tris.Add(new Tri(bBottomRight, bBottomLeft, bTopLeft));
 
             // Left
-            tris.Add(new Tri(innerGlowBottomLeft, innerGlowTopLeft, innerGlowTopLeftInner));
-            tris.Add(new Tri(innerGlowTopLeftInner, innerGlowBottomLeftInner, innerGlowBottomLeft));
+            tris.Add(new Tri(lTopLeft, lTopRight, lBottomRight));
+            tris.Add(new Tri(lBottomRight, lBottomLeft, lTopLeft));
+
+            #endregion
+
+            #region Region: inner glow
+            // -------- Inner Border Box ---------
+            //var maxRadius = Mathf.Max(borderRadius, bord)
+            // Top
+            // Top left
+            var tTopLeftInnerGlow = new Vertex {
+                position = new Vector3(borderRadius + glowWidth, borderWidth, Vertex.nearZ),
+                tint = glowColor,
+            };
+            // Top right
+            var tTopRightInnerGlow = new Vertex {
+                position = new Vector3(r.width - borderRadius, borderWidth, Vertex.nearZ),
+                tint = glowColor,
+            };
+            // Bottom right
+            var tBottomRightInnerGlow = new Vertex {
+                position = new Vector3(r.width - borderRadius, borderWidth + glowWidth, Vertex.nearZ),
+                tint = clearColor,
+            };
+            // Bottom left
+            var tBottomLeftInnerGlow = new Vertex {
+                position = new Vector3(borderRadius + glowWidth, borderWidth + glowWidth, Vertex.nearZ),
+                tint = clearColor,
+            };
+
+            // Right
+            // Top left
+            var rTopLeftInnerGlow = new Vertex {
+                position = new Vector3(r.width - borderWidth - glowWidth, borderRadius, Vertex.nearZ),
+                tint = clearColor,
+            };
+            // Top right
+            var rTopRightInnerGlow = new Vertex {
+                position = new Vector3(r.width - borderWidth, borderRadius, Vertex.nearZ),
+                tint = glowColor,
+            };
+            // Bottom right
+            var rBottomRightInnerGlow = new Vertex {
+                position = new Vector3(r.width - borderWidth, r.height - borderRadius, Vertex.nearZ),
+                tint = glowColor,
+            };
+            // Bottom left
+            var rBottomLeftInnerGlow = new Vertex {
+                position = new Vector3(r.width - borderWidth - glowWidth, r.height - borderRadius, Vertex.nearZ),
+                tint = clearColor,
+            };
+
+            // Bottom
+            // Top left
+            var bTopLeftInnerGlow = new Vertex {
+                position = new Vector3(borderRadius, r.height - borderWidth - glowWidth, Vertex.nearZ),
+                tint = clearColor,
+            };
+            // Top right
+            var bTopRightInnerGlow = new Vertex {
+                position = new Vector3(r.width - borderRadius, r.height - borderWidth - glowWidth, Vertex.nearZ),
+                tint = clearColor,
+            };
+            // Bottom right
+            var bBottomRightInnerGlow = new Vertex {
+                position = new Vector3(r.width - borderRadius, r.height - borderWidth, Vertex.nearZ),
+                tint = glowColor,
+            };
+            // Bottom left
+            var bBottomLeftInnerGlow = new Vertex {
+                position = new Vector3(borderRadius, r.height - borderWidth, Vertex.nearZ),
+                tint = glowColor,
+            };
+
+            // Left
+            // Top left
+            var lTopLeftInnerGlow = new Vertex {
+                position = new Vector3(borderWidth, borderRadius + glowWidth, Vertex.nearZ),
+                tint = glowColor,
+            };
+            // Top right
+            var lTopRightInnerGlow = new Vertex {
+                position = new Vector3(borderWidth + glowWidth, borderRadius + glowWidth, Vertex.nearZ),
+                tint = clearColor,
+            };
+            // Bottom right
+            var lBottomRightInnerGlow = new Vertex {
+                position = new Vector3(borderWidth + glowWidth, r.height - borderRadius - glowWidth, Vertex.nearZ),
+                tint = clearColor,
+            };
+            // Bottom left
+            var lBottomLeftInnerGlow = new Vertex {
+                position = new Vector3(borderWidth, r.height - borderRadius - glowWidth, Vertex.nearZ),
+                tint = glowColor,
+            };
+
+            // Top
+            tris.Add(new Tri(tTopLeftInnerGlow, tTopRightInnerGlow, tBottomRightInnerGlow));
+            tris.Add(new Tri(tBottomRightInnerGlow, tBottomLeftInnerGlow, tTopLeftInnerGlow));
+
+            // Right
+            tris.Add(new Tri(rTopLeftInnerGlow, rTopRightInnerGlow, rBottomRightInnerGlow));
+            tris.Add(new Tri(rBottomRightInnerGlow, rBottomLeftInnerGlow, rTopLeftInnerGlow));
+
+            // Bottom
+            tris.Add(new Tri(bTopLeftInnerGlow, bTopRightInnerGlow, bBottomRightInnerGlow));
+            tris.Add(new Tri(bBottomRightInnerGlow, bBottomLeftInnerGlow, bTopLeftInnerGlow));
+
+            // Left
+            tris.Add(new Tri(lTopLeftInnerGlow, lTopRightInnerGlow, lBottomRightInnerGlow));
+            tris.Add(new Tri(lBottomRightInnerGlow, lBottomLeftInnerGlow, lTopLeftInnerGlow));
+            #endregion
+
+            #region Region: corners
+            // --------- CORNERS ---------------
+
+            float outerWidth = outerBorderWidthPercent / 100 * borderWidth;
+            float widthDelta = borderWidth - outerWidth;
+
+            int sections = 15;
+
+            var center = new Vector3(borderRadius, borderRadius, Vertex.nearZ);
+            float angle = Vector3.Angle(tTopLeft.position - center, lTopLeft.position - center) > 90 ? 90 : Vector3.Angle(tTopLeft.position - center, lTopLeft.position - center);
+            float sectionDegrees = angle / sections;
+
+            // Outer
+            // Top left
+            CreateCorner(tTopLeft, lTopLeft, tBottomLeft, lTopRight, center, sections, sectionDegrees, 0, clearColor, glowColor, out var topLeftTris);
+            tris.AddRange(topLeftTris);
+
+            // Top right
+            center = new Vector3(r.width - borderRadius, borderRadius, Vertex.nearZ);
+            CreateCorner(rTopRight, tTopRight, rTopLeft, tBottomRight, center, sections, sectionDegrees, 0, clearColor, glowColor, out var topRightTris);
+            tris.AddRange(topRightTris);
+
+            // Bottom right
+            center = new Vector3(r.width - borderRadius, r.height - borderRadius, Vertex.nearZ);
+            CreateCorner(bBottomRight, rBottomRight, bTopRight, rBottomLeft, center, sections, sectionDegrees, 0, clearColor, glowColor, out var bottomRightTris);
+            tris.AddRange(bottomRightTris);
+
+            // Bottom left
+            center = new Vector3(borderRadius, r.height - borderRadius, Vertex.nearZ);
+            CreateCorner(lBottomLeft, bBottomLeft, lBottomRight, bTopLeft, center, sections, sectionDegrees, 0, clearColor, glowColor, out var bottomLeftTris);
+            tris.AddRange(bottomLeftTris);
+
+            // Inner
+            // Top left
+            center = new Vector3(borderRadius, borderRadius, Vertex.nearZ);
+            CreateCorner(tTopLeftInnerGlow, lTopLeftInnerGlow, tBottomLeftInnerGlow, lTopRightInnerGlow, center, sections, sectionDegrees, borderWidth, glowColor, clearColor, out var topLeftTrisInner);
+            tris.AddRange(topLeftTrisInner);
+
+            // Top right
+            center = new Vector3(r.width - borderRadius, borderRadius, Vertex.nearZ);
+            CreateCorner(rTopRightInnerGlow, tTopRightInnerGlow, rTopLeftInnerGlow, tBottomRightInnerGlow, center, sections, sectionDegrees, borderWidth, glowColor, clearColor, out var topRightTrisInner);
+            tris.AddRange(topRightTrisInner);
+
+            // Bottom right
+            center = new Vector3(r.width - borderRadius, r.height - borderRadius, Vertex.nearZ);
+            CreateCorner(bBottomRightInnerGlow, rBottomRightInnerGlow, bTopRightInnerGlow, rBottomLeftInnerGlow, center, sections, sectionDegrees, borderWidth, glowColor, clearColor, out var bottomRightTrisInner);
+            tris.AddRange(bottomRightTrisInner);
+
+            // Bottom left
+            center = new Vector3(borderRadius, r.height - borderRadius, Vertex.nearZ);
+            CreateCorner(lBottomLeftInnerGlow, bBottomLeftInnerGlow, lBottomRightInnerGlow, bTopLeftInnerGlow, center, sections, sectionDegrees, borderWidth, glowColor, clearColor, out var bottomLeftTrisInner);
+            tris.AddRange(bottomLeftTrisInner);
+            #endregion
         }
     }
 }
