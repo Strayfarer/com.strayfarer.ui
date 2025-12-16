@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -36,8 +37,8 @@ namespace Strayfarer.UI.Editor {
                 : null;
         }
 
-        Type _targetDataSourceType;
-        Type targetDataSourceType {
+        Type? _targetDataSourceType;
+        Type? targetDataSourceType {
             get => _targetDataSourceType;
             set {
                 if (_targetDataSourceType != value) {

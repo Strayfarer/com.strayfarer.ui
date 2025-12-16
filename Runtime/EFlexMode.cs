@@ -1,5 +1,7 @@
-﻿namespace Strayfarer.UI {
-    public enum EFlexMode {
+﻿#nullable enable
+namespace Strayfarer.UI {
+
+public enum EFlexMode {
         FullWidth,
         FullHeight
     }

@@ -1,3 +1,4 @@
+#nullable enable
 using System.Collections.Generic;
 using UnityEngine.UIElements;
 
@@ -19,16 +20,20 @@ public class TriUtil {
             if (!verts.Contains(tri.vertA)) {
                 verts.Add(tri.vertA);
             }
+
             if (!verts.Contains(tri.vertB)) {
                 verts.Add(tri.vertB);
             }
+
             if (!verts.Contains(tri.vertC)) {
                 verts.Add(tri.vertC);
             }
+
             inds.Add((ushort)verts.IndexOf(tri.vertA));
             inds.Add((ushort)verts.IndexOf(tri.vertB));
             inds.Add((ushort)verts.IndexOf(tri.vertC));
         }
+
         vertices = verts.ToArray();
         indices = inds.ToArray();
     }

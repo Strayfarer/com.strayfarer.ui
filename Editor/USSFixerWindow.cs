@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿#nullable enable
+using UnityEditor;
 
 namespace Strayfarer.UI.Editor {
     sealed class USSFixerWindow : EditorWindow {

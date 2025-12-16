@@ -1,7 +1,9 @@
+#nullable enable
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+
 namespace Strayfarer.UI {
     [UxmlElement]
     public sealed partial class GlowingBorder : VisualElement {

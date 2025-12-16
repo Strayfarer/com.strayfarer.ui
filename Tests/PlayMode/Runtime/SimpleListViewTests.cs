@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,7 +82,7 @@ namespace Strayfarer.UI {
 
             var sut = new SimpleListView();
 
-            sut.onBindItem += (element, data) => { calls.Add(data as string); };
+            sut.onBindItem += (element, data) => { calls.Add(data as string ?? throw new Exception()); };
 
             sut.itemsSource = new string[] { "a", "b" };
 
@@ -94,7 +95,7 @@ namespace Strayfarer.UI {
 
             var sut = new SimpleListView();
 
-            sut.onBindItem += (element, data) => { calls.Add(data as string); };
+            sut.onBindItem += (element, data) => { calls.Add(data as string ?? throw new Exception()); };
 
             sut.itemsSource = new string[] { "a", "b" };
             sut.itemsSource = new string[] { "c", "b" };
@@ -108,7 +109,7 @@ namespace Strayfarer.UI {
 
             var sut = new SimpleListView();
 
-            sut.onBindItem += (element, data) => { calls.Add(data as string); };
+            sut.onBindItem += (element, data) => { calls.Add(data as string ?? throw new Exception()); };
 
             sut.itemsSource = new string[] { "a", "b", "f" };
             sut.itemsSource = new string[] { "c", "b" };

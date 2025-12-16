@@ -1,3 +1,4 @@
+#nullable enable
 using Unity.Properties;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
@@ -13,7 +14,7 @@ namespace Strayfarer.UI {
         [PageIndex]
         internal int pageIndex { get; set; } = 0;
 
-        PageView _pageView;
+        PageView? _pageView;
 
         public PageButton() {
             AddToClassList("page-button");

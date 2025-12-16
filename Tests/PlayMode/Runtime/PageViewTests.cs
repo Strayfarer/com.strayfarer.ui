@@ -1,3 +1,4 @@
+#nullable enable
 using System.Collections;
 using System.Linq;
 using NUnit.Framework;
@@ -9,9 +10,9 @@ using UnityEngine.UIElements;
 namespace Strayfarer.UI {
     [TestFixture(TestOf = typeof(PageView))]
     sealed class PageViewTests {
-        TestGameObject<UIDocument> test;
+        TestGameObject<UIDocument> test = null!;
         UIDocument document => test.sut;
-        PageView sut;
+        PageView sut = null!;
 
         [SetUp]
         public void SetUpSuT() {

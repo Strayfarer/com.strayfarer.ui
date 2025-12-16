@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,8 +17,8 @@ namespace Strayfarer.UI {
             AddToClassList("simpleList-root");
         }
 
-        Func<VisualElement> _instantiateItem;
-        public Func<VisualElement> instantiateItem {
+        Func<VisualElement>? _instantiateItem;
+        public Func<VisualElement>? instantiateItem {
             get => _instantiateItem;
             set {
                 if (_instantiateItem != value) {
@@ -26,8 +27,8 @@ namespace Strayfarer.UI {
                 }
             }
         }
-        public event Action<VisualElement> onInstantiateItem;
-        public event Action<VisualElement, object> onBindItem;
+        public event Action<VisualElement>? onInstantiateItem;
+        public event Action<VisualElement, object>? onBindItem;
 
         readonly Stack<VisualElement> pool = new();
 
@@ -54,23 +55,27 @@ namespace Strayfarer.UI {
             pool.Push(element);
         }
 
-        VisualTreeAsset _itemTemplate;
+        VisualTreeAsset _itemTemplate = null!;
         [UxmlAttribute]
         public VisualTreeAsset itemTemplate {
             get => _itemTemplate;
             set {
-                _itemTemplate = value;
-                Rebuild(true);
+                if (_itemTemplate != value) {
+                    _itemTemplate = value;
+                    Rebuild(true);
+                }
             }
         }
 
-        IList _itemsSource;
+        IList? _itemsSource;
         [CreateProperty]
-        public IList itemsSource {
+        public IList? itemsSource {
             get => _itemsSource;
             set {
-                _itemsSource = value;
-                Rebuild(false);
+                if (_itemsSource != value) {
+                    _itemsSource = value;
+                    Rebuild(false);
+                }
             }
         }
 
@@ -80,12 +85,10 @@ namespace Strayfarer.UI {
         public int elementsPerSection {
             get => _elementsPerSection;
             set {
-                if (_elementsPerSection == value) {
-                    return;
+                if (_elementsPerSection != value) {
+                    _elementsPerSection = value;
+                    Rebuild(false);
                 }
-
-                _elementsPerSection = value;
-                Rebuild(false);
             }
         }
 
@@ -93,7 +96,6 @@ namespace Strayfarer.UI {
             ? Children()
             : sections.SelectMany(section => section.Children());
 
-        int builtSize = -1;
         readonly List<VisualElement> sections = new();
         VisualElement GetSectionForItem(int itemIndex) {
             if (_elementsPerSection == 0) {
@@ -120,7 +122,6 @@ namespace Strayfarer.UI {
             }
 
             if (_itemsSource is null) {
-                builtSize = -1;
                 foreach (var child in items) {
                     ReturnItem(child);
                 }
@@ -138,8 +139,6 @@ namespace Strayfarer.UI {
                 ReturnItem(previousItem);
                 previousItem.RemoveFromHierarchy();
             }
-
-            builtSize = 0;
 
             for (int i = 0; i < _itemsSource.Count; i++) {
                 if (previousItems.ElementAtOrDefault(i) is not VisualElement element) {
@@ -176,8 +175,6 @@ namespace Strayfarer.UI {
                         Debug.LogException(e);
                     }
                 }
-
-                builtSize++;
             }
         }
     }

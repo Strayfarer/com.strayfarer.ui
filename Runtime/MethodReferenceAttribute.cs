@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#nullable enable
+using UnityEngine;
 
 namespace Strayfarer.UI {
     sealed class MethodReferenceAttribute : PropertyAttribute {

@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 using System.Reflection;
 using UnityEngine;
@@ -11,7 +12,7 @@ namespace Strayfarer.UI {
         [Header(nameof(BindableButton))]
         [UxmlAttribute]
         [MethodReference]
-        new string onClick;
+        new string onClick = string.Empty;
 
         public BindableButton() {
             AddToClassList("bindable-button");

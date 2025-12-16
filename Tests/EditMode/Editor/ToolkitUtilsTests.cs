@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿#nullable enable
+using NUnit.Framework;
 using UnityEditor;
 using UnityEngine.UIElements;
 using UObject = UnityEngine.Object;

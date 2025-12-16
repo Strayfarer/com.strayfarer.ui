@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 using System.Linq;
 using NUnit.Framework;
@@ -11,8 +12,8 @@ namespace Strayfarer.UI.Editor {
     sealed class VisualTreeAssetExtensionsTests {
         const string TEST_ASSET = "Packages/com.strayfarer.ui/Tests/Assets/UXML_TestAsset.uxml";
 
-        VisualTreeAsset sut;
-        SerializedObject serialized;
+        VisualTreeAsset sut = null!;
+        SerializedObject serialized = null!;
 
         [SetUp]
         public void SetUp() {

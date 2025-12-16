@@ -1,3 +1,4 @@
+#nullable enable
 using System.Runtime.CompilerServices;
 using NUnit.Framework;
 using Strayfarer.UI;
