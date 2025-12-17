@@ -41,11 +41,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/Strayfarer.UI.Editor.AssetHeader.yml",
+      "source_relative_path": "api/Strayfarer.UI.Editor.AssetInspectorHeader.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Strayfarer.UI.Editor.AssetHeader.html",
-          "hash": "pEE42divo1I6G8Km8jc+Mw=="
+          "relative_path": "api/Strayfarer.UI.Editor.AssetInspectorHeader.html",
+          "hash": "nlbOdO9XWtRyeXyn6M9Ttg=="
         }
       },
       "is_incremental": false,
@@ -93,7 +93,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Strayfarer.UI.Editor.html",
-          "hash": "k6CeUBLsX2BzyAKEjhqkJw=="
+          "hash": "xRKGcESVI4S8LtTVMUANtQ=="
         }
       },
       "is_incremental": false,
@@ -201,7 +201,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "WhYiVKGGIzoFVB0oP28L0w=="
+          "hash": "x6JPX3vMwdp5Jc7bG08lAw=="
         }
       },
       "is_incremental": false,

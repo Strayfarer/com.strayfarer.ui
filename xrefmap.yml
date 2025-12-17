@@ -99,25 +99,25 @@ references:
   commentId: N:Strayfarer.UI.Editor
   fullName: Strayfarer.UI.Editor
   nameWithType: Strayfarer.UI.Editor
-- uid: Strayfarer.UI.Editor.AssetHeader
-  name: AssetHeader
-  href: api/Strayfarer.UI.Editor.AssetHeader.html
-  commentId: T:Strayfarer.UI.Editor.AssetHeader
-  fullName: Strayfarer.UI.Editor.AssetHeader
-  nameWithType: AssetHeader
-- uid: Strayfarer.UI.Editor.AssetHeader.#ctor(SerializedObject)
-  name: AssetHeader(SerializedObject)
-  href: api/Strayfarer.UI.Editor.AssetHeader.html#Strayfarer_UI_Editor_AssetHeader__ctor_SerializedObject_
-  commentId: M:Strayfarer.UI.Editor.AssetHeader.#ctor(SerializedObject)
-  fullName: Strayfarer.UI.Editor.AssetHeader.AssetHeader(SerializedObject)
-  nameWithType: AssetHeader.AssetHeader(SerializedObject)
-- uid: Strayfarer.UI.Editor.AssetHeader.#ctor*
-  name: AssetHeader
-  href: api/Strayfarer.UI.Editor.AssetHeader.html#Strayfarer_UI_Editor_AssetHeader__ctor_
-  commentId: Overload:Strayfarer.UI.Editor.AssetHeader.#ctor
+- uid: Strayfarer.UI.Editor.AssetInspectorHeader
+  name: AssetInspectorHeader
+  href: api/Strayfarer.UI.Editor.AssetInspectorHeader.html
+  commentId: T:Strayfarer.UI.Editor.AssetInspectorHeader
+  fullName: Strayfarer.UI.Editor.AssetInspectorHeader
+  nameWithType: AssetInspectorHeader
+- uid: Strayfarer.UI.Editor.AssetInspectorHeader.#ctor(SerializedObject)
+  name: AssetInspectorHeader(SerializedObject)
+  href: api/Strayfarer.UI.Editor.AssetInspectorHeader.html#Strayfarer_UI_Editor_AssetInspectorHeader__ctor_SerializedObject_
+  commentId: M:Strayfarer.UI.Editor.AssetInspectorHeader.#ctor(SerializedObject)
+  fullName: Strayfarer.UI.Editor.AssetInspectorHeader.AssetInspectorHeader(SerializedObject)
+  nameWithType: AssetInspectorHeader.AssetInspectorHeader(SerializedObject)
+- uid: Strayfarer.UI.Editor.AssetInspectorHeader.#ctor*
+  name: AssetInspectorHeader
+  href: api/Strayfarer.UI.Editor.AssetInspectorHeader.html#Strayfarer_UI_Editor_AssetInspectorHeader__ctor_
+  commentId: Overload:Strayfarer.UI.Editor.AssetInspectorHeader.#ctor
   isSpec: "True"
-  fullName: Strayfarer.UI.Editor.AssetHeader.AssetHeader
-  nameWithType: AssetHeader.AssetHeader
+  fullName: Strayfarer.UI.Editor.AssetInspectorHeader.AssetInspectorHeader
+  nameWithType: AssetInspectorHeader.AssetInspectorHeader
 - uid: Strayfarer.UI.Editor.Heading
   name: Heading
   href: api/Strayfarer.UI.Editor.Heading.html
