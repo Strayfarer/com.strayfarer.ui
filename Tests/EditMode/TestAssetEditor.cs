@@ -8,7 +8,7 @@ namespace Strayfarer.UI {
     [CanEditMultipleObjects]
     public sealed class TestAssetEditor : UEditor {
         public override VisualElement CreateInspectorGUI() {
-            return new AssetHeader(serializedObject);
+            return new AssetInspectorHeader(serializedObject);
         }
     }
 }
