@@ -1,0 +1,11 @@
+.asset-header {
+    margin-bottom: 10px;
+}
+
+.asset-header .unity-object-field__label {
+	width: 40%;
+}
+
+.asset-header .unity-object-field__input {
+	width: 60%;
+}

@@ -36,5 +36,11 @@ namespace Strayfarer.UI.Editor {
         public static void AddFieldAlignmentToClassList<T>(this BaseField<T> field) {
             field.AddToClassList("unity-base-field__aligned");
         }
+
+        const string USS_PATH = "Packages/com.strayfarer.ui/USS/Editor.uss";
+
+        internal static void AddEditorStyleSheet(this VisualElement element) {
+            element.styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>(USS_PATH));
+        }
     }
 }

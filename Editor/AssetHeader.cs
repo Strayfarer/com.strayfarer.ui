@@ -5,14 +5,15 @@ using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
 namespace Strayfarer.UI.Editor {
-    public sealed class AssetHeaderElement : VisualElement {
+    public sealed class AssetHeader : VisualElement {
         const string NAMEOF_SCRIPT = "m_Script";
         const string LABEL_SCRIPT = "Script";
 
         const string LABEL_ASSET = "Asset";
 
-        public AssetHeaderElement(SerializedObject serialized) {
-            style.marginBottom = EditorGUIUtility.singleLineHeight;
+        public AssetHeader(SerializedObject serialized) {
+            this.AddKebabToClassList(nameof(AssetHeader));
+            this.AddEditorStyleSheet();
 
             Add(CreateScriptField(serialized));
             Add(CreateAssetField(serialized));
