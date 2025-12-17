@@ -6,7 +6,7 @@ using UObject = UnityEngine.Object;
 
 namespace Strayfarer.UI.Editor {
     public sealed class TransientObjectField<T> : ObjectField where T : UObject {
-        public TransientObjectField(string label, Func<T> getter, Action<T> setter) : base(label) {
+        public TransientObjectField(string label, Func<T> getter, Action<T?> setter) : base(label) {
             objectType = typeof(T);
             value = getter();
             this.RegisterValueChangedCallback(evt => {

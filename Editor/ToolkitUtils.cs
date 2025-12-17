@@ -8,7 +8,7 @@ using UObject = UnityEngine.Object;
 
 namespace Strayfarer.UI.Editor {
     static class ToolkitUtils {
-        internal static T LoadAsset<T>(string url) where T : UObject {
+        internal static T? LoadAsset<T>(string url) where T : UObject {
             var uri = new Uri(url);
 
             var query = new ParsedQuery(uri.Query);

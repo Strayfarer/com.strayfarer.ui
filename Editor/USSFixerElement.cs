@@ -108,7 +108,7 @@ namespace Strayfarer.UI.Editor {
         }
 
         void BindRow(VisualElement element, int index) {
-            var group = _list.itemsSource[index] as IGrouping<string, USSFixerService.Candidate>;
+            var group = _list.itemsSource[index] as IGrouping<string, USSFixerService.Candidate> ?? throw new InvalidCastException();
             if (element is Foldout root) {
                 var candidates = group.ToList();
                 var groupStatus = candidates.Max(c => c.status);

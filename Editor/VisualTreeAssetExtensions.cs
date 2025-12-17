@@ -35,7 +35,7 @@ namespace Strayfarer.UI.Editor {
         static bool TryGetUxmlParentProperty(this SerializedProperty property, out SerializedProperty parentProperty) {
             string[] paths = property.GetUxmlElementProperty().propertyPath.Split(".m_Children.Array");
             if (paths.Length == 1) {
-                parentProperty = default;
+                parentProperty = default!;
                 return false;
             }
 
@@ -82,7 +82,7 @@ namespace Strayfarer.UI.Editor {
                 }
             } while (property.TryGetUxmlParentProperty(out property));
 
-            ancestorProperty = default;
+            ancestorProperty = default!;
             return false;
         }
 
@@ -99,7 +99,7 @@ namespace Strayfarer.UI.Editor {
                 }
             }
 
-            value = default;
+            value = default!;
             return false;
         }
 
@@ -110,7 +110,7 @@ namespace Strayfarer.UI.Editor {
                 }
             } while (property.TryGetUxmlParentProperty(out property));
 
-            value = default;
+            value = default!;
             return false;
         }
 
@@ -127,7 +127,7 @@ namespace Strayfarer.UI.Editor {
                 }
             } while (property.TryGetUxmlParentProperty(out property));
 
-            type = default;
+            type = default!;
             return false;
         }
 
