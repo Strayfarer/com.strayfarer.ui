@@ -34,12 +34,15 @@ namespace Strayfarer.UI {
             if (evt.customStyle.TryGetValue(k_innerColorProperty, out var innerBorderColor)) {
                 this.innerBorderColor = innerBorderColor;
             }
+
             if (evt.customStyle.TryGetValue(k_glowColorProperty, out var glowBorderColor)) {
                 glowColor = glowBorderColor;
             }
+
             if (evt.customStyle.TryGetValue(k_outerBorderWidthPercentProperty, out float outerBorderWidthPercent)) {
                 this.outerBorderWidthPercent = outerBorderWidthPercent;
             }
+
             if (evt.customStyle.TryGetValue(k_glowBorderWidthProperty, out float glowBorderWidth)) {
                 glowWidth = glowBorderWidth;
             }
@@ -219,7 +222,6 @@ namespace Strayfarer.UI {
             #endregion
         }
 
-
         void CreateCorner(Vertex outerStart, Vertex outerEnd, Vertex cornerStart, Vertex cornerEnd, Vector3 center, int sections, float sectionDegrees, float width, Color outerSectionColor, Color innerSectionColor, out List<Tri> tris) {
             tris = new List<Tri>();
             var currentStart = outerStart;
@@ -230,7 +232,6 @@ namespace Strayfarer.UI {
                     if (borderRadius > width) {
                         tris.Add(new Tri(currentStart, currentInnerCorner, cornerEnd));
                     }
-
                 } else {
                     CreateSectionPoint(center, sectionDegrees, currentStart, outerSectionColor, out var outerSectionPoint);
                     var innerSectionPoint = currentInnerCorner;
@@ -239,6 +240,7 @@ namespace Strayfarer.UI {
                         tris.Add(new Tri(currentStart, currentInnerCorner, innerSectionPoint));
                         currentInnerCorner = innerSectionPoint;
                     }
+
                     tris.Add(new Tri(currentStart, innerSectionPoint, outerSectionPoint));
                     currentStart = outerSectionPoint;
                 }
@@ -430,7 +432,7 @@ namespace Strayfarer.UI {
             };
             // Top right
             var bTopRightInnerGlow = new Vertex {
-                position = new Vector3(smolGlow ? r.width - borderRadius : r.width - borderWidth -glowWidth, r.height - borderWidth - glowWidth, Vertex.nearZ),
+                position = new Vector3(smolGlow ? r.width - borderRadius : r.width - borderWidth - glowWidth, r.height - borderWidth - glowWidth, Vertex.nearZ),
                 tint = clearColor,
             };
             // Bottom right
