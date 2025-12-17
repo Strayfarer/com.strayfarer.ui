@@ -68,10 +68,10 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Strayfarer.UI.Editor.BorderedBox">
+            <article class="content wrap" id="_content" data-uid="Strayfarer.UI.BorderedBox">
   
   
-  <h1 id="Strayfarer_UI_Editor_BorderedBox" data-uid="Strayfarer.UI.Editor.BorderedBox" class="text-break">Class BorderedBox
+  <h1 id="Strayfarer_UI_BorderedBox" data-uid="Strayfarer.UI.BorderedBox" class="text-break">Class BorderedBox
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
@@ -80,23 +80,33 @@
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><span class="xref">BorderedBox</span></div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Strayfarer.UI.Editor.html">Strayfarer.UI.Editor</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Strayfarer.UI.html">Strayfarer.UI</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
-  <h5 id="Strayfarer_UI_Editor_BorderedBox_syntax">Syntax</h5>
+  <h5 id="Strayfarer_UI_BorderedBox_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class BorderedBox : VisualElement</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class BorderedBox : GroupBox</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
   
   
-  <a id="Strayfarer_UI_Editor_BorderedBox__ctor_" data-uid="Strayfarer.UI.Editor.BorderedBox.#ctor*"></a>
-  <h4 id="Strayfarer_UI_Editor_BorderedBox__ctor_VisualElement___" data-uid="Strayfarer.UI.Editor.BorderedBox.#ctor(VisualElement[])">BorderedBox(VisualElement[])</h4>
+  <a id="Strayfarer_UI_BorderedBox__ctor_" data-uid="Strayfarer.UI.BorderedBox.#ctor*"></a>
+  <h4 id="Strayfarer_UI_BorderedBox__ctor" data-uid="Strayfarer.UI.BorderedBox.#ctor">BorderedBox()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public BorderedBox(params VisualElement[] children)</code></pre>
+    <pre><code class="lang-csharp hljs">public BorderedBox()</code></pre>
+  </div>
+  
+  
+  <a id="Strayfarer_UI_BorderedBox__ctor_" data-uid="Strayfarer.UI.BorderedBox.#ctor*"></a>
+  <h4 id="Strayfarer_UI_BorderedBox__ctor_System_Nullable_Color__System_Int32_System_Int32_VisualElement___" data-uid="Strayfarer.UI.BorderedBox.#ctor(System.Nullable{Color},System.Int32,System.Int32,VisualElement[])">BorderedBox(Nullable&lt;Color&gt;, Int32, Int32, VisualElement[])</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BorderedBox(Color? borderColor = default(Color? ), int borderWidth = 1, int borderRadius = 3, params VisualElement[] children)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -109,8 +119,100 @@
     </thead>
     <tbody>
       <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">Color</span>&gt;</td>
+        <td><span class="parametername">borderColor</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">borderWidth</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">borderRadius</span></td>
+        <td></td>
+      </tr>
+      <tr>
         <td><span class="xref">VisualElement</span>[]</td>
         <td><span class="parametername">children</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="Strayfarer_UI_BorderedBox_borderColor_" data-uid="Strayfarer.UI.BorderedBox.borderColor*"></a>
+  <h4 id="Strayfarer_UI_BorderedBox_borderColor" data-uid="Strayfarer.UI.BorderedBox.borderColor">borderColor</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Color borderColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Strayfarer_UI_BorderedBox_borderRadius_" data-uid="Strayfarer.UI.BorderedBox.borderRadius*"></a>
+  <h4 id="Strayfarer_UI_BorderedBox_borderRadius" data-uid="Strayfarer.UI.BorderedBox.borderRadius">borderRadius</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int borderRadius { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Strayfarer_UI_BorderedBox_borderWidth_" data-uid="Strayfarer.UI.BorderedBox.borderWidth*"></a>
+  <h4 id="Strayfarer_UI_BorderedBox_borderWidth" data-uid="Strayfarer.UI.BorderedBox.borderWidth">borderWidth</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int borderWidth { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
         <td></td>
       </tr>
     </tbody>

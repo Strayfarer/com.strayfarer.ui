@@ -26,34 +26,98 @@ references:
   isSpec: "True"
   fullName: Strayfarer.UI.BindableButton.BindableButton
   nameWithType: BindableButton.BindableButton
+- uid: Strayfarer.UI.BorderedBox
+  name: BorderedBox
+  href: api/Strayfarer.UI.BorderedBox.html
+  commentId: T:Strayfarer.UI.BorderedBox
+  fullName: Strayfarer.UI.BorderedBox
+  nameWithType: BorderedBox
+- uid: Strayfarer.UI.BorderedBox.#ctor
+  name: BorderedBox()
+  href: api/Strayfarer.UI.BorderedBox.html#Strayfarer_UI_BorderedBox__ctor
+  commentId: M:Strayfarer.UI.BorderedBox.#ctor
+  fullName: Strayfarer.UI.BorderedBox.BorderedBox()
+  nameWithType: BorderedBox.BorderedBox()
+- uid: Strayfarer.UI.BorderedBox.#ctor(System.Nullable{Color},System.Int32,System.Int32,VisualElement[])
+  name: BorderedBox(Nullable<Color>, Int32, Int32, VisualElement[])
+  href: api/Strayfarer.UI.BorderedBox.html#Strayfarer_UI_BorderedBox__ctor_System_Nullable_Color__System_Int32_System_Int32_VisualElement___
+  commentId: M:Strayfarer.UI.BorderedBox.#ctor(System.Nullable{Color},System.Int32,System.Int32,VisualElement[])
+  name.vb: BorderedBox(Nullable(Of Color), Int32, Int32, VisualElement())
+  fullName: Strayfarer.UI.BorderedBox.BorderedBox(System.Nullable<Color>, System.Int32, System.Int32, VisualElement[])
+  fullName.vb: Strayfarer.UI.BorderedBox.BorderedBox(System.Nullable(Of Color), System.Int32, System.Int32, VisualElement())
+  nameWithType: BorderedBox.BorderedBox(Nullable<Color>, Int32, Int32, VisualElement[])
+  nameWithType.vb: BorderedBox.BorderedBox(Nullable(Of Color), Int32, Int32, VisualElement())
+- uid: Strayfarer.UI.BorderedBox.#ctor*
+  name: BorderedBox
+  href: api/Strayfarer.UI.BorderedBox.html#Strayfarer_UI_BorderedBox__ctor_
+  commentId: Overload:Strayfarer.UI.BorderedBox.#ctor
+  isSpec: "True"
+  fullName: Strayfarer.UI.BorderedBox.BorderedBox
+  nameWithType: BorderedBox.BorderedBox
+- uid: Strayfarer.UI.BorderedBox.borderColor
+  name: borderColor
+  href: api/Strayfarer.UI.BorderedBox.html#Strayfarer_UI_BorderedBox_borderColor
+  commentId: P:Strayfarer.UI.BorderedBox.borderColor
+  fullName: Strayfarer.UI.BorderedBox.borderColor
+  nameWithType: BorderedBox.borderColor
+- uid: Strayfarer.UI.BorderedBox.borderColor*
+  name: borderColor
+  href: api/Strayfarer.UI.BorderedBox.html#Strayfarer_UI_BorderedBox_borderColor_
+  commentId: Overload:Strayfarer.UI.BorderedBox.borderColor
+  isSpec: "True"
+  fullName: Strayfarer.UI.BorderedBox.borderColor
+  nameWithType: BorderedBox.borderColor
+- uid: Strayfarer.UI.BorderedBox.borderRadius
+  name: borderRadius
+  href: api/Strayfarer.UI.BorderedBox.html#Strayfarer_UI_BorderedBox_borderRadius
+  commentId: P:Strayfarer.UI.BorderedBox.borderRadius
+  fullName: Strayfarer.UI.BorderedBox.borderRadius
+  nameWithType: BorderedBox.borderRadius
+- uid: Strayfarer.UI.BorderedBox.borderRadius*
+  name: borderRadius
+  href: api/Strayfarer.UI.BorderedBox.html#Strayfarer_UI_BorderedBox_borderRadius_
+  commentId: Overload:Strayfarer.UI.BorderedBox.borderRadius
+  isSpec: "True"
+  fullName: Strayfarer.UI.BorderedBox.borderRadius
+  nameWithType: BorderedBox.borderRadius
+- uid: Strayfarer.UI.BorderedBox.borderWidth
+  name: borderWidth
+  href: api/Strayfarer.UI.BorderedBox.html#Strayfarer_UI_BorderedBox_borderWidth
+  commentId: P:Strayfarer.UI.BorderedBox.borderWidth
+  fullName: Strayfarer.UI.BorderedBox.borderWidth
+  nameWithType: BorderedBox.borderWidth
+- uid: Strayfarer.UI.BorderedBox.borderWidth*
+  name: borderWidth
+  href: api/Strayfarer.UI.BorderedBox.html#Strayfarer_UI_BorderedBox_borderWidth_
+  commentId: Overload:Strayfarer.UI.BorderedBox.borderWidth
+  isSpec: "True"
+  fullName: Strayfarer.UI.BorderedBox.borderWidth
+  nameWithType: BorderedBox.borderWidth
 - uid: Strayfarer.UI.Editor
   name: Strayfarer.UI.Editor
   href: api/Strayfarer.UI.Editor.html
   commentId: N:Strayfarer.UI.Editor
   fullName: Strayfarer.UI.Editor
   nameWithType: Strayfarer.UI.Editor
-- uid: Strayfarer.UI.Editor.BorderedBox
-  name: BorderedBox
-  href: api/Strayfarer.UI.Editor.BorderedBox.html
-  commentId: T:Strayfarer.UI.Editor.BorderedBox
-  fullName: Strayfarer.UI.Editor.BorderedBox
-  nameWithType: BorderedBox
-- uid: Strayfarer.UI.Editor.BorderedBox.#ctor(VisualElement[])
-  name: BorderedBox(VisualElement[])
-  href: api/Strayfarer.UI.Editor.BorderedBox.html#Strayfarer_UI_Editor_BorderedBox__ctor_VisualElement___
-  commentId: M:Strayfarer.UI.Editor.BorderedBox.#ctor(VisualElement[])
-  name.vb: BorderedBox(VisualElement())
-  fullName: Strayfarer.UI.Editor.BorderedBox.BorderedBox(VisualElement[])
-  fullName.vb: Strayfarer.UI.Editor.BorderedBox.BorderedBox(VisualElement())
-  nameWithType: BorderedBox.BorderedBox(VisualElement[])
-  nameWithType.vb: BorderedBox.BorderedBox(VisualElement())
-- uid: Strayfarer.UI.Editor.BorderedBox.#ctor*
-  name: BorderedBox
-  href: api/Strayfarer.UI.Editor.BorderedBox.html#Strayfarer_UI_Editor_BorderedBox__ctor_
-  commentId: Overload:Strayfarer.UI.Editor.BorderedBox.#ctor
+- uid: Strayfarer.UI.Editor.AssetHeader
+  name: AssetHeader
+  href: api/Strayfarer.UI.Editor.AssetHeader.html
+  commentId: T:Strayfarer.UI.Editor.AssetHeader
+  fullName: Strayfarer.UI.Editor.AssetHeader
+  nameWithType: AssetHeader
+- uid: Strayfarer.UI.Editor.AssetHeader.#ctor(SerializedObject)
+  name: AssetHeader(SerializedObject)
+  href: api/Strayfarer.UI.Editor.AssetHeader.html#Strayfarer_UI_Editor_AssetHeader__ctor_SerializedObject_
+  commentId: M:Strayfarer.UI.Editor.AssetHeader.#ctor(SerializedObject)
+  fullName: Strayfarer.UI.Editor.AssetHeader.AssetHeader(SerializedObject)
+  nameWithType: AssetHeader.AssetHeader(SerializedObject)
+- uid: Strayfarer.UI.Editor.AssetHeader.#ctor*
+  name: AssetHeader
+  href: api/Strayfarer.UI.Editor.AssetHeader.html#Strayfarer_UI_Editor_AssetHeader__ctor_
+  commentId: Overload:Strayfarer.UI.Editor.AssetHeader.#ctor
   isSpec: "True"
-  fullName: Strayfarer.UI.Editor.BorderedBox.BorderedBox
-  nameWithType: BorderedBox.BorderedBox
+  fullName: Strayfarer.UI.Editor.AssetHeader.AssetHeader
+  nameWithType: AssetHeader.AssetHeader
 - uid: Strayfarer.UI.Editor.Heading
   name: Heading
   href: api/Strayfarer.UI.Editor.Heading.html
