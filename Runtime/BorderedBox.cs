@@ -2,44 +2,42 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Strayfarer.UI.Editor {
+namespace Strayfarer.UI {
     [UxmlElement]
-    public sealed partial class BorderedBox : VisualElement {
+    public sealed partial class BorderedBox : GroupBox {
         [Header(nameof(BorderedBox))]
         [UxmlAttribute]
         public Color borderColor {
-            get => box.style.borderTopColor.value;
+            get => style.borderTopColor.value;
             set {
-                box.style.borderTopColor = value;
-                box.style.borderRightColor = value;
-                box.style.borderBottomColor = value;
-                box.style.borderLeftColor = value;
+                style.borderTopColor = value;
+                style.borderRightColor = value;
+                style.borderBottomColor = value;
+                style.borderLeftColor = value;
             }
         }
 
         [UxmlAttribute]
         public int borderWidth {
-            get => Mathf.RoundToInt(box.style.borderTopWidth.value);
+            get => Mathf.RoundToInt(style.borderTopWidth.value);
             set {
-                box.style.borderTopWidth = value;
-                box.style.borderRightWidth = value;
-                box.style.borderBottomWidth = value;
-                box.style.borderLeftWidth = value;
+                style.borderTopWidth = value;
+                style.borderRightWidth = value;
+                style.borderBottomWidth = value;
+                style.borderLeftWidth = value;
             }
         }
 
         [UxmlAttribute]
         public int borderRadius {
-            get => Mathf.RoundToInt(box.style.borderTopRightRadius.value.value);
+            get => Mathf.RoundToInt(style.borderTopRightRadius.value.value);
             set {
-                box.style.borderTopRightRadius = value;
-                box.style.borderBottomRightRadius = value;
-                box.style.borderBottomLeftRadius = value;
-                box.style.borderTopLeftRadius = value;
+                style.borderTopRightRadius = value;
+                style.borderBottomRightRadius = value;
+                style.borderBottomLeftRadius = value;
+                style.borderTopLeftRadius = value;
             }
         }
-
-        readonly GroupBox box = new();
 
         public BorderedBox() : this(default) {
         }
@@ -49,15 +47,9 @@ namespace Strayfarer.UI.Editor {
             this.borderWidth = borderWidth;
             this.borderRadius = borderRadius;
 
-            Add(box);
-
             foreach (var child in children) {
-                AddInsideBox(child);
+                Add(child);
             }
-        }
-
-        public void AddInsideBox(VisualElement child) {
-            box.contentContainer.Add(child);
         }
     }
 }
