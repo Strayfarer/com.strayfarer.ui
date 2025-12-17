@@ -69,6 +69,10 @@ pipeline {
 							// Deploy the package to a Verdaccio server.
 							DEPLOY_TO_VERDACCIO : '1',
 							VERDACCIO_CREDENTIALS : 'Slothsoft-Verdaccio',
+							
+							// Report errors
+							REPORT_TO_DISCORD : '1',
+							DISCORD_WEBHOOK : 'https://discord.com/api/webhooks/1373701986595242065/7wrfu3LC2PdnwE0J3AvgD8YNYV6IirB6WZZZ2sNZLdmZ6iIcO66gQDg2WqHL4lKmw4S3',
 							)
 				}
 			}
