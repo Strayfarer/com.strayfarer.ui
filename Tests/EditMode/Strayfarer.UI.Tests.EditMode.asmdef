@@ -8,7 +8,8 @@
         "UnityEditor.TestRunner",
         "TNRD.NSubstitute",
         "Strayfarer.UI.Editor",
-        "Strayfarer.UI.Tests.PlayMode"
+        "Strayfarer.UI.Tests.PlayMode",
+        "Unity.PerformanceTesting"
     ],
     "includePlatforms": [
         "Editor"
