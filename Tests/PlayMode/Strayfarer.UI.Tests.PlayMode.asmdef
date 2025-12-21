@@ -6,7 +6,8 @@
         "Slothsoft.TestRunner",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "TNRD.NSubstitute"
+        "TNRD.NSubstitute",
+        "Unity.PerformanceTesting"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
