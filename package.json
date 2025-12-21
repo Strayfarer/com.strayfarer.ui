@@ -9,10 +9,9 @@
   "documentationUrl": "https://github.com/Strayfarer/com.strayfarer.ui",
   "dependencies": {
     "net.slothsoft.unity-extensions": "4.2.0",
-    "net.slothsoft.test-runner": "1.0.1",
+    "net.slothsoft.test-runner": "1.1.0",
     "com.unity.ui": "1.0.0",
-    "com.unity.modules.uielements": "1.0.0",
-    "com.unity.test-framework.performance": "3.2.0"
+    "com.unity.modules.uielements": "1.0.0"
   },
   "repository": {
     "url": "git+https://github.com/Strayfarer/com.strayfarer.ui",

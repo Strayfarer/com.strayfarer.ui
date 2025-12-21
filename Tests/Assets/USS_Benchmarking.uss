@@ -1,0 +1,26 @@
+:root {
+	flex-grow: 0;
+	flex-shrink: 0;
+}
+
+.sut {
+	width: 50%;
+	height: 50%;
+	margin: auto;
+	border-width: 10px;
+	border-color: green;
+}
+
+.sut.with-radius {
+	border-radius: 10px;
+}
+
+.sut.with-glow {
+    --glow-color: blue;
+    --glow-border-width: 10;
+}
+
+.sut.with-inner {
+	--inner-border-color: red;
+    --outer-border-width-percent: 50;
+}

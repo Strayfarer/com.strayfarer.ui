@@ -1,109 +1,65 @@
 #nullable enable
+using System;
 using System.Collections;
 using NUnit.Framework;
 using Slothsoft.TestRunner;
 using Unity.PerformanceTesting;
-using Unity.Profiling;
-using UnityEngine;
+using UnityEditor;
 using UnityEngine.TestTools;
 using UnityEngine.UIElements;
 
 namespace Strayfarer.UI.Runtime {
-    sealed class GlowingBorderBenchmarks {
+    [TestOf(typeof(GlowingBorder))]
+    [TestFixture(typeof(VisualElement))]
+    [TestFixture(typeof(GlowingBorder))]
+    sealed class GlowingBorderBenchmarks<T> where T : VisualElement, new() {
+        const string STYLESHEET = "Packages/com.strayfarer.ui/Tests/Assets/USS_Benchmarking.uss";
 
-        sealed class DirtyMarker : MonoBehaviour {
-            public VisualElement? elementToMarkDirty;
-            void Update() {
-                elementToMarkDirty?.MarkDirtyRepaint();
-            }
-        }
+        const int WARMUP_COUNT = 10;
+        const int MEASUREMENT_COUNT = 60;
 
-        const int WARMUP_COUNT = 100;
-        const int MEASUREMENT_COUNT = 100;
-
-        TestGameObject<UIDocument> test = null!;
-        DirtyMarker dirtyMarker = null!;
-
-        GlowingBorder? sut = null;
+        TestUIHarness<T> test = null!;
+        VisualElement sut => test.sut;
 
         [SetUp]
         public void SetUpSuT() {
-            sut = new();
-
-            var settings = ScriptableObject.CreateInstance<PanelSettings>();
-            settings.themeStyleSheet = ScriptableObject.CreateInstance<ThemeStyleSheet>();
-
             test = new();
-            dirtyMarker = test.gameObject.AddComponent<DirtyMarker>();
-            test.sut.panelSettings = settings;
-            test.sut.rootVisualElement.Add(sut);
+            test.sut.styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>(STYLESHEET));
         }
 
         [TearDown]
         public void TearDownSuT() {
-            sut = null;
-
             test.Dispose();
         }
 
+        public static readonly string[] allClassCombinations = new[] {
+            "sut",
+            "sut with-radius",
+            "sut with-glow",
+            "sut with-inner",
+            "sut with-radius with-glow with-inner",
+        };
+
         [UnityTest, Performance]
-        public IEnumerator B00_DrawOnce() {
-            yield return Measure
-                .Frames()
+        public IEnumerator B00_DrawOnce([ValueSource(nameof(allClassCombinations))] string classes) {
+            Array.ForEach(classes.Split(' '), sut.AddToClassList);
+
+            yield return new MemoryMeasurement()
                 .WarmupCount(WARMUP_COUNT)
                 .MeasurementCount(MEASUREMENT_COUNT)
+                .RecordFrameTime()
                 .Run();
         }
 
         [UnityTest, Performance]
-        public IEnumerator B01_DrawEveryFrame() {
-            dirtyMarker.elementToMarkDirty = sut;
+        public IEnumerator B10_DrawEveryFrame([ValueSource(nameof(allClassCombinations))] string classes) {
+            Array.ForEach(classes.Split(' '), sut.AddToClassList);
 
-            yield return Measure
-                .Frames()
+            return new MemoryMeasurement()
                 .WarmupCount(WARMUP_COUNT)
                 .MeasurementCount(MEASUREMENT_COUNT)
-                .Run();
-        }
-
-        static readonly SampleGroup gcGroup = new("GC Allocated In Frame", SampleUnit.Byte);
-
-        [UnityTest, Performance]
-        public IEnumerator B00_DrawOnce_GC() {
-            using var gc = ProfilerRecorder.StartNew(ProfilerCategory.Memory, "GC Allocated In Frame");
-            gc.Reset();
-
-            for (int i = 0; i < WARMUP_COUNT; i++) {
-                yield return null;
-            }
-
-            for (int i = 0; i < MEASUREMENT_COUNT; i++) {
-                gc.Start();
-                yield return null;
-                gc.Stop();
-                Measure.Custom(gcGroup, gc.CurrentValue);
-                gc.Reset();
-            }
-        }
-
-        [UnityTest, Performance]
-        public IEnumerator B01_DrawEveryFrame_GC() {
-            dirtyMarker.elementToMarkDirty = sut;
-
-            using var gc = ProfilerRecorder.StartNew(ProfilerCategory.Memory, "GC Allocated In Frame");
-            gc.Reset();
-
-            for (int i = 0; i < WARMUP_COUNT; i++) {
-                yield return null;
-            }
-
-            for (int i = 0; i < MEASUREMENT_COUNT; i++) {
-                gc.Start();
-                yield return null;
-                gc.Stop();
-                Measure.Custom(gcGroup, gc.CurrentValue);
-                gc.Reset();
-            }
+                .RecordFrameTime()
+                .Run(sut.MarkDirtyRepaint);
         }
     }
 }
