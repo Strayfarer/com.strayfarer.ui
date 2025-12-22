@@ -19,7 +19,7 @@ namespace Strayfarer.UI.Runtime {
         const int MEASUREMENT_COUNT = 60;
 
         TestUIHarness<T> test = null!;
-        VisualElement sut => test.sut;
+        T sut => test.sut;
 
         [SetUp]
         public void SetUpSuT() {
