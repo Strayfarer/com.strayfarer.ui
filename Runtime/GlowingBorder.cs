@@ -7,12 +7,12 @@ using UnityEngine.UIElements;
 namespace Strayfarer.UI {
     [UxmlElement]
     public sealed partial class GlowingBorder : VisualElement {
-        [Header(nameof(PageButton))]
+        [Header(nameof(GlowingBorder))]
 
         Color innerBorderColor = Color.gray;
         Color glowColor = Color.white;
-        Color clearColor = Color.clear;
-        float outerBorderWidthPercent;
+        Color clearColor = Color.black;
+        float outerBorderWidthPercent = 100;
         float borderWidth;
         float borderRadius;
         float borderRadiusHor;
@@ -49,27 +49,32 @@ namespace Strayfarer.UI {
         }
 
         void OnGenerateVisualContent(MeshGenerationContext context) {
-            borderWidth = resolvedStyle.borderBottomWidth;
-            borderRadius = resolvedStyle.borderTopLeftRadius;
-            borderRadiusHor = borderRadius > localBound.width / 2 ? localBound.width / 2 : borderRadius;
-            borderRadiusVert = borderRadius > localBound.height / 2 ? localBound.height / 2 : borderRadius;
+            if (outerBorderWidthPercent < 100 || glowWidth > 0) {
+                borderWidth = resolvedStyle.borderBottomWidth;
+                borderRadius = resolvedStyle.borderTopLeftRadius;
+                borderRadiusHor = borderRadius > localBound.width / 2 ? localBound.width / 2 : borderRadius;
+                borderRadiusVert = borderRadius > localBound.height / 2 ? localBound.height / 2 : borderRadius;
 
-            CalculateGlowingFrame(out var verts, out ushort[] indices);
-            var mwd = context.Allocate(verts.Length, indices.Length);
-            mwd.SetAllVertices(verts);
-            mwd.SetAllIndices(indices);
+                CalculateGlowingFrame(out var verts, out ushort[] indices);
+                var mwd = context.Allocate(verts.Length, indices.Length);
+                mwd.SetAllVertices(verts);
+                mwd.SetAllIndices(indices);
 
-            Array.Clear(verts, 0, verts.Length);
-            Array.Clear(indices, 0, indices.Length);
+                Array.Clear(verts, 0, verts.Length);
+                Array.Clear(indices, 0, indices.Length);
+            }
         }
 
         void CalculateGlowingFrame(out Vertex[] verts, out ushort[] indices) {
-
-            CreateInnerBorder(out var listOfInnerBorderTris, localBound);
-            CreateGlow(out var listOfGlowTris, localBound);
-            var listOfTris = listOfInnerBorderTris;
-            listOfTris.AddRange(listOfGlowTris);
-
+            var listOfTris = new List<Tri>();
+            if (outerBorderWidthPercent < 100) {
+                CreateInnerBorder(out var listOfInnerBorderTris, localBound);
+                listOfTris = listOfInnerBorderTris;
+            }
+            if (glowWidth > 0) {
+                CreateGlow(out var listOfGlowTris, localBound);
+                listOfTris.AddRange(listOfGlowTris);
+            }
             var triUtil = new TriUtil(listOfTris);
             triUtil.CalculateVertsAndIndices(out verts, out indices);
         }
@@ -77,7 +82,7 @@ namespace Strayfarer.UI {
         void CreateInnerBorder(out List<Tri> tris, Rect r) {
             tris = new List<Tri>();
             // ----- Inner Border ----
-            float outerWidth = outerBorderWidthPercent / 100 * borderWidth;
+            float outerWidth = outerBorderWidthPercent / 200 * borderWidth;
             float widthDelta = borderWidth - outerWidth;
             float borderRadiusDelta = borderRadius - outerWidth;
             float outerRadiusHor = Math.Max(borderRadiusHor, outerWidth);
