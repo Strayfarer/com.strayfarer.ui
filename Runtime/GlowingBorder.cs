@@ -11,7 +11,7 @@ namespace Strayfarer.UI {
 
         Color innerBorderColor = Color.gray;
         Color glowColor = Color.white;
-        Color clearColor = Color.black;
+        Color clearColor = Color.clear;
         float outerBorderWidthPercent = 100;
         float borderWidth;
         float borderRadius;
@@ -382,23 +382,22 @@ namespace Strayfarer.UI {
 
             #region Region: inner glow
             // -------- Inner Border Box ---------
-            //var maxRadius = Mathf.Max(borderRadius, bord)
-            bool smolGlow = borderRadius - borderWidth > glowWidth;
+            bool isSmolGlow = borderRadius - borderWidth > glowWidth;
             // Top
             // Top left
             float wideDistance = borderWidth + glowWidth;
             var tTopLeftInnerGlow = new Vertex {
-                position = new Vector3(smolGlow ? borderRadius : wideDistance, borderWidth, Vertex.nearZ),
+                position = new Vector3(isSmolGlow ? borderRadius : wideDistance, borderWidth, Vertex.nearZ),
                 tint = glowColor,
             };
             // Top right
             var tTopRightInnerGlow = new Vertex {
-                position = new Vector3(smolGlow ? r.width - borderRadius : r.width - borderWidth - glowWidth, borderWidth, Vertex.nearZ),
+                position = new Vector3(isSmolGlow ? r.width - borderRadius : r.width - borderWidth - glowWidth, borderWidth, Vertex.nearZ),
                 tint = glowColor,
             };
             // Bottom right
             var tBottomRightInnerGlow = new Vertex {
-                position = new Vector3(smolGlow ? r.width - borderRadius : r.width - borderWidth - glowWidth, wideDistance, Vertex.nearZ),
+                position = new Vector3(isSmolGlow ? r.width - borderRadius : r.width - borderWidth - glowWidth, wideDistance, Vertex.nearZ),
                 tint = clearColor,
             };
             // Bottom left
@@ -410,66 +409,66 @@ namespace Strayfarer.UI {
             // Right
             // Top left
             var rTopLeftInnerGlow = new Vertex {
-                position = new Vector3(r.width - borderWidth - glowWidth, smolGlow ? borderRadius : wideDistance, Vertex.nearZ),
+                position = new Vector3(r.width - borderWidth - glowWidth, isSmolGlow ? borderRadius : wideDistance, Vertex.nearZ),
                 tint = clearColor,
             };
             // Top right
             var rTopRightInnerGlow = new Vertex {
-                position = new Vector3(r.width - borderWidth, smolGlow ? borderRadius : wideDistance, Vertex.nearZ),
+                position = new Vector3(r.width - borderWidth, isSmolGlow ? borderRadius : wideDistance, Vertex.nearZ),
                 tint = glowColor,
             };
             // Bottom right
             var rBottomRightInnerGlow = new Vertex {
-                position = new Vector3(r.width - borderWidth, smolGlow ? r.height - borderRadius : r.height - borderWidth - glowWidth, Vertex.nearZ),
+                position = new Vector3(r.width - borderWidth, isSmolGlow ? r.height - borderRadius : r.height - borderWidth - glowWidth, Vertex.nearZ),
                 tint = glowColor,
             };
             // Bottom left
             var rBottomLeftInnerGlow = new Vertex {
-                position = new Vector3(r.width - borderWidth - glowWidth, smolGlow ? r.height - borderRadius : r.height - borderWidth - glowWidth, Vertex.nearZ),
+                position = new Vector3(r.width - borderWidth - glowWidth, isSmolGlow ? r.height - borderRadius : r.height - borderWidth - glowWidth, Vertex.nearZ),
                 tint = clearColor,
             };
 
             // Bottom
             // Top left
             var bTopLeftInnerGlow = new Vertex {
-                position = new Vector3(smolGlow ? borderRadius : wideDistance, r.height - borderWidth - glowWidth, Vertex.nearZ),
+                position = new Vector3(isSmolGlow ? borderRadius : wideDistance, r.height - borderWidth - glowWidth, Vertex.nearZ),
                 tint = clearColor,
             };
             // Top right
             var bTopRightInnerGlow = new Vertex {
-                position = new Vector3(smolGlow ? r.width - borderRadius : r.width - borderWidth - glowWidth, r.height - borderWidth - glowWidth, Vertex.nearZ),
+                position = new Vector3(isSmolGlow ? r.width - borderRadius : r.width - borderWidth - glowWidth, r.height - borderWidth - glowWidth, Vertex.nearZ),
                 tint = clearColor,
             };
             // Bottom right
             var bBottomRightInnerGlow = new Vertex {
-                position = new Vector3(smolGlow ? r.width - borderRadius : r.width - borderWidth - glowWidth, r.height - borderWidth, Vertex.nearZ),
+                position = new Vector3(isSmolGlow ? r.width - borderRadius : r.width - borderWidth - glowWidth, r.height - borderWidth, Vertex.nearZ),
                 tint = glowColor,
             };
             // Bottom left
             var bBottomLeftInnerGlow = new Vertex {
-                position = new Vector3(smolGlow ? borderRadius : wideDistance, r.height - borderWidth, Vertex.nearZ),
+                position = new Vector3(isSmolGlow ? borderRadius : wideDistance, r.height - borderWidth, Vertex.nearZ),
                 tint = glowColor,
             };
 
             // Left
             // Top left
             var lTopLeftInnerGlow = new Vertex {
-                position = new Vector3(borderWidth, smolGlow ? borderRadius : wideDistance, Vertex.nearZ),
+                position = new Vector3(borderWidth, isSmolGlow ? borderRadius : wideDistance, Vertex.nearZ),
                 tint = glowColor,
             };
             // Top right
             var lTopRightInnerGlow = new Vertex {
-                position = new Vector3(wideDistance, smolGlow ? borderRadius : wideDistance, Vertex.nearZ),
+                position = new Vector3(wideDistance, isSmolGlow ? borderRadius : wideDistance, Vertex.nearZ),
                 tint = clearColor,
             };
             // Bottom right
             var lBottomRightInnerGlow = new Vertex {
-                position = new Vector3(wideDistance, smolGlow ? r.height - borderRadius : r.height - wideDistance, Vertex.nearZ),
+                position = new Vector3(wideDistance, isSmolGlow ? r.height - borderRadius : r.height - wideDistance, Vertex.nearZ),
                 tint = clearColor,
             };
             // Bottom left
             var lBottomLeftInnerGlow = new Vertex {
-                position = new Vector3(borderWidth, smolGlow ? r.height - borderRadius : r.height - wideDistance, Vertex.nearZ),
+                position = new Vector3(borderWidth, isSmolGlow ? r.height - borderRadius : r.height - wideDistance, Vertex.nearZ),
                 tint = glowColor,
             };
 
