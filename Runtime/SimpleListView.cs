@@ -7,7 +7,6 @@ using Unity.Properties;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 using UnityEngine.UIElements;
-using static System.Collections.Specialized.BitVector32;
 
 namespace Strayfarer.UI {
     [UxmlElement]
