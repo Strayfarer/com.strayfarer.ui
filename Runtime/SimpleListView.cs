@@ -7,6 +7,7 @@ using Unity.Properties;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 using UnityEngine.UIElements;
+using static System.Collections.Specialized.BitVector32;
 
 namespace Strayfarer.UI {
     [UxmlElement]
@@ -15,6 +16,7 @@ namespace Strayfarer.UI {
 
         public SimpleListView() {
             AddToClassList("simpleList-root");
+            AddToClassList("simple-list");
         }
 
         Func<VisualElement>? _instantiateItem;
@@ -107,6 +109,8 @@ namespace Strayfarer.UI {
                 var section = new VisualElement();
                 section.AddToClassList($"simpleList-section");
                 section.AddToClassList($"simpleList-section-{i}");
+                section.AddToClassList($"simple-list__section");
+                section.AddToClassList($"simple-list__section--{i}");
                 Add(section);
                 sections.Add(section);
             }
@@ -144,6 +148,7 @@ namespace Strayfarer.UI {
                 if (previousItems.ElementAtOrDefault(i) is not VisualElement element) {
                     if (InstantiateItem(out element)) {
                         element.AddToClassList($"simpleList-item");
+                        element.AddToClassList($"simple-list__item");
 
                         try {
                             onInstantiateItem?.Invoke(element);
@@ -155,14 +160,18 @@ namespace Strayfarer.UI {
 
                 if (i == 0) {
                     element.AddToClassList("first-child");
+                    element.AddToClassList($"simple-list__item--first-child");
                 } else {
                     element.RemoveFromClassList("first-child");
+                    element.RemoveFromClassList($"simple-list__item--first-child");
                 }
 
                 if (i == _itemsSource.Count - 1) {
                     element.AddToClassList("last-child");
+                    element.AddToClassList($"simple-list__item--last-child");
                 } else {
                     element.RemoveFromClassList("last-child");
+                    element.RemoveFromClassList($"simple-list__item--last-child");
                 }
 
                 GetSectionForItem(i).Add(element);

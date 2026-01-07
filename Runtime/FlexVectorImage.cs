@@ -16,6 +16,8 @@ namespace Strayfarer.UI {
 
         public FlexVectorImage() {
             AddToClassList($"flexVectorImage");
+            AddToClassList("flex-image");
+            AddToClassList("flex-image--vector");
         }
 
         protected override Vector2 DoMeasure(float desiredWidth, MeasureMode widthMode, float desiredHeight, MeasureMode heightMode) {

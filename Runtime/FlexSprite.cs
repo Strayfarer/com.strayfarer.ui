@@ -15,7 +15,9 @@ namespace Strayfarer.UI {
         }
 
         public FlexSprite() {
-            AddToClassList($"flexSprite");
+            AddToClassList("flexSprite");
+            AddToClassList("flex-image");
+            AddToClassList("flex-image--sprite");
         }
 
         protected override Vector2 DoMeasure(float desiredWidth, MeasureMode widthMode, float desiredHeight, MeasureMode heightMode) {
