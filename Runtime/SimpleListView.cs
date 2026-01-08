@@ -24,7 +24,7 @@ namespace Strayfarer.UI {
             set {
                 if (_instantiateItem != value) {
                     _instantiateItem = value;
-                    Rebuild(true);
+                    RequestRebuild(true);
                 }
             }
         }
@@ -63,7 +63,7 @@ namespace Strayfarer.UI {
             set {
                 if (_itemTemplate != value) {
                     _itemTemplate = value;
-                    Rebuild(true);
+                    RequestRebuild(true);
                 }
             }
         }
@@ -76,7 +76,7 @@ namespace Strayfarer.UI {
                 if (_itemsSource != value) {
                     bool previousListWasDefault = _itemsSource is null && _defaultNumberOfItems > 0;
                     _itemsSource = value;
-                    Rebuild(previousListWasDefault);
+                    RequestRebuild(previousListWasDefault);
                 }
             }
         }
@@ -95,7 +95,7 @@ namespace Strayfarer.UI {
                 if (_defaultNumberOfItems != value) {
                     _defaultNumberOfItems = value;
                     if (_itemsSource is null) {
-                        Rebuild(false);
+                        RequestRebuild(false);
                     }
                 }
             }
@@ -114,7 +114,7 @@ namespace Strayfarer.UI {
 
                 if (_elementsPerSection != value) {
                     _elementsPerSection = value;
-                    Rebuild(true);
+                    RequestRebuild(true);
                 }
             }
         }
@@ -143,7 +143,31 @@ namespace Strayfarer.UI {
             return sections[sectionIndex];
         }
 
+        IVisualElementScheduledItem? _scheduledRebuild = null;
+        bool _rebuildWithDiscard = false;
+
+        void RequestRebuild(bool discardItems) {
+            _rebuildWithDiscard |= discardItems;
+            _scheduledRebuild ??= schedule.Execute(ExecuteRebuildRequest);
+        }
+
+        void ExecuteRebuildRequest() {
+            _scheduledRebuild = null;
+            Rebuild(_rebuildWithDiscard);
+        }
+
+        void ClearRebuildRequest() {
+            if (_scheduledRebuild is not null) {
+                _scheduledRebuild.Pause();
+                _scheduledRebuild = null;
+            }
+
+            _rebuildWithDiscard = false;
+        }
+
         public void Rebuild(bool discardItems = false) {
+            ClearRebuildRequest();
+
             if (discardItems) {
                 pool.Clear();
                 sections.Clear();
