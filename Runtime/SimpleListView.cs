@@ -147,8 +147,12 @@ namespace Strayfarer.UI {
         bool _rebuildWithDiscard = false;
 
         void RequestRebuild(bool discardItems) {
-            _rebuildWithDiscard |= discardItems;
-            _scheduledRebuild ??= schedule.Execute(ExecuteRebuildRequest);
+            if (panel is null) {
+                Rebuild(discardItems);
+            } else {
+                _rebuildWithDiscard |= discardItems;
+                _scheduledRebuild ??= schedule.Execute(ExecuteRebuildRequest);
+            }
         }
 
         void ExecuteRebuildRequest() {

@@ -1,19 +1,61 @@
 #nullable enable
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using NSubstitute;
 using NUnit.Framework;
+using Slothsoft.TestRunner;
+using UnityEngine;
+using UnityEngine.TestTools;
 using UnityEngine.UIElements;
 
 namespace Strayfarer.UI {
-    [TestFixture(TestOf = typeof(SimpleListView))]
-    public class SimpleListViewTests {
-        [Test]
-        public void GivenNoTemplate_WhenSetItemSource_ThenCreateEmpty() {
-            var sut = new SimpleListView {
-                itemsSource = new string[] { "a", "b" }
-            };
+    [TestOf(typeof(SimpleListView))]
+    [TestFixture(true)]
+    [TestFixture(false)]
+    sealed class SimpleListViewTests {
+
+        readonly bool usePanel;
+
+        public SimpleListViewTests(bool usePanel) {
+            this.usePanel = usePanel;
+        }
+
+        TestGameObject<UIDocument>? test;
+
+        [SetUp]
+        public void SetUpPanel() {
+            if (usePanel) {
+                test = new();
+                test.sut.panelSettings = ScriptableObject.CreateInstance<PanelSettings>();
+            }
+        }
+
+        [TearDown]
+        public void TearDownPanel() {
+            test?.Dispose();
+        }
+
+        SimpleListView CreateSut() {
+            var sut = new SimpleListView();
+
+            if (test is not null) {
+                test.sut.rootVisualElement.Add(sut);
+            }
+
+            return sut;
+        }
+
+        [UnityTest]
+        public IEnumerator GivenNoTemplate_WhenSetItemSource_ThenCreateEmpty() {
+            var sut = CreateSut();
+
+            sut.itemsSource = new string[] { "a", "b" };
+
+            if (usePanel) {
+                yield return null;
+            }
 
             Assert.That(sut.childCount, Is.EqualTo(2));
 
@@ -21,93 +63,124 @@ namespace Strayfarer.UI {
             Assert.That(sut[1], Is.InstanceOf<VisualElement>());
         }
 
-        [Test]
-        public void GivenOnInstantiateItem_WhenSetItemSource_ThenCall() {
+        [UnityTest]
+        public IEnumerator GivenOnInstantiateItem_WhenSetItemSource_ThenCall() {
             var action = Substitute.For<Action<VisualElement>>();
 
-            var sut = new SimpleListView();
+            var sut = CreateSut();
 
             sut.onInstantiateItem += action;
 
             sut.itemsSource = new string[] { "a", "b" };
 
+            if (usePanel) {
+                yield return null;
+            }
+
             action.Received(1).Invoke(sut[0]);
             action.Received(1).Invoke(sut[1]);
         }
 
-        [Test]
-        public void GivenInstantiateItem_WhenSetItemSource_ThenCreate() {
-            var sut = new SimpleListView {
-                instantiateItem = () => new Label(),
-                itemsSource = new string[] { "a", "b" }
-            };
+        [UnityTest]
+        public IEnumerator GivenInstantiateItem_WhenSetItemSource_ThenCreate() {
+            var sut = CreateSut();
+
+            sut.instantiateItem = () => new Label();
+            sut.itemsSource = new string[] { "a", "b" };
+
+            if (usePanel) {
+                yield return null;
+            }
 
             Assert.That(sut.items, Has.Count.EqualTo(2).And.All.InstanceOf<Label>());
         }
 
-        [Test]
-        public void GivenItemsSource_WhenSetInstantiateItem_ThenCreate() {
-            var sut = new SimpleListView {
-                itemsSource = new string[] { "a", "b" },
-                instantiateItem = () => new Label()
-            };
+        [UnityTest]
+        public IEnumerator GivenItemsSource_WhenSetInstantiateItem_ThenCreate() {
+            var sut = CreateSut();
+
+            sut.instantiateItem = () => new Label();
+            sut.itemsSource = new string[] { "a", "b" };
+
+            if (usePanel) {
+                yield return null;
+            }
 
             Assert.That(sut.items, Has.Count.EqualTo(2).And.All.InstanceOf<Label>());
         }
 
-        [Test]
-        public void GivenItemsSource_WhenSetSmaller_ThenRemove() {
-            var sut = new SimpleListView {
-                itemsSource = new string[] { "a", "b", "c" }
-            };
+        [UnityTest]
+        public IEnumerator GivenItemsSource_WhenSetSmaller_ThenRemove() {
+            var sut = CreateSut();
 
+            sut.itemsSource = new string[] { "a", "b" };
             sut.itemsSource = new string[] { "a" };
+
+            if (usePanel) {
+                yield return null;
+            }
 
             Assert.That(sut.items, Has.Count.EqualTo(1));
         }
 
-        [Test]
-        public void GivenItemsSource_ThenSetDataSource() {
-            var sut = new SimpleListView {
-                itemsSource = new string[] { "a", "b" }
-            };
+        [UnityTest]
+        public IEnumerator GivenItemsSource_ThenSetDataSource() {
+            var sut = CreateSut();
+
+            sut.itemsSource = new string[] { "a", "b" };
+
+            if (usePanel) {
+                yield return null;
+            }
 
             Assert.That(sut.items.First(), Has.Property(nameof(sut.dataSource)).EqualTo("a"));
             Assert.That(sut.items.Last(), Has.Property(nameof(sut.dataSource)).EqualTo("b"));
         }
 
-        [Test]
-        public void GivenOnBindItem_WhenSetItemsSource_ThenCall() {
+        [UnityTest]
+        public IEnumerator GivenOnBindItem_WhenSetItemsSource_ThenCall() {
             var calls = new List<string>();
 
-            var sut = new SimpleListView();
+            var sut = CreateSut();
 
             sut.onBindItem += (element, data) => { calls.Add(data as string ?? throw new Exception()); };
 
             sut.itemsSource = new string[] { "a", "b" };
 
+            if (usePanel) {
+                yield return null;
+            }
+
             Assert.That(calls, Is.EqualTo(new[] { "a", "b" }));
         }
 
-        [Test]
-        public void GivenOnBindItem_WhenSetItemsSourceAgain_ThenCallForChangedValues() {
+        [UnityTest]
+        public IEnumerator GivenOnBindItem_WhenSetItemsSourceAgain_ThenCallForChangedValues() {
             var calls = new List<string>();
 
-            var sut = new SimpleListView();
+            var sut = CreateSut();
 
             sut.onBindItem += (element, data) => { calls.Add(data as string ?? throw new Exception()); };
 
             sut.itemsSource = new string[] { "a", "b" };
             sut.itemsSource = new string[] { "c", "b" };
 
-            Assert.That(calls, Is.EqualTo(new[] { "a", "b", "c" }));
+            if (usePanel) {
+                Assert.That(calls, Is.Empty);
+
+                yield return null;
+
+                Assert.That(calls, Is.EqualTo(new[] { "c", "b" }));
+            } else {
+                Assert.That(calls, Is.EqualTo(new[] { "a", "b", "c" }));
+            }
         }
 
-        [Test]
-        public void GivenOnBindItem_WhenSetItemsSourceAgain_ThenBindAsNeeded() {
+        [UnityTest]
+        public IEnumerator GivenOnBindItem_WhenSetItemsSourceAgain_ThenBindAsNeeded() {
             var calls = new List<string>();
 
-            var sut = new SimpleListView();
+            var sut = CreateSut();
 
             sut.onBindItem += (element, data) => { calls.Add(data as string ?? throw new Exception()); };
 
@@ -116,32 +189,43 @@ namespace Strayfarer.UI {
             sut.itemsSource = null;
             sut.itemsSource = new string[] { "c", "b", "d", "e" };
 
-            Assert.That(calls, Is.EqualTo(new[] { "a", "b", "f", "c", "c", "b", "d", "e" }));
+            if (usePanel) {
+                Assert.That(calls, Is.Empty);
+
+                yield return null;
+
+                Assert.That(calls, Is.EqualTo(new[] { "c", "b", "d", "e" }));
+            } else {
+                Assert.That(calls, Is.EqualTo(new[] { "a", "b", "f", "c", "c", "b", "d", "e" }));
+            }
         }
 
-        [Test]
-        public void GivenItemsSource_WhenSetItemsSourceAgain_ThenInstantiateAsNeeded() {
+        [UnityTest]
+        public IEnumerator GivenItemsSource_WhenSetItemsSourceAgain_ThenInstantiateAsNeeded() {
             int count = 0;
 
-            var sut = new SimpleListView {
-                instantiateItem = () => {
-                    count++;
-                    return new VisualElement();
-                },
-                itemsSource = new string[] { "a", "b", "f" }
+            var sut = CreateSut();
+            sut.instantiateItem = () => {
+                count++;
+                return new VisualElement();
             };
+            sut.itemsSource = new string[] { "a", "b", "f" };
             sut.itemsSource = new string[] { "c", "b" };
             sut.itemsSource = null;
             sut.itemsSource = new string[] { "c", "b", "d", "e" };
 
+            if (usePanel) {
+                yield return null;
+            }
+
             Assert.That(count, Is.EqualTo(4));
         }
 
-        [Test]
-        public void GivenOnInstantiate_WhenSetItemsSourceAgain_ThenInstantiateAsNeeded() {
+        [UnityTest]
+        public IEnumerator GivenOnInstantiate_WhenSetItemsSourceAgain_ThenInstantiateAsNeeded() {
             int count = 0;
 
-            var sut = new SimpleListView();
+            var sut = CreateSut();
 
             sut.onInstantiateItem += _ => count++;
 
@@ -149,6 +233,10 @@ namespace Strayfarer.UI {
             sut.itemsSource = new string[] { "c", "b" };
             sut.itemsSource = null;
             sut.itemsSource = new string[] { "c", "b", "d", "e" };
+
+            if (usePanel) {
+                yield return null;
+            }
 
             Assert.That(count, Is.EqualTo(4));
         }
