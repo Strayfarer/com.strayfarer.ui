@@ -29,7 +29,7 @@ namespace Strayfarer.UI {
             }
         }
         public event Action<VisualElement>? onInstantiateItem;
-        public event Action<VisualElement, object>? onBindItem;
+        public event Action<VisualElement, object?>? onBindItem;
 
         readonly Stack<VisualElement> pool = new();
 
@@ -80,15 +80,40 @@ namespace Strayfarer.UI {
             }
         }
 
+        int _defaultNumberOfItems;
+        [Min(0)]
+        [UxmlAttribute]
+        [Tooltip("Draw this many items when no itemsSource is assigned at runtime.")]
+        public int defaultNumberOfItems {
+            get => _defaultNumberOfItems;
+            set {
+                if (value < 0) {
+                    value = 0;
+                }
+
+                if (_defaultNumberOfItems != value) {
+                    _defaultNumberOfItems = value;
+                    if (_itemsSource is null) {
+                        Rebuild(false);
+                    }
+                }
+            }
+        }
+
         int _elementsPerSection;
+        [Min(0)]
         [CreateProperty]
         [UxmlAttribute]
         public int elementsPerSection {
             get => _elementsPerSection;
             set {
+                if (value < 0) {
+                    value = 0;
+                }
+
                 if (_elementsPerSection != value) {
                     _elementsPerSection = value;
-                    Rebuild(false);
+                    Rebuild(true);
                 }
             }
         }
@@ -124,26 +149,18 @@ namespace Strayfarer.UI {
                 Clear();
             }
 
-            if (_itemsSource is null) {
-                foreach (var child in items) {
-                    ReturnItem(child);
-                }
-
-                foreach (var child in pool) {
-                    child.RemoveFromHierarchy();
-                }
-
-                return;
+            if (_itemsSource is not { Count: int itemCount }) {
+                itemCount = defaultNumberOfItems;
             }
 
             var previousItems = new List<VisualElement>(items);
 
-            foreach (var previousItem in previousItems.Skip(_itemsSource.Count)) {
+            foreach (var previousItem in previousItems.Skip(itemCount)) {
                 ReturnItem(previousItem);
                 previousItem.RemoveFromHierarchy();
             }
 
-            for (int i = 0; i < _itemsSource.Count; i++) {
+            for (int i = 0; i < itemCount; i++) {
                 if (previousItems.ElementAtOrDefault(i) is not VisualElement element) {
                     if (InstantiateItem(out element)) {
                         element.AddToClassList($"simpleList-item");
@@ -165,7 +182,7 @@ namespace Strayfarer.UI {
                     element.RemoveFromClassList($"simple-list__item--first-child");
                 }
 
-                if (i == _itemsSource.Count - 1) {
+                if (i == itemCount - 1) {
                     element.AddToClassList("last-child");
                     element.AddToClassList($"simple-list__item--last-child");
                 } else {
@@ -175,10 +192,13 @@ namespace Strayfarer.UI {
 
                 GetSectionForItem(i).Add(element);
 
-                if (element.dataSource != _itemsSource[i]) {
-                    element.dataSource = _itemsSource[i];
+                object data = _itemsSource is null
+                    ? i
+                    : _itemsSource[i];
+                if (element.dataSource != data) {
+                    element.dataSource = data;
                     try {
-                        onBindItem?.Invoke(element, _itemsSource[i]);
+                        onBindItem?.Invoke(element, data);
                     } catch (Exception e) {
                         Debug.LogException(e);
                     }
