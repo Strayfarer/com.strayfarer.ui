@@ -74,8 +74,9 @@ namespace Strayfarer.UI {
             get => _itemsSource;
             set {
                 if (_itemsSource != value) {
+                    bool previousListWasDefault = _itemsSource is null && _defaultNumberOfItems > 0;
                     _itemsSource = value;
-                    Rebuild(false);
+                    Rebuild(previousListWasDefault);
                 }
             }
         }
