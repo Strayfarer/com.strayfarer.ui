@@ -192,7 +192,7 @@ namespace Strayfarer.UI {
 
                 GetSectionForItem(i).Add(element);
 
-                object data = _itemsSource is null
+                object? data = _itemsSource is null
                     ? i
                     : _itemsSource[i];
                 if (element.dataSource != data) {
