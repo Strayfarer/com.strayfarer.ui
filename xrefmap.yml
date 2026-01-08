@@ -386,6 +386,19 @@ references:
   isSpec: "True"
   fullName: Strayfarer.UI.SimpleListView.SimpleListView
   nameWithType: SimpleListView.SimpleListView
+- uid: Strayfarer.UI.SimpleListView.defaultNumberOfItems
+  name: defaultNumberOfItems
+  href: api/Strayfarer.UI.SimpleListView.html#Strayfarer_UI_SimpleListView_defaultNumberOfItems
+  commentId: P:Strayfarer.UI.SimpleListView.defaultNumberOfItems
+  fullName: Strayfarer.UI.SimpleListView.defaultNumberOfItems
+  nameWithType: SimpleListView.defaultNumberOfItems
+- uid: Strayfarer.UI.SimpleListView.defaultNumberOfItems*
+  name: defaultNumberOfItems
+  href: api/Strayfarer.UI.SimpleListView.html#Strayfarer_UI_SimpleListView_defaultNumberOfItems_
+  commentId: Overload:Strayfarer.UI.SimpleListView.defaultNumberOfItems
+  isSpec: "True"
+  fullName: Strayfarer.UI.SimpleListView.defaultNumberOfItems
+  nameWithType: SimpleListView.defaultNumberOfItems
 - uid: Strayfarer.UI.SimpleListView.elementsPerSection
   name: elementsPerSection
   href: api/Strayfarer.UI.SimpleListView.html#Strayfarer_UI_SimpleListView_elementsPerSection
