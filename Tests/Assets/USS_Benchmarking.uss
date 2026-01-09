@@ -24,3 +24,17 @@
 	--inner-border-color: red;
     --outer-border-width-percent: 50;
 }
+
+.sut.with-radius.duplicate {
+	border-radius: 10px;
+}
+
+.sut.with-glow.duplicate {
+    --glow-color: blue;
+    --glow-border-width: 10;
+}
+
+.sut.with-inner.duplicate {
+	--inner-border-color: red;
+    --outer-border-width-percent: 50;
+}
