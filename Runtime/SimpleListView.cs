@@ -56,9 +56,11 @@ namespace Strayfarer.UI {
             pool.Push(element);
         }
 
-        VisualTreeAsset _itemTemplate = null!;
+        VisualTreeAsset? _itemTemplate = null;
         [UxmlAttribute]
+#nullable disable
         public VisualTreeAsset itemTemplate {
+#nullable enable
             get => _itemTemplate;
             set {
                 if (_itemTemplate != value) {

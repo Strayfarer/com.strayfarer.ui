@@ -9,7 +9,9 @@ namespace Strayfarer.UI {
         [Header(nameof(FlexSprite))]
         [UxmlAttribute]
         [CreateProperty]
+#nullable disable
         public new Sprite sprite {
+#nullable enable
             get => base.sprite;
             set => base.sprite = value;
         }

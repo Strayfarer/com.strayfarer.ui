@@ -9,7 +9,9 @@ namespace Strayfarer.UI {
         [Header(nameof(FlexVectorImage))]
         [UxmlAttribute]
         [CreateProperty]
+#nullable disable
         public new VectorImage vectorImage {
+#nullable enable
             get => base.vectorImage;
             set => base.vectorImage = value;
         }
