@@ -19,6 +19,8 @@ namespace Strayfarer.UI {
         float borderRadiusVert;
         float glowWidth;
 
+        int sections = 6;
+
         static readonly CustomStyleProperty<Color> k_innerColorProperty = new CustomStyleProperty<Color>("--inner-border-color");
         static readonly CustomStyleProperty<Color> k_glowColorProperty = new CustomStyleProperty<Color>("--glow-color");
         static readonly CustomStyleProperty<float> k_outerBorderWidthPercentProperty = new CustomStyleProperty<float>("--outer-border-width-percent");
@@ -76,7 +78,9 @@ namespace Strayfarer.UI {
                 listOfTris.AddRange(listOfGlowTris);
             }
             var triUtil = new TriUtil(listOfTris);
-            triUtil.CalculateVertsAndIndices(out verts, out indices);
+            int vertCount = (16 + ((sections - 1) * 8)) * 3;
+            int indCount = listOfTris.Count * 3;
+            triUtil.CalculateVertsAndIndices(out verts, vertCount, out indices, indCount);
         }
 
         void CreateInnerBorder(out List<Tri> tris, Rect r) {
@@ -200,7 +204,6 @@ namespace Strayfarer.UI {
             #region Region: corners
             // --------- CORNERS ---------------
             //int sections = Mathf.Min((int)((borderRadius / 10 * 5) + 5), 15);
-            int sections = 6;
 
             var center = new Vector3(borderRadius, borderRadius, Vertex.nearZ);
             float angle = Vector3.Angle(tTopLeft.position - center, lTopLeft.position - center) > 90 ? 90 : Vector3.Angle(tTopLeft.position - center, lTopLeft.position - center);
@@ -492,7 +495,6 @@ namespace Strayfarer.UI {
 
             #region Region: corners
             // --------- CORNERS ---------------
-            int sections = 6;
 
             var center = new Vector3(borderRadius, borderRadius, Vertex.nearZ);
             float angle = Vector3.Angle(tTopLeft.position - center, lTopLeft.position - center) > 90 ? 90 : Vector3.Angle(tTopLeft.position - center, lTopLeft.position - center);
