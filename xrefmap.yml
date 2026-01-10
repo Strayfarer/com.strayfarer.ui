@@ -310,6 +310,32 @@ references:
   isSpec: "True"
   fullName: Strayfarer.UI.GlowingBorder.GlowingBorder
   nameWithType: GlowingBorder.GlowingBorder
+- uid: Strayfarer.UI.IBindable`1
+  name: IBindable<T>
+  href: api/Strayfarer.UI.IBindable-1.html
+  commentId: T:Strayfarer.UI.IBindable`1
+  name.vb: IBindable(Of T)
+  fullName: Strayfarer.UI.IBindable<T>
+  fullName.vb: Strayfarer.UI.IBindable(Of T)
+  nameWithType: IBindable<T>
+  nameWithType.vb: IBindable(Of T)
+- uid: Strayfarer.UI.IBindable`1.Bind(`0)
+  name: Bind(T)
+  href: api/Strayfarer.UI.IBindable-1.html#Strayfarer_UI_IBindable_1_Bind__0_
+  commentId: M:Strayfarer.UI.IBindable`1.Bind(`0)
+  fullName: Strayfarer.UI.IBindable<T>.Bind(T)
+  fullName.vb: Strayfarer.UI.IBindable(Of T).Bind(T)
+  nameWithType: IBindable<T>.Bind(T)
+  nameWithType.vb: IBindable(Of T).Bind(T)
+- uid: Strayfarer.UI.IBindable`1.Bind*
+  name: Bind
+  href: api/Strayfarer.UI.IBindable-1.html#Strayfarer_UI_IBindable_1_Bind_
+  commentId: Overload:Strayfarer.UI.IBindable`1.Bind
+  isSpec: "True"
+  fullName: Strayfarer.UI.IBindable<T>.Bind
+  fullName.vb: Strayfarer.UI.IBindable(Of T).Bind
+  nameWithType: IBindable<T>.Bind
+  nameWithType.vb: IBindable(Of T).Bind
 - uid: Strayfarer.UI.PageButton
   name: PageButton
   href: api/Strayfarer.UI.PageButton.html
@@ -367,6 +393,137 @@ references:
   isSpec: "True"
   fullName: Strayfarer.UI.PageView.SwitchToPage
   nameWithType: PageView.SwitchToPage
+- uid: Strayfarer.UI.SimpleListControl`2
+  name: SimpleListControl<TControl, TModel>
+  href: api/Strayfarer.UI.SimpleListControl-2.html
+  commentId: T:Strayfarer.UI.SimpleListControl`2
+  name.vb: SimpleListControl(Of TControl, TModel)
+  fullName: Strayfarer.UI.SimpleListControl<TControl, TModel>
+  fullName.vb: Strayfarer.UI.SimpleListControl(Of TControl, TModel)
+  nameWithType: SimpleListControl<TControl, TModel>
+  nameWithType.vb: SimpleListControl(Of TControl, TModel)
+- uid: Strayfarer.UI.SimpleListControl`2.#ctor(Strayfarer.UI.SimpleListView,Func{VisualElement,`0})
+  name: SimpleListControl(SimpleListView, Func<VisualElement, TControl>)
+  href: api/Strayfarer.UI.SimpleListControl-2.html#Strayfarer_UI_SimpleListControl_2__ctor_Strayfarer_UI_SimpleListView_Func_VisualElement__0__
+  commentId: M:Strayfarer.UI.SimpleListControl`2.#ctor(Strayfarer.UI.SimpleListView,Func{VisualElement,`0})
+  name.vb: SimpleListControl(SimpleListView, Func(Of VisualElement, TControl))
+  fullName: Strayfarer.UI.SimpleListControl<TControl, TModel>.SimpleListControl(Strayfarer.UI.SimpleListView, Func<VisualElement, TControl>)
+  fullName.vb: Strayfarer.UI.SimpleListControl(Of TControl, TModel).SimpleListControl(Strayfarer.UI.SimpleListView, Func(Of VisualElement, TControl))
+  nameWithType: SimpleListControl<TControl, TModel>.SimpleListControl(SimpleListView, Func<VisualElement, TControl>)
+  nameWithType.vb: SimpleListControl(Of TControl, TModel).SimpleListControl(SimpleListView, Func(Of VisualElement, TControl))
+- uid: Strayfarer.UI.SimpleListControl`2.#ctor*
+  name: SimpleListControl
+  href: api/Strayfarer.UI.SimpleListControl-2.html#Strayfarer_UI_SimpleListControl_2__ctor_
+  commentId: Overload:Strayfarer.UI.SimpleListControl`2.#ctor
+  isSpec: "True"
+  fullName: Strayfarer.UI.SimpleListControl<TControl, TModel>.SimpleListControl
+  fullName.vb: Strayfarer.UI.SimpleListControl(Of TControl, TModel).SimpleListControl
+  nameWithType: SimpleListControl<TControl, TModel>.SimpleListControl
+  nameWithType.vb: SimpleListControl(Of TControl, TModel).SimpleListControl
+- uid: Strayfarer.UI.SimpleListControl`2.controls
+  name: controls
+  href: api/Strayfarer.UI.SimpleListControl-2.html#Strayfarer_UI_SimpleListControl_2_controls
+  commentId: P:Strayfarer.UI.SimpleListControl`2.controls
+  fullName: Strayfarer.UI.SimpleListControl<TControl, TModel>.controls
+  fullName.vb: Strayfarer.UI.SimpleListControl(Of TControl, TModel).controls
+  nameWithType: SimpleListControl<TControl, TModel>.controls
+  nameWithType.vb: SimpleListControl(Of TControl, TModel).controls
+- uid: Strayfarer.UI.SimpleListControl`2.controls*
+  name: controls
+  href: api/Strayfarer.UI.SimpleListControl-2.html#Strayfarer_UI_SimpleListControl_2_controls_
+  commentId: Overload:Strayfarer.UI.SimpleListControl`2.controls
+  isSpec: "True"
+  fullName: Strayfarer.UI.SimpleListControl<TControl, TModel>.controls
+  fullName.vb: Strayfarer.UI.SimpleListControl(Of TControl, TModel).controls
+  nameWithType: SimpleListControl<TControl, TModel>.controls
+  nameWithType.vb: SimpleListControl(Of TControl, TModel).controls
+- uid: Strayfarer.UI.SimpleListControl`2.Dispose
+  name: Dispose()
+  href: api/Strayfarer.UI.SimpleListControl-2.html#Strayfarer_UI_SimpleListControl_2_Dispose
+  commentId: M:Strayfarer.UI.SimpleListControl`2.Dispose
+  fullName: Strayfarer.UI.SimpleListControl<TControl, TModel>.Dispose()
+  fullName.vb: Strayfarer.UI.SimpleListControl(Of TControl, TModel).Dispose()
+  nameWithType: SimpleListControl<TControl, TModel>.Dispose()
+  nameWithType.vb: SimpleListControl(Of TControl, TModel).Dispose()
+- uid: Strayfarer.UI.SimpleListControl`2.Dispose*
+  name: Dispose
+  href: api/Strayfarer.UI.SimpleListControl-2.html#Strayfarer_UI_SimpleListControl_2_Dispose_
+  commentId: Overload:Strayfarer.UI.SimpleListControl`2.Dispose
+  isSpec: "True"
+  fullName: Strayfarer.UI.SimpleListControl<TControl, TModel>.Dispose
+  fullName.vb: Strayfarer.UI.SimpleListControl(Of TControl, TModel).Dispose
+  nameWithType: SimpleListControl<TControl, TModel>.Dispose
+  nameWithType.vb: SimpleListControl(Of TControl, TModel).Dispose
+- uid: Strayfarer.UI.SimpleListControl`2.models
+  name: models
+  href: api/Strayfarer.UI.SimpleListControl-2.html#Strayfarer_UI_SimpleListControl_2_models
+  commentId: P:Strayfarer.UI.SimpleListControl`2.models
+  fullName: Strayfarer.UI.SimpleListControl<TControl, TModel>.models
+  fullName.vb: Strayfarer.UI.SimpleListControl(Of TControl, TModel).models
+  nameWithType: SimpleListControl<TControl, TModel>.models
+  nameWithType.vb: SimpleListControl(Of TControl, TModel).models
+- uid: Strayfarer.UI.SimpleListControl`2.models*
+  name: models
+  href: api/Strayfarer.UI.SimpleListControl-2.html#Strayfarer_UI_SimpleListControl_2_models_
+  commentId: Overload:Strayfarer.UI.SimpleListControl`2.models
+  isSpec: "True"
+  fullName: Strayfarer.UI.SimpleListControl<TControl, TModel>.models
+  fullName.vb: Strayfarer.UI.SimpleListControl(Of TControl, TModel).models
+  nameWithType: SimpleListControl<TControl, TModel>.models
+  nameWithType.vb: SimpleListControl(Of TControl, TModel).models
+- uid: Strayfarer.UI.SimpleListControl`2.ReplaceModels(`1[])
+  name: ReplaceModels(TModel[])
+  href: api/Strayfarer.UI.SimpleListControl-2.html#Strayfarer_UI_SimpleListControl_2_ReplaceModels__1___
+  commentId: M:Strayfarer.UI.SimpleListControl`2.ReplaceModels(`1[])
+  name.vb: ReplaceModels(TModel())
+  fullName: Strayfarer.UI.SimpleListControl<TControl, TModel>.ReplaceModels(TModel[])
+  fullName.vb: Strayfarer.UI.SimpleListControl(Of TControl, TModel).ReplaceModels(TModel())
+  nameWithType: SimpleListControl<TControl, TModel>.ReplaceModels(TModel[])
+  nameWithType.vb: SimpleListControl(Of TControl, TModel).ReplaceModels(TModel())
+- uid: Strayfarer.UI.SimpleListControl`2.ReplaceModels(IEnumerable{`1})
+  name: ReplaceModels(IEnumerable<TModel>)
+  href: api/Strayfarer.UI.SimpleListControl-2.html#Strayfarer_UI_SimpleListControl_2_ReplaceModels_IEnumerable__1__
+  commentId: M:Strayfarer.UI.SimpleListControl`2.ReplaceModels(IEnumerable{`1})
+  name.vb: ReplaceModels(IEnumerable(Of TModel))
+  fullName: Strayfarer.UI.SimpleListControl<TControl, TModel>.ReplaceModels(IEnumerable<TModel>)
+  fullName.vb: Strayfarer.UI.SimpleListControl(Of TControl, TModel).ReplaceModels(IEnumerable(Of TModel))
+  nameWithType: SimpleListControl<TControl, TModel>.ReplaceModels(IEnumerable<TModel>)
+  nameWithType.vb: SimpleListControl(Of TControl, TModel).ReplaceModels(IEnumerable(Of TModel))
+- uid: Strayfarer.UI.SimpleListControl`2.ReplaceModels(Span{`1})
+  name: ReplaceModels(Span<TModel>)
+  href: api/Strayfarer.UI.SimpleListControl-2.html#Strayfarer_UI_SimpleListControl_2_ReplaceModels_Span__1__
+  commentId: M:Strayfarer.UI.SimpleListControl`2.ReplaceModels(Span{`1})
+  name.vb: ReplaceModels(Span(Of TModel))
+  fullName: Strayfarer.UI.SimpleListControl<TControl, TModel>.ReplaceModels(Span<TModel>)
+  fullName.vb: Strayfarer.UI.SimpleListControl(Of TControl, TModel).ReplaceModels(Span(Of TModel))
+  nameWithType: SimpleListControl<TControl, TModel>.ReplaceModels(Span<TModel>)
+  nameWithType.vb: SimpleListControl(Of TControl, TModel).ReplaceModels(Span(Of TModel))
+- uid: Strayfarer.UI.SimpleListControl`2.ReplaceModels*
+  name: ReplaceModels
+  href: api/Strayfarer.UI.SimpleListControl-2.html#Strayfarer_UI_SimpleListControl_2_ReplaceModels_
+  commentId: Overload:Strayfarer.UI.SimpleListControl`2.ReplaceModels
+  isSpec: "True"
+  fullName: Strayfarer.UI.SimpleListControl<TControl, TModel>.ReplaceModels
+  fullName.vb: Strayfarer.UI.SimpleListControl(Of TControl, TModel).ReplaceModels
+  nameWithType: SimpleListControl<TControl, TModel>.ReplaceModels
+  nameWithType.vb: SimpleListControl(Of TControl, TModel).ReplaceModels
+- uid: Strayfarer.UI.SimpleListControl`2.views
+  name: views
+  href: api/Strayfarer.UI.SimpleListControl-2.html#Strayfarer_UI_SimpleListControl_2_views
+  commentId: P:Strayfarer.UI.SimpleListControl`2.views
+  fullName: Strayfarer.UI.SimpleListControl<TControl, TModel>.views
+  fullName.vb: Strayfarer.UI.SimpleListControl(Of TControl, TModel).views
+  nameWithType: SimpleListControl<TControl, TModel>.views
+  nameWithType.vb: SimpleListControl(Of TControl, TModel).views
+- uid: Strayfarer.UI.SimpleListControl`2.views*
+  name: views
+  href: api/Strayfarer.UI.SimpleListControl-2.html#Strayfarer_UI_SimpleListControl_2_views_
+  commentId: Overload:Strayfarer.UI.SimpleListControl`2.views
+  isSpec: "True"
+  fullName: Strayfarer.UI.SimpleListControl<TControl, TModel>.views
+  fullName.vb: Strayfarer.UI.SimpleListControl(Of TControl, TModel).views
+  nameWithType: SimpleListControl<TControl, TModel>.views
+  nameWithType.vb: SimpleListControl(Of TControl, TModel).views
 - uid: Strayfarer.UI.SimpleListView
   name: SimpleListView
   href: api/Strayfarer.UI.SimpleListView.html

@@ -137,6 +137,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Strayfarer.UI.IBindable-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Strayfarer.UI.IBindable-1.html",
+          "hash": "ziGUXrIpZUMdbcQ7ovd0yQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Strayfarer.UI.PageButton.yml",
       "output": {
         ".html": {
@@ -161,6 +173,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Strayfarer.UI.SimpleListControl-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Strayfarer.UI.SimpleListControl-2.html",
+          "hash": "Pqg1eKntgpgqK5qrjpvL1Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Strayfarer.UI.SimpleListView.yml",
       "output": {
         ".html": {
@@ -177,7 +201,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Strayfarer.UI.html",
-          "hash": "o4hWBFTJgWYUHTRC+xHwfw=="
+          "hash": "YZQGJRYJt1BylPipTFzD3A=="
         }
       },
       "is_incremental": false,
@@ -201,7 +225,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "x6JPX3vMwdp5Jc7bG08lAw=="
+          "hash": "yHcOp52OVx54uI9dNz/nCg=="
         }
       },
       "is_incremental": false,
@@ -252,7 +276,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 15,
+          "total_file_count": 17,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
