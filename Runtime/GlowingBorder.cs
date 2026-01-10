@@ -13,11 +13,11 @@ namespace Strayfarer.UI {
         Color glowColor = Color.white;
         Color clearColor = Color.clear;
         float outerBorderWidthPercent = 100;
+        float glowWidth = 0;
         float borderWidth;
         float borderRadius;
         float borderRadiusHor;
         float borderRadiusVert;
-        float glowWidth;
 
         int sections = 6;
 
@@ -34,20 +34,45 @@ namespace Strayfarer.UI {
 
         void OnCustomStyleResolved(CustomStyleResolvedEvent evt) {
             if (evt.customStyle.TryGetValue(k_innerColorProperty, out var innerBorderColor)) {
-                this.innerBorderColor = innerBorderColor;
-            }
-
-            if (evt.customStyle.TryGetValue(k_glowColorProperty, out var glowBorderColor)) {
-                glowColor = glowBorderColor;
+                if (this.innerBorderColor != innerBorderColor) {
+                    this.innerBorderColor = innerBorderColor;
+                    MarkDirtyRepaint();
+                }
+            } else if (!this.innerBorderColor.Equals(Color.gray)) {
+                this.innerBorderColor = Color.gray;
+                MarkDirtyRepaint();
             }
 
             if (evt.customStyle.TryGetValue(k_outerBorderWidthPercentProperty, out float outerBorderWidthPercent)) {
-                this.outerBorderWidthPercent = outerBorderWidthPercent;
+                if (this.outerBorderWidthPercent != outerBorderWidthPercent) {
+                    this.outerBorderWidthPercent = outerBorderWidthPercent;
+                    MarkDirtyRepaint();
+                }
+            } else if (this.outerBorderWidthPercent != 100) {
+                this.outerBorderWidthPercent = 100;
+                MarkDirtyRepaint();
+            }
+
+            if (evt.customStyle.TryGetValue(k_glowColorProperty, out var glowBorderColor)) {
+                if (glowColor != glowBorderColor) {
+                    glowColor = glowBorderColor;
+                    MarkDirtyRepaint();
+                }
+            } else if (!glowColor.Equals(Color.white)) {
+                glowColor = Color.white;
+                MarkDirtyRepaint();
             }
 
             if (evt.customStyle.TryGetValue(k_glowBorderWidthProperty, out float glowBorderWidth)) {
-                glowWidth = glowBorderWidth;
+                if (glowWidth != glowBorderWidth) {
+                    glowWidth = glowBorderWidth;
+                    MarkDirtyRepaint();
+                }
+            } else if (glowWidth != 0) {
+                glowWidth = 0;
+                MarkDirtyRepaint();
             }
+
         }
 
         void OnGenerateVisualContent(MeshGenerationContext context) {
