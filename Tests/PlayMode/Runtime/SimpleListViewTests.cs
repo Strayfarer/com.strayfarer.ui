@@ -82,6 +82,26 @@ namespace Strayfarer.UI {
         }
 
         [UnityTest]
+        public IEnumerator GivenOnInstantiateItem_ThenRepaint() {
+            var action = Substitute.For<Action<VisualElement>>();
+
+            var sut = CreateSut();
+
+            sut.itemsSource = new string[] { "a", "b" };
+
+            yield return null;
+
+            sut.onInstantiateItem += action;
+
+            if (usePanel) {
+                yield return null;
+            }
+
+            action.Received(1).Invoke(sut[0]);
+            action.Received(1).Invoke(sut[1]);
+        }
+
+        [UnityTest]
         public IEnumerator GivenInstantiateItem_WhenSetItemSource_ThenCreate() {
             var sut = CreateSut();
 
@@ -135,6 +155,26 @@ namespace Strayfarer.UI {
 
             Assert.That(sut.items.First(), Has.Property(nameof(sut.dataSource)).EqualTo("a"));
             Assert.That(sut.items.Last(), Has.Property(nameof(sut.dataSource)).EqualTo("b"));
+        }
+
+        [UnityTest]
+        public IEnumerator GivenOnBindItem_ThenRebind() {
+            var action = Substitute.For<Action<VisualElement, object?>>();
+
+            var sut = CreateSut();
+
+            sut.itemsSource = new string[] { "a", "b" };
+
+            yield return null;
+
+            sut.onBindItem += action;
+
+            if (usePanel) {
+                yield return null;
+            }
+
+            action.Received(1).Invoke(sut[0], "a");
+            action.Received(1).Invoke(sut[1], "b");
         }
 
         [UnityTest]

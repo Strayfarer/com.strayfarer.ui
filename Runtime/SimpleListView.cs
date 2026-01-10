@@ -28,8 +28,32 @@ namespace Strayfarer.UI {
                 }
             }
         }
-        public event Action<VisualElement>? onInstantiateItem;
-        public event Action<VisualElement, object?>? onBindItem;
+
+        event Action<VisualElement>? onInstantiateItemInternal;
+        public event Action<VisualElement>? onInstantiateItem {
+            add {
+                onInstantiateItemInternal += value;
+                RequestRebuild(true);
+            }
+            remove {
+                onInstantiateItemInternal -= value;
+            }
+        }
+
+        event Action<VisualElement, object?>? onBindItemInternal;
+        public event Action<VisualElement, object?>? onBindItem {
+            add {
+                onBindItemInternal += value;
+                if (value is not null) {
+                    foreach (var item in items) {
+                        value(item, item.dataSource);
+                    }
+                }
+            }
+            remove {
+                onBindItemInternal -= value;
+            }
+        }
 
         readonly Stack<VisualElement> pool = new();
 
@@ -75,11 +99,9 @@ namespace Strayfarer.UI {
         public IList? itemsSource {
             get => _itemsSource;
             set {
-                if (_itemsSource != value) {
-                    bool previousListWasDefault = _itemsSource is null && _defaultNumberOfItems > 0;
-                    _itemsSource = value;
-                    RequestRebuild(previousListWasDefault);
-                }
+                bool previousListWasDefault = _itemsSource is null && _defaultNumberOfItems > 0;
+                _itemsSource = value;
+                RequestRebuild(previousListWasDefault);
             }
         }
 
@@ -198,7 +220,7 @@ namespace Strayfarer.UI {
                         element.AddToClassList($"simple-list__item");
 
                         try {
-                            onInstantiateItem?.Invoke(element);
+                            onInstantiateItemInternal?.Invoke(element);
                         } catch (Exception e) {
                             Debug.LogException(e);
                         }
@@ -230,7 +252,7 @@ namespace Strayfarer.UI {
                 if (!Equals(element.dataSource, data)) {
                     element.dataSource = data;
                     try {
-                        onBindItem?.Invoke(element, data);
+                        onBindItemInternal?.Invoke(element, data);
                     } catch (Exception e) {
                         Debug.LogException(e);
                     }
