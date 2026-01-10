@@ -226,7 +226,8 @@ namespace Strayfarer.UI {
                 object? data = _itemsSource is null
                     ? i
                     : _itemsSource[i];
-                if (element.dataSource != data) {
+                // we want to use Equals here to preserve record equality
+                if (!Equals(element.dataSource, data)) {
                     element.dataSource = data;
                     try {
                         onBindItem?.Invoke(element, data);
