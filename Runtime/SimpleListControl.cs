@@ -2,36 +2,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine.UIElements;
 
 namespace Strayfarer.UI {
     public sealed class SimpleListControl<TControl, TModel> : IDisposable
         where TControl : class, IBindable<TModel> {
-        sealed class SimpleListElements : IReadOnlyList<VisualElement> {
-            readonly SimpleListControl<TControl, TModel> control;
-            readonly SimpleListView list;
-
-            public SimpleListElements(SimpleListControl<TControl, TModel> control, SimpleListView list) {
-                this.control = control;
-                this.list = list;
-            }
-
-            public VisualElement this[int index] => list.elementsPerSection == 0
-                ? list[index]
-                : list.items.ElementAt(index);
-
-            public int Count => control.models.Count;
-
-            public IEnumerator<VisualElement> GetEnumerator() => list.items.GetEnumerator();
-
-            IEnumerator IEnumerable.GetEnumerator() => list.items.GetEnumerator();
-        }
-
         sealed class SimpleListControls : IReadOnlyList<TControl> {
-            readonly SimpleListElements elements;
+            readonly IReadOnlyList<VisualElement> elements;
 
-            public SimpleListControls(SimpleListElements elements) {
+            public SimpleListControls(IReadOnlyList<VisualElement> elements) {
                 this.elements = elements;
             }
 
@@ -45,18 +24,13 @@ namespace Strayfarer.UI {
                 }
             }
 
-            IEnumerator IEnumerable.GetEnumerator() {
-                foreach (var e in elements) {
-                    yield return e.userData as TControl ?? throw new NullReferenceException();
-                }
-            }
+            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
         }
 
-        readonly SimpleListView list;
         readonly Func<VisualElement, TControl> instantiate;
 
-        readonly SimpleListElements _views;
-        public IReadOnlyList<VisualElement> views => _views;
+        readonly SimpleListView list;
+        public IReadOnlyList<VisualElement> views => list.items;
 
         readonly List<TModel> _models = new();
         public IReadOnlyList<TModel> models => list.itemsSource as IReadOnlyList<TModel> ?? _models;
@@ -72,8 +46,7 @@ namespace Strayfarer.UI {
             list.onBindItem += HandleBind;
             list.itemsSource = _models;
 
-            _views = new(this, list);
-            _controls = new(_views);
+            _controls = new(list.items);
         }
 
         public void Dispose() {

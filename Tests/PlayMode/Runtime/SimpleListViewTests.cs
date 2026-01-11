@@ -105,12 +105,12 @@ namespace Strayfarer.UI {
         public IEnumerator GivenInstantiateItem_WhenSetItemSource_ThenCreate() {
             var sut = CreateSut();
 
-            sut.instantiateItem = () => new Label();
-            sut.itemsSource = new string[] { "a", "b" };
-
             if (usePanel) {
                 yield return null;
             }
+
+            sut.instantiateItem = () => new Label();
+            sut.itemsSource = new string[] { "a", "b" };
 
             Assert.That(sut.items, Has.Count.EqualTo(2).And.All.InstanceOf<Label>());
         }
@@ -119,12 +119,12 @@ namespace Strayfarer.UI {
         public IEnumerator GivenItemsSource_WhenSetInstantiateItem_ThenCreate() {
             var sut = CreateSut();
 
-            sut.instantiateItem = () => new Label();
-            sut.itemsSource = new string[] { "a", "b" };
-
             if (usePanel) {
                 yield return null;
             }
+
+            sut.instantiateItem = () => new Label();
+            sut.itemsSource = new string[] { "a", "b" };
 
             Assert.That(sut.items, Has.Count.EqualTo(2).And.All.InstanceOf<Label>());
         }
@@ -133,12 +133,12 @@ namespace Strayfarer.UI {
         public IEnumerator GivenItemsSource_WhenSetSmaller_ThenRemove() {
             var sut = CreateSut();
 
-            sut.itemsSource = new string[] { "a", "b" };
-            sut.itemsSource = new string[] { "a" };
-
             if (usePanel) {
                 yield return null;
             }
+
+            sut.itemsSource = new string[] { "a", "b" };
+            sut.itemsSource = new string[] { "a" };
 
             Assert.That(sut.items, Has.Count.EqualTo(1));
         }
@@ -147,11 +147,11 @@ namespace Strayfarer.UI {
         public IEnumerator GivenItemsSource_ThenSetDataSource() {
             var sut = CreateSut();
 
-            sut.itemsSource = new string[] { "a", "b" };
-
             if (usePanel) {
                 yield return null;
             }
+
+            sut.itemsSource = new string[] { "a", "b" };
 
             Assert.That(sut.items.First(), Has.Property(nameof(sut.dataSource)).EqualTo("a"));
             Assert.That(sut.items.Last(), Has.Property(nameof(sut.dataSource)).EqualTo("b"));

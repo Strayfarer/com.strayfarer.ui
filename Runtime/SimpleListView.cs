@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using Unity.Properties;
 using UnityEngine;
@@ -13,9 +14,42 @@ namespace Strayfarer.UI {
     [MovedFrom(true, "Retropair.UXML", "Retropair")]
     public sealed partial class SimpleListView : BindableElement {
 
+        sealed class SimpleListItems : IReadOnlyList<VisualElement> {
+            readonly SimpleListView view;
+
+            public SimpleListItems(SimpleListView view) {
+                this.view = view;
+            }
+
+            public VisualElement this[int index] {
+                get {
+                    if (view._scheduledRebuild is not null) {
+                        view._scheduledRebuild.Pause();
+                        view._scheduledRebuild = null;
+                        view.ExecuteRebuildRequest();
+                    }
+
+                    return view.elementsPerSection == 0
+                        ? view[index]
+                        : view.GetSectionForItem(index)[index % view.elementsPerSection];
+                }
+            }
+
+            public int Count => view.itemsSource is null ? view.defaultNumberOfItems : view.itemsSource.Count;
+
+            public IEnumerator<VisualElement> GetEnumerator() {
+                for (int i = 0, c = Count; i < c; i++) {
+                    yield return this[i];
+                }
+            }
+
+            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        }
+
         public SimpleListView() {
             AddToClassList("simpleList-root");
             AddToClassList("simple-list");
+            _items = new(this);
         }
 
         Func<VisualElement>? _instantiateItem;
@@ -143,9 +177,8 @@ namespace Strayfarer.UI {
             }
         }
 
-        public IEnumerable<VisualElement> items => _elementsPerSection == 0
-            ? Children()
-            : sections.SelectMany(section => section.Children());
+        readonly SimpleListItems _items;
+        public IReadOnlyList<VisualElement> items => _items;
 
         readonly List<VisualElement> sections = new();
         VisualElement GetSectionForItem(int itemIndex) {
@@ -206,7 +239,7 @@ namespace Strayfarer.UI {
                 itemCount = defaultNumberOfItems;
             }
 
-            var previousItems = new List<VisualElement>(items);
+            var previousItems = new List<VisualElement>(elementsPerSection == 0 ? Children() : sections.SelectMany(s => s.Children()));
 
             foreach (var previousItem in previousItems.Skip(itemCount)) {
                 ReturnItem(previousItem);

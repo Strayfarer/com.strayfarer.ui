@@ -63,13 +63,13 @@ namespace Strayfarer.UI {
         public IEnumerator GivenNoTemplate_WhenReplaceModels_ThenSetModels() {
             var sut = CreateSut();
 
-            var models = new Data[] { new("a"), new("b") };
-
-            sut.ReplaceModels(models);
-
             if (usePanel) {
                 yield return null;
             }
+
+            var models = new Data[] { new("a"), new("b") };
+
+            sut.ReplaceModels(models);
 
             Assert.That(sut.models, Is.EqualTo(models));
         }
@@ -78,13 +78,13 @@ namespace Strayfarer.UI {
         public IEnumerator GivenNoTemplate_WhenReplaceModels_ThenSetModelsAsEnumerable() {
             var sut = CreateSut();
 
-            var models = new Data[] { new("a"), new("b") };
-
-            sut.ReplaceModels(models);
-
             if (usePanel) {
                 yield return null;
             }
+
+            var models = new Data[] { new("a"), new("b") };
+
+            sut.ReplaceModels(models);
 
             Assert.That(new List<Data>(sut.models), Is.EqualTo(models));
         }
@@ -93,11 +93,11 @@ namespace Strayfarer.UI {
         public IEnumerator GivenNoTemplate_WhenReplaceModels_ThenSetViews() {
             var sut = CreateSut();
 
-            sut.ReplaceModels(new Data[] { new("a"), new("b") });
-
             if (usePanel) {
                 yield return null;
             }
+
+            sut.ReplaceModels(new Data[] { new("a"), new("b") });
 
             Assert.That(sut.views.Count, Is.EqualTo(2));
             Assert.That(sut.views[0], Is.InstanceOf<VisualElement>());
@@ -108,13 +108,13 @@ namespace Strayfarer.UI {
         public IEnumerator GivenNoTemplate_WhenReplaceModels_ThenSetViewsAsEnumerable() {
             var sut = CreateSut();
 
-            var models = new Data[] { new("a"), new("b") };
-
-            sut.ReplaceModels(models);
-
             if (usePanel) {
                 yield return null;
             }
+
+            var models = new Data[] { new("a"), new("b") };
+
+            sut.ReplaceModels(models);
 
             Assert.That(new List<VisualElement>(sut.views), Is.EqualTo(sut.views));
         }
@@ -123,11 +123,11 @@ namespace Strayfarer.UI {
         public IEnumerator GivenNoTemplate_WhenReplaceModels_ThenSetControls() {
             var sut = CreateSut();
 
-            sut.ReplaceModels(new Data[] { new("a"), new("b") });
-
             if (usePanel) {
                 yield return null;
             }
+
+            sut.ReplaceModels(new Data[] { new("a"), new("b") });
 
             Assert.That(sut.controls.Count, Is.EqualTo(2));
             Assert.That(sut.controls[0], Is.InstanceOf<Control>());
@@ -138,13 +138,13 @@ namespace Strayfarer.UI {
         public IEnumerator GivenNoTemplate_WhenReplaceModels_ThenSetControlsAsEnumerable() {
             var sut = CreateSut();
 
-            var models = new Data[] { new("a"), new("b") };
-
-            sut.ReplaceModels(models);
-
             if (usePanel) {
                 yield return null;
             }
+
+            var models = new Data[] { new("a"), new("b") };
+
+            sut.ReplaceModels(models);
 
             Assert.That(new List<Control>(sut.controls), Is.EqualTo(sut.controls));
         }
@@ -153,11 +153,11 @@ namespace Strayfarer.UI {
         public IEnumerator GivenNoTemplate_WhenReplaceModels_ThenSetLabels() {
             var sut = CreateSut();
 
-            sut.ReplaceModels(new Data[] { new("a"), new("b") });
-
             if (usePanel) {
                 yield return null;
             }
+
+            sut.ReplaceModels(new Data[] { new("a"), new("b") });
 
             Assert.That(sut.views[0].Q<Label>(), Has.Property(nameof(Label.text)).EqualTo("a"));
             Assert.That(sut.views[1].Q<Label>(), Has.Property(nameof(Label.text)).EqualTo("b"));
