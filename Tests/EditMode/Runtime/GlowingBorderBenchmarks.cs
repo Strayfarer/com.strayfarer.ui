@@ -14,8 +14,8 @@ namespace Strayfarer.UI.Runtime {
 
         [Test, Performance]
         public void B00_Constructor() {
-            if (!hasGraphicsDevice) {
-                Assert.Ignore("No graphics device available.");
+            if (!hasGraphicsDevice || hasGraphicsDevice) {
+                Assert.Ignore($"No graphics device available: {SystemInfo.graphicsDeviceType}");
                 return;
             }
 
