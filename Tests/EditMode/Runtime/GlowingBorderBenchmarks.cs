@@ -1,6 +1,8 @@
 #nullable enable
 using NUnit.Framework;
 using Unity.PerformanceTesting;
+using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Strayfarer.UI.Runtime {
     sealed class GlowingBorderBenchmarks {
@@ -8,8 +10,15 @@ namespace Strayfarer.UI.Runtime {
         const int MEASUREMENT_COUNT = 100;
         const int ITERATIONS = 10;
 
+        static bool hasGraphicsDevice => SystemInfo.graphicsDeviceType is not GraphicsDeviceType.Null;
+
         [Test, Performance]
         public void B00_Constructor() {
+            if (!hasGraphicsDevice) {
+                Assert.Ignore("No graphics device available.");
+                return;
+            }
+
             Measure
                 .Method(() => {
                     var sut = new GlowingBorder();
