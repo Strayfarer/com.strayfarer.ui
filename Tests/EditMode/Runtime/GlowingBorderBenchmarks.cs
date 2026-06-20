@@ -12,9 +12,9 @@ namespace Strayfarer.UI.Runtime {
 
         static bool hasGraphicsDevice => SystemInfo.graphicsDeviceType is not GraphicsDeviceType.Null;
 
-        [Test, Performance]
+        [Test, Performance, Explicit("Constructor benchmark is graphics-environment sensitive and should not run in normal CI test sweeps.")]
         public void B00_Constructor() {
-            if (!hasGraphicsDevice || hasGraphicsDevice) {
+            if (!hasGraphicsDevice) {
                 Assert.Ignore($"No graphics device available: {SystemInfo.graphicsDeviceType}");
                 return;
             }
