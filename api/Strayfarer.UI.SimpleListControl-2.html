@@ -80,6 +80,34 @@
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><span class="xref">SimpleListControl&lt;TControl, TModel&gt;</span></div>
   </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">System.IDisposable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Strayfarer.UI.html">Strayfarer.UI</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
   <h5 id="Strayfarer_UI_SimpleListControl_2_syntax">Syntax</h5>
@@ -110,7 +138,7 @@
   
   
   <a id="Strayfarer_UI_SimpleListControl_2__ctor_" data-uid="Strayfarer.UI.SimpleListControl`2.#ctor*"></a>
-  <h4 id="Strayfarer_UI_SimpleListControl_2__ctor_Strayfarer_UI_SimpleListView_Func_VisualElement__0__" data-uid="Strayfarer.UI.SimpleListControl`2.#ctor(Strayfarer.UI.SimpleListView,Func{VisualElement,`0})">SimpleListControl(SimpleListView, Func&lt;VisualElement, TControl&gt;)</h4>
+  <h4 id="Strayfarer_UI_SimpleListControl_2__ctor_Strayfarer_UI_SimpleListView_System_Func_VisualElement__0__" data-uid="Strayfarer.UI.SimpleListControl`2.#ctor(Strayfarer.UI.SimpleListView,System.Func{VisualElement,`0})">SimpleListControl(SimpleListView, Func&lt;VisualElement, TControl&gt;)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -133,7 +161,7 @@
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">Func</span>&lt;<span class="xref">VisualElement</span>, TControl&gt;</td>
+        <td><span class="xref">System.Func</span>&lt;<span class="xref">VisualElement</span>, TControl&gt;</td>
         <td><span class="parametername">instantiate</span></td>
         <td></td>
       </tr>
@@ -258,33 +286,6 @@
   
   
   <a id="Strayfarer_UI_SimpleListControl_2_ReplaceModels_" data-uid="Strayfarer.UI.SimpleListControl`2.ReplaceModels*"></a>
-  <h4 id="Strayfarer_UI_SimpleListControl_2_ReplaceModels_Span__1__" data-uid="Strayfarer.UI.SimpleListControl`2.ReplaceModels(Span{`1})">ReplaceModels(Span&lt;TModel&gt;)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void ReplaceModels(Span&lt;TModel&gt; itemsSource)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Span</span>&lt;TModel&gt;</td>
-        <td><span class="parametername">itemsSource</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Strayfarer_UI_SimpleListControl_2_ReplaceModels_" data-uid="Strayfarer.UI.SimpleListControl`2.ReplaceModels*"></a>
   <h4 id="Strayfarer_UI_SimpleListControl_2_ReplaceModels_System_Collections_Generic_IEnumerable__1__" data-uid="Strayfarer.UI.SimpleListControl`2.ReplaceModels(System.Collections.Generic.IEnumerable{`1})">ReplaceModels(IEnumerable&lt;TModel&gt;)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -309,6 +310,37 @@
       </tr>
     </tbody>
   </table>
+  
+  
+  <a id="Strayfarer_UI_SimpleListControl_2_ReplaceModels_" data-uid="Strayfarer.UI.SimpleListControl`2.ReplaceModels*"></a>
+  <h4 id="Strayfarer_UI_SimpleListControl_2_ReplaceModels_System_Span__1__" data-uid="Strayfarer.UI.SimpleListControl`2.ReplaceModels(System.Span{`1})">ReplaceModels(Span&lt;TModel&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ReplaceModels(Span&lt;TModel&gt; itemsSource)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Span</span>&lt;TModel&gt;</td>
+        <td><span class="parametername">itemsSource</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
 </article>
           </div>
           
