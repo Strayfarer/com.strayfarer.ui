@@ -8,7 +8,7 @@ using Strayfarer.UI;
 
 namespace Strayfarer.UI {
     static class AssemblyInfo {
-        public const string ID = "net.slothsoft.test-runner";
+        public const string ID = "com.strayfarer.ui";
 
         public const string NAMESPACE_RUNTIME = "Strayfarer.UI";
         public const string NAMESPACE_EDITOR = "Strayfarer.UI.Editor";
