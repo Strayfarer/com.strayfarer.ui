@@ -165,13 +165,13 @@ references:
   fullName.vb: Strayfarer.UI.Editor.TransientObjectField(Of T)
   nameWithType: TransientObjectField<T>
   nameWithType.vb: TransientObjectField(Of T)
-- uid: Strayfarer.UI.Editor.TransientObjectField`1.#ctor(System.String,System.Func{`0},System.Action{`0})
+- uid: Strayfarer.UI.Editor.TransientObjectField`1.#ctor(System.String,Func{`0},Action{`0})
   name: TransientObjectField(String, Func<T>, Action<T>)
-  href: api/Strayfarer.UI.Editor.TransientObjectField-1.html#Strayfarer_UI_Editor_TransientObjectField_1__ctor_System_String_System_Func__0__System_Action__0__
-  commentId: M:Strayfarer.UI.Editor.TransientObjectField`1.#ctor(System.String,System.Func{`0},System.Action{`0})
+  href: api/Strayfarer.UI.Editor.TransientObjectField-1.html#Strayfarer_UI_Editor_TransientObjectField_1__ctor_System_String_Func__0__Action__0__
+  commentId: M:Strayfarer.UI.Editor.TransientObjectField`1.#ctor(System.String,Func{`0},Action{`0})
   name.vb: TransientObjectField(String, Func(Of T), Action(Of T))
-  fullName: Strayfarer.UI.Editor.TransientObjectField<T>.TransientObjectField(System.String, System.Func<T>, System.Action<T>)
-  fullName.vb: Strayfarer.UI.Editor.TransientObjectField(Of T).TransientObjectField(System.String, System.Func(Of T), System.Action(Of T))
+  fullName: Strayfarer.UI.Editor.TransientObjectField<T>.TransientObjectField(System.String, Func<T>, Action<T>)
+  fullName.vb: Strayfarer.UI.Editor.TransientObjectField(Of T).TransientObjectField(System.String, Func(Of T), Action(Of T))
   nameWithType: TransientObjectField<T>.TransientObjectField(String, Func<T>, Action<T>)
   nameWithType.vb: TransientObjectField(Of T).TransientObjectField(String, Func(Of T), Action(Of T))
 - uid: Strayfarer.UI.Editor.TransientObjectField`1.#ctor*
@@ -402,13 +402,13 @@ references:
   fullName.vb: Strayfarer.UI.SimpleListControl(Of TControl, TModel)
   nameWithType: SimpleListControl<TControl, TModel>
   nameWithType.vb: SimpleListControl(Of TControl, TModel)
-- uid: Strayfarer.UI.SimpleListControl`2.#ctor(Strayfarer.UI.SimpleListView,System.Func{VisualElement,`0})
+- uid: Strayfarer.UI.SimpleListControl`2.#ctor(Strayfarer.UI.SimpleListView,Func{VisualElement,`0})
   name: SimpleListControl(SimpleListView, Func<VisualElement, TControl>)
-  href: api/Strayfarer.UI.SimpleListControl-2.html#Strayfarer_UI_SimpleListControl_2__ctor_Strayfarer_UI_SimpleListView_System_Func_VisualElement__0__
-  commentId: M:Strayfarer.UI.SimpleListControl`2.#ctor(Strayfarer.UI.SimpleListView,System.Func{VisualElement,`0})
+  href: api/Strayfarer.UI.SimpleListControl-2.html#Strayfarer_UI_SimpleListControl_2__ctor_Strayfarer_UI_SimpleListView_Func_VisualElement__0__
+  commentId: M:Strayfarer.UI.SimpleListControl`2.#ctor(Strayfarer.UI.SimpleListView,Func{VisualElement,`0})
   name.vb: SimpleListControl(SimpleListView, Func(Of VisualElement, TControl))
-  fullName: Strayfarer.UI.SimpleListControl<TControl, TModel>.SimpleListControl(Strayfarer.UI.SimpleListView, System.Func<VisualElement, TControl>)
-  fullName.vb: Strayfarer.UI.SimpleListControl(Of TControl, TModel).SimpleListControl(Strayfarer.UI.SimpleListView, System.Func(Of VisualElement, TControl))
+  fullName: Strayfarer.UI.SimpleListControl<TControl, TModel>.SimpleListControl(Strayfarer.UI.SimpleListView, Func<VisualElement, TControl>)
+  fullName.vb: Strayfarer.UI.SimpleListControl(Of TControl, TModel).SimpleListControl(Strayfarer.UI.SimpleListView, Func(Of VisualElement, TControl))
   nameWithType: SimpleListControl<TControl, TModel>.SimpleListControl(SimpleListView, Func<VisualElement, TControl>)
   nameWithType.vb: SimpleListControl(Of TControl, TModel).SimpleListControl(SimpleListView, Func(Of VisualElement, TControl))
 - uid: Strayfarer.UI.SimpleListControl`2.#ctor*
@@ -480,22 +480,22 @@ references:
   fullName.vb: Strayfarer.UI.SimpleListControl(Of TControl, TModel).ReplaceModels(TModel())
   nameWithType: SimpleListControl<TControl, TModel>.ReplaceModels(TModel[])
   nameWithType.vb: SimpleListControl(Of TControl, TModel).ReplaceModels(TModel())
-- uid: Strayfarer.UI.SimpleListControl`2.ReplaceModels(System.Collections.Generic.IEnumerable{`1})
+- uid: Strayfarer.UI.SimpleListControl`2.ReplaceModels(IEnumerable{`1})
   name: ReplaceModels(IEnumerable<TModel>)
-  href: api/Strayfarer.UI.SimpleListControl-2.html#Strayfarer_UI_SimpleListControl_2_ReplaceModels_System_Collections_Generic_IEnumerable__1__
-  commentId: M:Strayfarer.UI.SimpleListControl`2.ReplaceModels(System.Collections.Generic.IEnumerable{`1})
+  href: api/Strayfarer.UI.SimpleListControl-2.html#Strayfarer_UI_SimpleListControl_2_ReplaceModels_IEnumerable__1__
+  commentId: M:Strayfarer.UI.SimpleListControl`2.ReplaceModels(IEnumerable{`1})
   name.vb: ReplaceModels(IEnumerable(Of TModel))
-  fullName: Strayfarer.UI.SimpleListControl<TControl, TModel>.ReplaceModels(System.Collections.Generic.IEnumerable<TModel>)
-  fullName.vb: Strayfarer.UI.SimpleListControl(Of TControl, TModel).ReplaceModels(System.Collections.Generic.IEnumerable(Of TModel))
+  fullName: Strayfarer.UI.SimpleListControl<TControl, TModel>.ReplaceModels(IEnumerable<TModel>)
+  fullName.vb: Strayfarer.UI.SimpleListControl(Of TControl, TModel).ReplaceModels(IEnumerable(Of TModel))
   nameWithType: SimpleListControl<TControl, TModel>.ReplaceModels(IEnumerable<TModel>)
   nameWithType.vb: SimpleListControl(Of TControl, TModel).ReplaceModels(IEnumerable(Of TModel))
-- uid: Strayfarer.UI.SimpleListControl`2.ReplaceModels(System.Span{`1})
+- uid: Strayfarer.UI.SimpleListControl`2.ReplaceModels(Span{`1})
   name: ReplaceModels(Span<TModel>)
-  href: api/Strayfarer.UI.SimpleListControl-2.html#Strayfarer_UI_SimpleListControl_2_ReplaceModels_System_Span__1__
-  commentId: M:Strayfarer.UI.SimpleListControl`2.ReplaceModels(System.Span{`1})
+  href: api/Strayfarer.UI.SimpleListControl-2.html#Strayfarer_UI_SimpleListControl_2_ReplaceModels_Span__1__
+  commentId: M:Strayfarer.UI.SimpleListControl`2.ReplaceModels(Span{`1})
   name.vb: ReplaceModels(Span(Of TModel))
-  fullName: Strayfarer.UI.SimpleListControl<TControl, TModel>.ReplaceModels(System.Span<TModel>)
-  fullName.vb: Strayfarer.UI.SimpleListControl(Of TControl, TModel).ReplaceModels(System.Span(Of TModel))
+  fullName: Strayfarer.UI.SimpleListControl<TControl, TModel>.ReplaceModels(Span<TModel>)
+  fullName.vb: Strayfarer.UI.SimpleListControl(Of TControl, TModel).ReplaceModels(Span(Of TModel))
   nameWithType: SimpleListControl<TControl, TModel>.ReplaceModels(Span<TModel>)
   nameWithType.vb: SimpleListControl(Of TControl, TModel).ReplaceModels(Span(Of TModel))
 - uid: Strayfarer.UI.SimpleListControl`2.ReplaceModels*
